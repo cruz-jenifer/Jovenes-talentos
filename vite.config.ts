@@ -3,12 +3,14 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
 
+const currentDir = typeof import.meta.dirname !== 'undefined' ? import.meta.dirname : path.resolve('.');
+
 export default defineConfig(() => {
   return {
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': currentDir,
       },
     },
     server: {
