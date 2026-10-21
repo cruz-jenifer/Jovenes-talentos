@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-slate-100" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LNG OLIVIERI - Campus Virtual Jóvenes Talentos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            vw: { navy: '#0a1426', dark: '#0c192e', blue: '#0066cc', light: '#0080ff' }
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+    .nav-btn.active { background: rgba(30, 41, 59, 0.9); border-left: 4px solid #0066cc; color: #fff; font-weight: 600; }
+  </style>
+</head>
+<body class="h-full text-slate-800 antialiased flex flex-col md:flex-row overflow-hidden bg-[#f4f7fb]">
+<!-- SIDEBAR -->
+<aside class="w-full md:w-72 bg-[#09152b] text-white flex flex-col justify-between shrink-0 select-none z-30 shadow-2xl">
+<div>
+<!-- Brand Logo Header -->
+<div class="px-6 py-5 border-b border-slate-800 flex items-center space-x-3.5">
+<div class="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center p-1.5 shrink-0 bg-slate-900/60 shadow-inner">
+<svg class="w-full h-full fill-white" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="46" stroke="currentColor" stroke-width="4.5"></circle>
+<circle cx="50" cy="50" fill="none" r="41" stroke="currentColor" stroke-width="2"></circle>
+<path d="M50 12 L33 55 L41 55 L50 32 L59 55 L67 55 Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2.2"></path>
+<path d="M50 44 L38 82 L46 82 L50 67 L54 82 L62 82 Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2.2"></path>
+<path d="M26 32 L40 68 M74 32 L60 68" stroke="currentColor" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<div class="leading-tight">
+<span class="block font-black tracking-wider text-lg text-white uppercase font-sans">LNG OLIVIERI</span>
+<span class="block text-[11px] font-medium tracking-widest text-blue-300 uppercase mt-0.5">Jóvenes Talentos</span>
+</div>
+</div>
+<!-- Navigation -->
+<nav class="mt-6 px-3 space-y-1.5" id="sidebarMenu">
+<button class="nav-btn w-full flex items-center px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800/70 hover:text-white transition text-sm font-medium" id="navDashboard" onclick="switchTab('plan')">
+<svg class="w-5 h-5 mr-3 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+<span class="">Dashboard / Mi Progreso</span>
+</button>
+<button class="nav-btn w-full flex items-center px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800/70 hover:text-white transition text-sm font-medium active" id="navPlan" onclick="switchTab('plan')">
+<svg class="w-5 h-5 mr-3 text-[#0080ff]" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="">Plan de Estudios (Teoría)</span>
+</button>
+<button class="nav-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800/70 hover:text-white transition text-sm font-medium" id="navNovedades" onclick="switchTab('novedades')">
+<div class="flex items-center">
+<svg class="w-5 h-5 mr-3 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+<span class="">Avisos y Novedades<br/></span>
+</div>
+<span class="px-2 py-0.5 text-xs font-bold bg-[#0066cc] text-white rounded-full">3 Nuevas</span>
+</button>
+<button class="nav-btn w-full flex items-center px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800/70 hover:text-white transition text-sm font-medium" id="navCalendario" onclick="switchTab('calendario')">
+<svg class="w-5 h-5 mr-3 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+<span class="">Calendario</span>
+</button>
+<button class="nav-btn w-full flex items-center px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800/70 hover:text-white transition text-sm font-medium" onclick="openChatTutor('Mantenimiento y Electricidad Automotriz')">
+<svg class="w-5 h-5 mr-3 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+<span class="">Mentoría</span>
+</button>
+</nav>
+</div>
+<!-- User Profile Footer -->
+<div class="p-4 m-3 bg-[#0c1b38]/90 rounded-2xl border border-slate-700/60">
+<div class="flex items-center space-x-3 cursor-pointer" onclick="notify('Perfil de Facundo Gómez - Sede Ramos Mejía')">
+<div class="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center ring-2 ring-blue-400 shrink-0">FG</div>
+<div class="overflow-hidden">
+<h4 class="text-sm font-semibold text-white truncate">Facundo Gómez</h4>
+<p class="text-xs text-slate-400 truncate">Joven Talento - Ramos Mejía</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- MAIN SCROLLABLE CONTENT -->
+<main class="flex-1 flex flex-col h-full overflow-y-auto" id="mainContainer">
+<!-- Top Header -->
+<header class="w-full bg-white/90 backdrop-blur border-b border-slate-200/90 px-6 sm:px-10 py-3.5 flex items-center justify-between sticky top-0 z-20">
+<div class="flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+<span class="text-[#0066cc] font-bold">Campus Virtual LNG OLIVIERI</span>
+<span class="">/</span>
+<span class="" id="headerSectionTitle">Plan de Estudios 2024</span>
+</div>
+<div class="flex items-center space-x-3">
+<!-- Quick Tab Buttons in Header -->
+<div class="hidden sm:flex bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-bold text-slate-600">
+<button class="px-3 py-1.5 rounded-lg bg-white text-blue-700 shadow-xs transition" id="headerBtnPlan" onclick="switchTab('plan')">Plan de Estudios</button>
+<button class="px-3 py-1.5 rounded-lg hover:text-slate-900 transition flex items-center gap-1.5" id="headerBtnNovedades" onclick="switchTab('novedades')">
+<span class="">Novedades y Talleres</span>
+<span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+</button>
+</div>
+<button class="relative p-2 text-slate-600 hover:text-blue-600 hover:bg-slate-100 rounded-full transition" onclick="toggleNotifPanel()" title="Notificaciones">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-red-500 rounded-full ring-2 ring-white"></span>
+</button>
+</div>
+</header>
+<!-- WRAPPER -->
+<div class="px-6 sm:px-10 py-7 max-w-7xl w-full mx-auto space-y-7">
+<!-- ============================================== -->
+<!-- SECTION 1: PLAN DE ESTUDIOS & DASHBOARD -->
+<!-- ============================================== -->
+<div class="space-y-7" id="sectionPlan">
+<!-- Welcome & Mentor Summary -->
+<section class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+<div class="flex-1">
+<h1 class="text-3xl sm:text-4xl font-extrabold text-[#0c1a30] tracking-tight flex items-center gap-2">
+              ¡Hola, Facundo! <span class="inline-block transform hover:rotate-12 transition cursor-pointer">🚀</span>
+</h1>
+<div class="mt-3 flex flex-wrap items-center justify-between text-sm sm:text-base font-semibold text-slate-700">
+<span class="text-slate-600 font-medium">Programa de Formación Técnica Oficial LNG Olivieri (6 Meses)</span>
+<span class="text-[#0066cc] font-bold bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">38% completado</span>
+</div>
+<div class="mt-3 w-full bg-slate-200 h-3 rounded-full overflow-hidden p-0.5">
+<div class="bg-gradient-to-r from-[#0066cc] to-[#0099ff] h-full rounded-full transition-all duration-700" style="width: 38%;"></div>
+</div>
+</div>
+<div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-xs flex items-center justify-between gap-4 lg:w-80 shrink-0">
+<div>
+<div class="flex items-center space-x-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+<span class="text-xs font-bold uppercase tracking-wider text-slate-400">Mentor Asignado</span>
+</div>
+<p class="text-sm font-bold text-slate-900 mt-1">Ing. Carlos Pérez</p>
+<p class="text-xs text-slate-500">Taller Central LNG Olivieri</p>
+</div>
+<button class="px-3 py-2 bg-blue-50 text-[#0066cc] hover:bg-blue-600 hover:text-white rounded-xl text-xs font-semibold transition border border-blue-200 flex items-center gap-1.5" onclick="openChatTutor('Mantenimiento y Electricidad Automotriz')">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="">Consultar</span>
+</button>
+</div>
+</section>
+<!-- Interactive Direct Banner to Novedades -->
+<div class="cursor-pointer bg-gradient-to-r from-[#0b1d3a] via-[#0f2d5c] to-[#0066cc] rounded-2xl p-5 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md hover:shadow-lg transition" onclick="switchTab('novedades')">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-blue-300 text-2xl shrink-0">⚡</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-[11px] font-black uppercase tracking-wider bg-blue-500/30 text-blue-200 px-2 py-0.5 rounded-full border border-blue-400/30">Novedades y Talleres 2024</span>
+<span class="text-xs text-amber-300 font-bold">¡3 Nuevas inscripciones abiertas!</span>
+</div>
+<p class="text-sm font-semibold text-slate-100 mt-1">Masterclasses de Alta Tensión VW, visita a Planta Pacheco y entrega de equipamiento.</p>
+</div>
+</div>
+<button class="px-5 py-2.5 bg-white text-[#0066cc] font-bold text-xs rounded-xl shadow transition shrink-0">
+            Explorar Actividades →
+          </button>
+</div>
+<!-- Section Title & Tabs Filter -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-3">
+<h2 class="text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2">
+            Materias del Programa <span class="text-xs bg-blue-100 text-blue-700 font-bold px-2.5 py-0.5 rounded-full" id="matsBadge">6 materias</span>
+</h2>
+<div class="flex items-center space-x-1 bg-slate-200/70 p-1 rounded-xl text-xs font-semibold text-slate-600">
+<button class="filter-btn px-3 py-1.5 rounded-lg bg-white text-blue-700 shadow-xs" onclick="filterMats('all', this)">Todas (6)</button>
+<button class="filter-btn px-3 py-1.5 rounded-lg hover:text-slate-900" onclick="filterMats('in-progress', this)">En Curso (1)</button>
+<button class="filter-btn px-3 py-1.5 rounded-lg hover:text-slate-900" onclick="filterMats('finalized', this)">Finalizadas (2)</button>
+<button class="filter-btn px-3 py-1.5 rounded-lg hover:text-slate-900" onclick="filterMats('locked', this)">Bloqueadas (3)</button>
+</div>
+</div>
+<!-- SUBJECTS GRID (6 Cards actualizadas con nombre del módulo) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="matsGrid"><!-- CARD 1 (Finalizada - Mes 1) -->
+<article class="mat-card bg-white rounded-2xl border border-slate-200 p-6 shadow-xs hover:shadow-md transition flex flex-col justify-between cursor-pointer" data-status="finalized" onclick="openModuleDetail(1)">
+<div>
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#0066cc] shrink-0">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-xs font-semibold text-slate-500 font-mono">Módulo 1 • Código: 0001</span>
+</div>
+<h3 class="text-base sm:text-lg font-bold text-slate-900 mt-0.5 leading-snug">Módulo 1: Fundamentos Técnicos, Taller y Seguridad</h3>
+</div>
+</div>
+<div class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs ring-2 ring-emerald-200 shrink-0" title="Módulo completado">
+        ✓
+      </div>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<span class="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+        ✓ Finalizada 100%
+      </span>
+<span class="text-xs text-slate-400 font-medium">Mes 1</span>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-100 grid grid-cols-4 gap-2" onclick="event.stopPropagation()">
+<button class="py-2 px-2 bg-[#0066cc] hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-1 shadow-xs truncate" onclick="openModuleDetail(1)" title="Ver Contenidos">
+<svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="truncate">Contenidos</span>
+</button>
+<button class="py-2 px-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl text-xs font-semibold transition flex items-center justify-center gap-1 truncate" onclick="openPortfolioModal('Fundamentos Técnicos, Taller y Seguridad', 'Informe_Metrologia_Taller_Gomez.pdf', '9.50 / 10 - Aprobado')" title="Portafolio">
+<svg class="w-3.5 h-3.5 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="truncate">Portafolio</span>
+</button>
+<button class="py-2 px-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl text-xs font-semibold transition flex items-center justify-center gap-1 truncate" onclick="openChatTutor('Fundamentos Técnicos, Taller y Seguridad')" title="Mensajes">
+<svg class="w-3.5 h-3.5 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="truncate">Mensajes</span>
+</button>
+<button class="py-2 px-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl text-xs font-semibold transition flex items-center justify-center gap-1 truncate" onclick="openModal('Foro: Fundamentos Técnicos', 'Debates de cátedra activos: calibración de torquímetros e instrumental de precisión.')" title="Foro">
+<svg class="w-3.5 h-3.5 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="truncate">Foro</span>
+</button>
+</div>
+</article>
+<!-- CARD 2 (Finalizada - Mes 2) -->
+<article class="mat-card bg-white rounded-2xl border border-slate-200 p-6 shadow-xs hover:shadow-md transition flex flex-col justify-between cursor-pointer" data-status="finalized" onclick="openModuleDetail(2)">
+<div>
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#0066cc] shrink-0">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-xs font-semibold text-slate-500 font-mono">Módulo 2 • Código: 0002</span>
+</div>
+<h3 class="text-base sm:text-lg font-bold text-slate-900 mt-0.5 leading-snug">Módulo 2: Sistemas del Vehículo y Servicio al Cliente</h3>
+</div>
+</div>
+<div class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs ring-2 ring-emerald-200 shrink-0" title="Módulo completado">
+        ✓
+      </div>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<span class="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+        ✓ Finalizada 100%
+      </span>
+<span class="text-xs text-slate-400 font-medium">Mes 2</span>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-100 grid grid-cols-4 gap-2" onclick="event.stopPropagation()">
+<button class="py-2 px-2 bg-[#0066cc] hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-1 shadow-xs truncate" onclick="openModuleDetail(2)" title="Ver Contenidos">
+<svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="truncate">Contenidos</span>
+</button>
+<button class="py-2 px-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl text-xs font-semibold transition flex items-center justify-center gap-1 truncate" onclick="openPortfolioModal('Sistemas del Vehículo y Servicio al Cliente', 'Informe_Revision_Frenos_Gomez.pdf', '9.50 / 10 - Aprobado')" title="Portafolio">
+<svg class="w-3.5 h-3.5 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="truncate">Portafolio</span>
+</button>
+<button class="py-2 px-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl text-xs font-semibold transition flex items-center justify-center gap-1 truncate" onclick="openChatTutor('Sistemas del Vehículo y Servicio al Cliente')" title="Mensajes">
+<svg class="w-3.5 h-3.5 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="truncate">Mensajes</span>
+</button>
+<button class="py-2 px-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl text-xs font-semibold transition flex items-center justify-center gap-1 truncate" onclick="openModal('Foro: Servicio al Cliente', 'Intercambio de experiencias sobre recepción en taller oficial y confección de OR.')" title="Foro">
+<svg class="w-3.5 h-3.5 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="truncate">Foro</span>
+</button>
+</div>
+</article>
+<!-- CARD 3 (En Curso - Mes 3) -->
+<article class="mat-card bg-white rounded-2xl border-2 border-[#0066cc] p-6 shadow-md hover:shadow-lg transition flex flex-col justify-between cursor-pointer" data-status="in-progress" onclick="openModuleDetail(3)">
+<div>
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-[#0066cc] shrink-0">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-xs font-semibold text-slate-500 font-mono">Módulo 3 • Código: 0012</span>
+</div>
+<h3 class="text-base sm:text-lg font-bold text-slate-900 mt-0.5 leading-snug">Módulo 3: Mantenimiento y Electricidad Automotriz</h3>
+</div>
+</div>
+<span class="w-7 h-7 rounded-full bg-[#0066cc] text-white text-xs font-bold flex items-center justify-center shadow-xs shrink-0">3</span>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-full">
+<span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span> En Curso • 40%
+      </span>
+<span class="text-xs text-slate-500 font-medium">Mes 3 (Actual)</span>
+</div>
+<div class="mt-3">
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden border border-slate-200">
+<div class="bg-[#0066cc] h-full rounded-full transition-all" style="width: 40%;"></div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-100 grid grid-cols-4 gap-2" onclick="event.stopPropagation()">
+<button class="py-2 px-2 bg-[#0066cc] hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-1 shadow-xs truncate" onclick="openModuleDetail(3)" title="Ver Contenidos">
+<svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="truncate">Contenidos</span>
+</button>
+<button class="py-2 px-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl text-xs font-semibold transition flex items-center justify-center gap-1 truncate" onclick="openPortfolioModal('Mantenimiento y Electricidad Automotriz', 'Diagnostico_Alternador_Bateria_Gomez.pdf', 'Pendiente de Calificación')" title="Portafolio">
+<svg class="w-3.5 h-3.5 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="truncate">Portafolio</span>
+</button>
+<button class="py-2 px-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl text-xs font-semibold transition flex items-center justify-center gap-1 truncate" onclick="openChatTutor('Mantenimiento y Electricidad Automotriz')" title="Mensajes">
+<svg class="w-3.5 h-3.5 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="truncate">Mensajes</span>
+</button>
+<button class="py-2 px-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl text-xs font-semibold transition flex items-center justify-center gap-1 truncate" onclick="openModal('Evaluaciones: Electricidad', 'Próxima evaluación práctica: Diagnóstico de alternador y batería - Viernes 15.')" title="Evaluaciones">
+<svg class="w-3.5 h-3.5 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="truncate">Evaluación</span>
+</button>
+</div>
+</article>
+<!-- CARD 4 (Bloqueada - Mes 4) -->
+<article class="mat-card bg-white rounded-2xl border border-slate-200 p-6 shadow-xs hover:shadow-md transition flex flex-col justify-between cursor-pointer" data-status="locked" onclick="openModuleDetail(4)">
+<div>
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400 shrink-0">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-xs font-semibold text-slate-400 font-mono">Módulo 4 • Código: 0013</span>
+</div>
+<h3 class="text-base sm:text-lg font-bold text-slate-800 mt-0.5 leading-snug">Módulo 4: Diagnóstico y Proceso Post-Venta</h3>
+</div>
+</div>
+<span class="w-7 h-7 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-xs shrink-0" title="Bloqueada">🔒</span>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<span class="inline-flex items-center gap-1 text-xs font-bold text-slate-600 bg-slate-100 border border-slate-200 px-2.5 py-0.5 rounded-full">
+        🔒 Bloqueada - Mes 4
+      </span>
+<span class="text-xs text-slate-400 font-medium">Requiere Módulo 3</span>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-100 grid grid-cols-4 gap-2" onclick="event.stopPropagation()">
+<button class="py-2 px-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-1 shadow-xs truncate" onclick="openModuleDetail(4)" title="Ver Temario">
+<svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="truncate">Temario</span>
+</button>
+<button class="py-2 px-2 bg-slate-50 text-slate-400 border border-slate-200 rounded-xl text-xs font-medium cursor-not-allowed flex items-center justify-center gap-1 truncate" onclick="notify('Módulo 4 bloqueado: habilitará en Mes 4.')" title="Bloqueado">
+<span class="truncate">Portafolio</span>
+</button>
+<button class="py-2 px-2 bg-slate-50 text-slate-400 border border-slate-200 rounded-xl text-xs font-medium cursor-not-allowed flex items-center justify-center gap-1 truncate" onclick="notify('Módulo 4 bloqueado.')" title="Bloqueado">
+<span class="truncate">Mensajes</span>
+</button>
+<button class="py-2 px-2 bg-slate-50 text-slate-400 border border-slate-200 rounded-xl text-xs font-medium cursor-not-allowed flex items-center justify-center gap-1 truncate" onclick="notify('Módulo 4 bloqueado.')" title="Bloqueado">
+<span class="truncate">Foro</span>
+</button>
+</div>
+</article>
+<!-- CARD 5 (Bloqueada - Mes 5) -->
+<article class="mat-card bg-white rounded-2xl border border-slate-200 p-6 shadow-xs hover:shadow-md transition flex flex-col justify-between cursor-pointer" data-status="locked" onclick="openModuleDetail(5)">
+<div>
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400 shrink-0">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-xs font-semibold text-slate-400 font-mono">Módulo 5 • Código: 0021</span>
+</div>
+<h3 class="text-base sm:text-lg font-bold text-slate-800 mt-0.5 leading-snug">Módulo 5: Prácticas Integradoras y Resolución de Casos Reales</h3>
+</div>
+</div>
+<span class="w-7 h-7 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-xs shrink-0" title="Bloqueada">🔒</span>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<span class="inline-flex items-center gap-1 text-xs font-bold text-slate-600 bg-slate-100 border border-slate-200 px-2.5 py-0.5 rounded-full">
+        🔒 Bloqueada - Mes 5
+      </span>
+<span class="text-xs text-slate-400 font-medium">Fase Taller Central</span>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-100 grid grid-cols-4 gap-2" onclick="event.stopPropagation()">
+<button class="py-2 px-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-1 shadow-xs truncate" onclick="openModuleDetail(5)" title="Ver Temario">
+<svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="truncate">Temario</span>
+</button>
+<button class="py-2 px-2 bg-slate-50 text-slate-400 border border-slate-200 rounded-xl text-xs font-medium cursor-not-allowed flex items-center justify-center gap-1 truncate" onclick="notify('Módulo 5 bloqueado: habilitará en Mes 5.')" title="Bloqueado">
+<span class="truncate">Portafolio</span>
+</button>
+<button class="py-2 px-2 bg-slate-50 text-slate-400 border border-slate-200 rounded-xl text-xs font-medium cursor-not-allowed flex items-center justify-center gap-1 truncate" onclick="notify('Módulo 5 bloqueado.')" title="Bloqueado">
+<span class="truncate">Mensajes</span>
+</button>
+<button class="py-2 px-2 bg-slate-50 text-slate-400 border border-slate-200 rounded-xl text-xs font-medium cursor-not-allowed flex items-center justify-center gap-1 truncate" onclick="notify('Módulo 5 bloqueado.')" title="Bloqueado">
+<span class="truncate">Foro</span>
+</button>
+</div>
+</article>
+<!-- CARD 6 (Bloqueada - Mes 6) -->
+<article class="mat-card bg-white rounded-2xl border border-slate-200 p-6 shadow-xs hover:shadow-md transition flex flex-col justify-between cursor-pointer" data-status="locked" onclick="openModuleDetail(6)">
+<div>
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400 shrink-0">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-xs font-semibold text-slate-400 font-mono">Módulo 6 • Código: 0030</span>
+</div>
+<h3 class="text-base sm:text-lg font-bold text-slate-800 mt-0.5 leading-snug">Módulo 6: Inserción Laboral, Evaluación Final y Certificación</h3>
+</div>
+</div>
+<span class="w-7 h-7 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-xs shrink-0" title="Bloqueada">🔒</span>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<span class="inline-flex items-center gap-1 text-xs font-bold text-slate-600 bg-slate-100 border border-slate-200 px-2.5 py-0.5 rounded-full">
+        🔒 Bloqueada - Mes 6
+      </span>
+<span class="text-xs text-slate-400 font-medium">Certificado Oficial VW</span>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-100 grid grid-cols-4 gap-2" onclick="event.stopPropagation()">
+<button class="py-2 px-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-1 shadow-xs truncate" onclick="openModuleDetail(6)" title="Ver Temario">
+<svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="truncate">Temario</span>
+</button>
+<button class="py-2 px-2 bg-slate-50 text-slate-400 border border-slate-200 rounded-xl text-xs font-medium cursor-not-allowed flex items-center justify-center gap-1 truncate" onclick="notify('Módulo 6 bloqueado: etapa culminante del programa.')" title="Bloqueado">
+<span class="truncate">Portafolio</span>
+</button>
+<button class="py-2 px-2 bg-slate-50 text-slate-400 border border-slate-200 rounded-xl text-xs font-medium cursor-not-allowed flex items-center justify-center gap-1 truncate" onclick="notify('Módulo 6 bloqueado.')" title="Bloqueado">
+<span class="truncate">Mensajes</span>
+</button>
+<button class="py-2 px-2 bg-slate-50 text-slate-400 border border-slate-200 rounded-xl text-xs font-medium cursor-not-allowed flex items-center justify-center gap-1 truncate" onclick="notify('Módulo 6 bloqueado.')" title="Bloqueado">
+<span class="truncate">Foro</span>
+</button>
+</div>
+</article></div>
+</div>
+<!-- ============================================== -->
+<!-- SECTION 2: NOVEDADES, TALLERES Y EVENTOS -->
+<!-- ============================================== -->
+<div class="space-y-8 hidden" id="sectionNovedades">
+<!-- Hero Header -->
+<div class="bg-gradient-to-br from-[#09152b] via-[#0d2247] to-[#0052a3] rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+<div class="space-y-2 max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/20 border border-blue-400/30 rounded-full text-xs font-semibold text-sky-200">
+<span class="">Programa Jóvenes Talentos LNG Olivieri</span>
+<span class="">•</span>
+<span class="text-white font-bold">Edición 2024</span>
+</div>
+<h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">Avisos, Novedades, Talleres y Eventos del Programa</h1>
+<p class="text-sm sm:text-base text-slate-300">
+                Talleres de especialización optativos certificados, jornadas técnicas en Planta Pacheco y circulares oficiales de coordinación.
+              </p>
+</div>
+<button class="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-xl text-xs font-bold transition flex items-center gap-2 shrink-0" onclick="switchTab('plan')">
+              ← Volver a Mi Plan
+            </button>
+</div>
+</div>
+<!-- Filter Sub-Tabs -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-3">
+<div class="flex flex-wrap items-center gap-2">
+<button class="novedad-tab px-4 py-2 rounded-xl text-xs font-bold bg-[#0066cc] text-white shadow-xs" onclick="filterNews('all', this)">
+              Todas las Actividades (9)
+            </button>
+<button class="novedad-tab px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:text-blue-700 border border-slate-200" onclick="filterNews('taller', this)">
+              🛠️ Talleres y Masterclasses (3)
+            </button>
+<button class="novedad-tab px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:text-blue-700 border border-slate-200" onclick="filterNews('evento', this)">
+              🏛️ Eventos Especiales (3)
+            </button>
+<button class="novedad-tab px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:text-blue-700 border border-slate-200" onclick="filterNews('aviso', this)">
+              📢 Avisos Generales (3)
+            </button>
+</div>
+<span class="text-xs text-slate-500 font-semibold" id="newsCounter">9 publicaciones vigentes</span>
+</div>
+<!-- 1. TALLERES OPTATIVOS -->
+<section class="space-y-4 news-block" data-category="taller">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+              Talleres Optativos y Masterclasses Oficiales VW
+            </h3>
+<span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">Suman horas de práctica a tu legajo</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+<!-- Taller 1 -->
+<div class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:shadow-md transition flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-[11px] font-extrabold uppercase bg-amber-50 text-amber-700 border border-amber-200 px-2.5 py-0.5 rounded-full">Recomendado</span>
+<span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">8 Cupos libres</span>
+</div>
+<h4 class="text-base font-bold text-slate-900 leading-snug">
+                  Masterclass: Diagnóstico de Baterías de Alto Voltaje y Sistemas Híbridos VW
+                </h4>
+<p class="text-xs text-slate-600 mt-2 line-clamp-2">
+                  Protocolos de desconexión segura en modelos ID y e-Golf, uso de multímetros Cat IV y software ODIS.
+                </p>
+<div class="mt-4 pt-3 border-t border-slate-100 space-y-1 text-xs text-slate-600">
+<p class=""><span class="font-bold text-slate-700">📅 Fecha:</span> Viernes 22 de Noviembre</p>
+<p class=""><span class="font-bold text-slate-700">⏰ Horario:</span> 14:30 a 18:00 hs</p>
+<p class=""><span class="font-bold text-slate-700">📍 Sede:</span> Taller Central Ramos Mejía</p>
+<p class=""><span class="font-bold text-slate-700">👨‍🏫 Tutor:</span> Ing. Carlos Pérez</p>
+</div>
+</div>
+<div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+<button class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl" onclick="openModal('Temario: Diagnóstico de Baterías VW', '1. Procedimientos de corte de alta tensión.&lt;br&gt;2. Verificación de aislación y descarga residual.&lt;br&gt;3. Práctica sobre módulo de prueba VW ID.3.')">
+                  Ver Temario
+                </button>
+<button class="px-4 py-2 bg-[#0066cc] hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-xs transition" onclick="toggleEnroll(this, 'Masterclass: Diagnóstico de Baterías')">
+                  Inscribirme
+                </button>
+</div>
+</div>
+<!-- Taller 2 -->
+<div class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:shadow-md transition flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-[11px] font-extrabold uppercase bg-blue-50 text-blue-700 border border-blue-200 px-2.5 py-0.5 rounded-full">Optativo</span>
+<span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md">Últimos 3 Cupos</span>
+</div>
+<h4 class="text-base font-bold text-slate-900 leading-snug">
+                  Taller Práctico: Manejo Avanzado de Sistema ODIS y Osciloscopio Digital
+                </h4>
+<p class="text-xs text-slate-600 mt-2 line-clamp-2">
+                  Captura de formas de onda en sensores de giro y actuadores. Diagnóstico guiado con banco de pruebas.
+                </p>
+<div class="mt-4 pt-3 border-t border-slate-100 space-y-1 text-xs text-slate-600">
+<p class=""><span class="font-bold text-slate-700">📅 Fecha:</span> Miércoles 27 de Noviembre</p>
+<p class=""><span class="font-bold text-slate-700">⏰ Horario:</span> 09:00 a 12:30 hs</p>
+<p class=""><span class="font-bold text-slate-700">📍 Sede:</span> Laboratorio Sucursal Central</p>
+<p class=""><span class="font-bold text-slate-700">👨‍🏫 Instructor:</span> Lic. Martín Rossi</p>
+</div>
+</div>
+<div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+<button class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl" onclick="openModal('Temario: Manejo ODIS y Osciloscopio', 'Pruebas dinámicas sobre vehículos Taos y Amarok V6 con instrumental oficial del concesionario.')">
+                  Ver Temario
+                </button>
+<button class="px-4 py-2 bg-[#0066cc] hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-xs transition" onclick="toggleEnroll(this, 'Taller Práctico: Manejo ODIS')">
+                  Inscribirme
+                </button>
+</div>
+</div>
+<!-- Taller 3 -->
+<div class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:shadow-md transition flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-[11px] font-extrabold uppercase bg-blue-50 text-blue-700 border border-blue-200 px-2.5 py-0.5 rounded-full">Optativo</span>
+<span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">12 Cupos libres</span>
+</div>
+<h4 class="text-base font-bold text-slate-900 leading-snug">
+                  Seminario: Seguridad y Calidad de Atención Post-Venta Oficial
+                </h4>
+<p class="text-xs text-slate-600 mt-2 line-clamp-2">
+                  Recepción activa de clientes, checklist digital en tablet y protocolos de garantía del Grupo Volkswagen.
+                </p>
+<div class="mt-4 pt-3 border-t border-slate-100 space-y-1 text-xs text-slate-600">
+<p class=""><span class="font-bold text-slate-700">📅 Fecha:</span> Martes 03 de Diciembre</p>
+<p class=""><span class="font-bold text-slate-700">⏰ Horario:</span> 15:00 a 17:30 hs</p>
+<p class=""><span class="font-bold text-slate-700">📍 Sede:</span> Modalidad Híbrida (Ramos / Teams)</p>
+<p class=""><span class="font-bold text-slate-700">👨‍🏫 Disertante:</span> Lic. Valeria Benítez</p>
+</div>
+</div>
+<div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+<button class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl" onclick="openModal('Temario: Calidad de Atención Post-Venta', 'Estándares internacionales de servicio al cliente Volkswagen y gestión de garantías en concesionario.')">
+                  Ver Temario
+                </button>
+<button class="px-4 py-2 bg-[#0066cc] hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-xs transition" onclick="toggleEnroll(this, 'Seminario: Atención Post-Venta')">
+                  Inscribirme
+                </button>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. EVENTOS DEL PROGRAMA -->
+<section class="space-y-4 news-block" data-category="evento">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+              Eventos del Programa Jóvenes Talentos
+            </h3>
+<span class="text-xs font-semibold text-slate-500">Integración institucional y visitas de campo</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<!-- Evento 1 -->
+<div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs flex flex-col justify-between">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-black uppercase bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-md">Visita Técnica</span>
+<span class="text-xs text-slate-400">Traslado Incluido</span>
+</div>
+<h4 class="text-base font-bold text-slate-900">Jornada de Integración en Planta Pacheco Volkswagen</h4>
+<p class="text-xs text-slate-600">
+                  Recorrido por las líneas robotizadas de armado de Taos y Amarok, centro de estampado y pista de pruebas de homologación.
+                </p>
+<div class="p-3 bg-slate-50 rounded-xl space-y-1 text-xs text-slate-600">
+<p class=""><strong class="text-slate-800">Fecha:</strong> Jueves 05 de Diciembre</p>
+<p class=""><strong class="text-slate-800">Salida:</strong> 07:30 hs desde Sucursal Ramos Mejía</p>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+<span class="text-xs font-bold text-emerald-600">Asistencia Asignada</span>
+<button class="px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition" onclick="openModal('Visita a Planta Pacheco VW', 'Se incluye traslado ida y vuelta en micro chárter, credencial oficial de visitante industrial y almuerzo en comedor de planta. Obligatorio calzado de seguridad.')">
+                  Ver Hoja de Ruta
+                </button>
+</div>
+</div>
+<!-- Evento 2 -->
+<div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs flex flex-col justify-between">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-black uppercase bg-purple-50 text-purple-800 border border-purple-200 px-2 py-0.5 rounded-md">Charla Magistral</span>
+<span class="text-xs text-slate-400">Auditorio Central</span>
+</div>
+<h4 class="text-base font-bold text-slate-900">Charla Técnica con Ingenieros de Planta VW Argentina</h4>
+<p class="text-xs text-slate-600">
+                  Conversatorio sobre la arquitectura electrónica MQB y la transición hacia la electromovilidad en concesionarios oficiales.
+                </p>
+<div class="p-3 bg-slate-50 rounded-xl space-y-1 text-xs text-slate-600">
+<p class=""><strong class="text-slate-800">Fecha:</strong> Martes 10 de Diciembre</p>
+<p class=""><strong class="text-slate-800">Horario:</strong> 17:00 a 19:00 hs</p>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+<span class="text-xs font-bold text-blue-600">Inscripción Abierta</span>
+<button class="px-3.5 py-1.5 bg-[#0066cc] hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition" onclick="toggleEnroll(this, 'Charla con Ingenieros de Planta')">
+                  Confirmar Cupo
+                </button>
+</div>
+</div>
+<!-- Evento 3 -->
+<div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs flex flex-col justify-between">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-black uppercase bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-md">Cierre Anual</span>
+<span class="text-xs text-slate-400">Salón Principal</span>
+</div>
+<h4 class="text-base font-bold text-slate-900">Exposición de Casos Técnicos y Premiación 2024</h4>
+<p class="text-xs text-slate-600">
+                  Presentación de los proyectos de resolución de fallas complejas y entrega de reconocimientos al Mérito Técnico.
+                </p>
+<div class="p-3 bg-slate-50 rounded-xl space-y-1 text-xs text-slate-600">
+<p class=""><strong class="text-slate-800">Fecha:</strong> Viernes 20 de Diciembre</p>
+<p class=""><strong class="text-slate-800">Horario:</strong> 18:30 hs</p>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+<span class="text-xs font-bold text-slate-500">Próximamente</span>
+<button class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition" onclick="openModal('Exposición y Cierre de Año', 'Jornada de entrega de diplomas y reconocimientos para los jóvenes talentos destacados de Ramos Mejía y sucursales acompañadas.')">
+                  Detalles
+                </button>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. AVISOS GENERALES -->
+<section class="space-y-4 news-block" data-category="aviso">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+              Avisos Generales y Circulares Oficiales
+            </h3>
+<span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Secretaría Académica</span>
+</div>
+<div class="space-y-3">
+<!-- Aviso 1 -->
+<div class="bg-white rounded-2xl border-l-4 border-l-blue-600 border border-slate-200 p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-xl font-bold">👟</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold uppercase bg-blue-100 text-blue-800 px-2 py-0.5 rounded">Equipamiento y EPP</span>
+<span class="text-xs text-slate-400">Publicado ayer</span>
+</div>
+<h4 class="text-sm font-bold text-slate-900 mt-1">Entrega de Nuevos Uniformes Técnicos y Calzado Dieléctrico Homologado</h4>
+<p class="text-xs text-slate-600 mt-0.5">Retiro por Pañol Central en Ramos Mejía de 08:00 a 16:00 hs con DNI para el turno tarde.</p>
+</div>
+</div>
+<button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl shrink-0 transition" onclick="openModal('Circular: Entrega de Uniformes Técnicos', 'El kit incluye 2 pantalones de taller reforzados, 3 chombas oficiales con logo bordado LNG Olivieri / VW y calzado de seguridad dieléctrico norma IRAM.')">
+                Leer Circular
+              </button>
+</div>
+<!-- Aviso 2 -->
+<div class="bg-white rounded-2xl border-l-4 border-l-emerald-600 border border-slate-200 p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 text-xl font-bold">🔄</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold uppercase bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Rotación Práctica</span>
+<span class="text-xs text-slate-400">Hace 3 días</span>
+</div>
+<h4 class="text-sm font-bold text-slate-900 mt-1">Nuevo Cronograma de Rotación por Áreas del Taller (Módulo 0012)</h4>
+<p class="text-xs text-slate-600 mt-0.5">Rotaciones hacia el sector de alineación 3D, frenos computarizados y escaneo electrónico asistido.</p>
+</div>
+</div>
+<button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl shrink-0 transition" onclick="openModal('Circular: Rotación de Puestos en Taller', 'Facundo Gómez queda asignado al puesto 4 de Inyección y Diagnóstico Guiado durante el bloque quincenal en curso.')">
+                Leer Circular
+              </button>
+</div>
+<!-- Aviso 3 -->
+<div class="bg-white rounded-2xl border-l-4 border-l-purple-600 border border-slate-200 p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 text-xl font-bold">💼</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold uppercase bg-purple-100 text-purple-800 px-2 py-0.5 rounded">Pasantías Remuneradas</span>
+<span class="text-xs text-slate-400">Hace 5 días</span>
+</div>
+<h4 class="text-sm font-bold text-slate-900 mt-1">Convocatoria a Pasantías Técnicas en la Red Oficial LNG Olivieri</h4>
+<p class="text-xs text-slate-600 mt-0.5">Abierta para aprendices con módulos teóricos al día y evaluación positiva de tutor.</p>
+</div>
+</div>
+<button class="px-4 py-2 bg-[#0066cc] hover:bg-blue-700 text-white text-xs font-bold rounded-xl shrink-0 transition" onclick="openModal('Convocatoria de Pasantías Técnicas', 'Acceso a prácticas rentadas de 20 hs semanales con cobertura médica y posibilidad de efectivización directa al finalizar el programa.')">
+                Ver Requisitos
+              </button>
+</div>
+</div>
+</section>
+</div>
+<!-- ============================================== -->
+<!-- SECTION 3: CALENDARIO -->
+<!-- ============================================== -->
+<div class="space-y-6 hidden" id="sectionCalendario">
+<div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
+<div class="flex items-center justify-between pb-4 border-b border-slate-100">
+<div>
+<h2 class="text-xl font-bold text-slate-900">Calendario Académico y de Talleres 2024</h2>
+<p class="text-xs text-slate-500">Cronograma unificado de prácticas en fosa y masterclasses</p>
+</div>
+<button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-xs font-bold rounded-xl text-slate-700" onclick="switchTab('plan')">
+              ← Volver
+            </button>
+</div>
+<div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="p-4 bg-blue-50/70 rounded-xl border border-blue-200 space-y-2">
+<span class="text-xs font-bold text-blue-700 bg-white px-2 py-0.5 rounded border border-blue-200">Próxima Jornada</span>
+<h4 class="text-sm font-bold text-slate-900">Jueves 08:30 hs</h4>
+<p class="text-xs text-slate-600">Práctica presencial: Circuito de Carga y Arranque con Osciloscopio en Sucursal Ramos Mejía.</p>
+</div>
+<div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+<span class="text-xs font-bold text-slate-600 bg-white px-2 py-0.5 rounded border border-slate-200">22 Noviembre</span>
+<h4 class="text-sm font-bold text-slate-900">Masterclass Alto Voltaje</h4>
+<p class="text-xs text-slate-600">14:30 a 18:00 hs en Taller Central con Ing. Carlos Pérez.</p>
+</div>
+<div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+<span class="text-xs font-bold text-slate-600 bg-white px-2 py-0.5 rounded border border-slate-200">05 Diciembre</span>
+<h4 class="text-sm font-bold text-slate-900">Visita Planta Pacheco</h4>
+<p class="text-xs text-slate-600">Jornada de integración técnica de Jóvenes Talentos.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- ============================================== -->
+<!-- INTERACTIVE MODALS & DRAWERS -->
+<!-- ============================================== -->
+<!-- 1. MODAL PORTAFOLIO DE EVIDENCIAS (Exacto a DATA:IMAGE:IMAGE_1) -->
+<div class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4" id="portfolioModal" onclick="if(event.target === this) closePortfolioModal()">
+<div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-7 shadow-2xl border border-slate-200 space-y-5 transform transition-all">
+<!-- Header -->
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-xl font-extrabold text-slate-900">Portafolio de Evidencias</h3>
+<p class="text-xs text-slate-500 font-medium mt-0.5" id="portfolioModuleSubtitle">Fundamentos Técnicos, Taller y Seguridad</p>
+</div>
+<button class="text-slate-400 hover:text-slate-600 text-xl font-light w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-100 transition" onclick="closePortfolioModal()">✕</button>
+</div>
+<!-- Drag & Drop Zone -->
+<div class="border-2 border-dashed border-sky-400 bg-sky-50/40 rounded-2xl p-6 text-center cursor-pointer hover:bg-sky-50/80 transition" onclick="simulateUpload()">
+<div class="w-12 h-12 mx-auto rounded-full text-blue-600 flex items-center justify-center mb-2">
+<svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<p class="text-sm font-bold text-slate-900">Arrastra tu informe técnico aquí o haz clic para subir</p>
+<p class="text-xs text-slate-500 mt-1">Formatos admitidos: PDF, JPG, PNG (Hasta 25MB)</p>
+<input accept=".pdf,.jpg,.jpeg,.png" class="hidden" id="portfolioFileInput" onchange="handleFileSelected(event)" type="file"/>
+</div>
+<!-- ÚLTIMA ENTREGA REGISTRADA -->
+<div class="space-y-2">
+<h4 class="text-[11px] font-extrabold uppercase tracking-wider text-slate-600">ÚLTIMA ENTREGA REGISTRADA</h4>
+<div class="bg-slate-50/80 border border-slate-200 rounded-2xl p-3.5 flex items-center justify-between gap-3">
+<div class="flex items-center space-x-3 truncate">
+<div class="w-9 h-9 rounded-lg bg-red-50 text-red-600 border border-red-100 flex items-center justify-center text-lg shrink-0">
+  📄
+</div>
+<div class="truncate">
+<p class="text-xs sm:text-sm font-bold text-slate-900 truncate" id="portfolioFileName">Informe_Revision_Frenos_Gomez.pdf</p>
+<p class="text-[11px] text-slate-500" id="portfolioFileGrade">Calificación: 9.50 / 10 - Aprobado</p>
+</div>
+</div>
+<span class="px-2.5 py-1 text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg shrink-0">
+  Revisado
+</span>
+</div>
+</div>
+<!-- Modal Footer Actions -->
+<div class="flex items-center justify-end space-x-3 pt-2">
+<button class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition" onclick="closePortfolioModal()">Cerrar</button>
+<button class="px-5 py-2.5 bg-[#0066cc] hover:bg-blue-700 text-white text-xs font-bold rounded-xl shadow-xs transition" onclick="simulateUpload()">Subir nueva versión</button>
+</div>
+</div>
+</div>
+<!-- 2. MODAL / POPUP DE CONSULTA CON TUTOR (Exacto a DATA:IMAGE:IMAGE_2) -->
+<div class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4" id="chatModal" onclick="if(event.target === this) closeChatTutor()">
+<div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden flex flex-col transform transition-all">
+<!-- Dark Navy Header (#0f172a / #09152b) -->
+<div class="px-5 py-4 bg-[#09152b] text-white flex items-center justify-between">
+<div class="flex items-center space-x-3 truncate">
+<div class="relative shrink-0">
+<img alt="Ing. Carlos Pérez" class="w-10 h-10 rounded-full object-cover border-2 border-white/40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEeZXGFspFDE-YuHfR3CG4R9-dHNF-unGrs3Dg8-gyqbzJ-mMCkxhjhibLAF91N7FmjlepoEbfxyzEAhiaZOjGvbVvFyiWNSMm8sub49ozfdAkwZQkvE5kRWMYHPd6OWKM9ja8mzYv8hWHNt5TRQE99A6s62WLPSl9ZRRVXyi_ZscgzOuLxnTg9190f5Y4xtDJ56oMoibhYkVXUXWST7-3lceX6lIZM_iERizMAUPWWkG9i63s_vA3"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full ring-2 ring-[#09152b]"></span>
+</div>
+<div class="truncate">
+<h4 class="text-sm font-bold text-white truncate" id="chatHeaderTitle">Consulta: Fundamentos Técnicos, Taller y Seguridad</h4>
+<p class="text-xs text-slate-400">Tutor de Campo LNG Olivieri</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-white text-xl font-light w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition shrink-0 ml-2" onclick="closeChatTutor()">✕</button>
+</div>
+<!-- Chat Message Stream -->
+<div class="p-5 space-y-4 max-h-96 min-h-[220px] overflow-y-auto bg-slate-50/60 text-xs sm:text-sm" id="chatBox">
+<!-- Tutor Bubble (Left, Light Grey) -->
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="bg-white text-slate-800 p-3.5 rounded-2xl border border-slate-200 shadow-xs leading-relaxed">
+  ¡Hola Facundo! Recordá subir el registro de calibración del osciloscopio antes de las 18:00 hs.
+</div>
+<span class="text-[10px] text-slate-400 mt-1 ml-1 font-medium">Hoy 10:14 hs</span>
+</div>
+<!-- Facundo Bubble (Right, Blue) -->
+<div class="flex flex-col items-end ml-auto max-w-[85%]">
+<div class="bg-[#0066cc] text-white p-3.5 rounded-2xl shadow-xs leading-relaxed">
+  Perfecto Ingeniero, ya estoy preparando la documentación del taller de Ramos Mejía.
+</div>
+<span class="text-[10px] text-slate-400 mt-1 mr-1 font-medium">Hoy 10:22 hs</span>
+</div>
+</div>
+<!-- Bottom Input Bar -->
+<form class="p-3 bg-white border-t border-slate-200 flex items-center gap-2" onsubmit="handleSendChat(event)">
+<input autocomplete="off" class="flex-1 text-xs sm:text-sm px-4 py-2.5 border border-slate-300 rounded-full focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 bg-white" id="chatInput" placeholder="Escribe un mensaje al tutor..."/>
+<button class="px-5 py-2.5 bg-[#0066cc] text-white text-xs sm:text-sm font-bold rounded-full hover:bg-blue-700 transition shrink-0" type="submit">Enviar</button>
+</form>
+</div>
+</div>
+<!-- 3. Generic Info Modal (para Avisos y Temarios) -->
+<div class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4" id="generalModal" onclick="if(event.target === this) closeModal()">
+<div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+<div class="flex items-start justify-between pb-3 border-b border-slate-100">
+<h3 class="text-base font-bold text-slate-900" id="modalTitle">Detalle</h3>
+<button class="text-slate-400 hover:text-slate-600 text-lg" onclick="closeModal()">✕</button>
+</div>
+<div class="text-xs text-slate-600 leading-relaxed space-y-2" id="modalBody">
+<!-- Content injected dynamically -->
+</div>
+<div class="flex justify-end pt-3 border-t border-slate-100">
+<button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-xs font-bold rounded-xl text-slate-700" onclick="closeModal()">Entendido</button>
+</div>
+</div>
+</div>
+<!-- 4. Drawer de Contenidos Detallados de Módulos -->
+<div class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-40 hidden" id="drawerOverlay" onclick="closeDrawer()"></div>
+<aside class="fixed top-0 right-0 h-full w-full max-w-lg bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col justify-between" id="drawerContents">
+<div class="overflow-y-auto flex-1">
+<!-- Drawer Header -->
+<div class="p-6 bg-[#09152b] text-white">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[11px] font-bold text-sky-300 bg-sky-950 px-2.5 py-0.5 rounded-full border border-sky-700 uppercase tracking-wider" id="drawerBadgeMonth">MÓDULO 1 • MES 1</span>
+<span class="text-[11px] font-bold text-emerald-400 bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-700" id="drawerStatusText">✓ Finalizada 100%</span>
+</div>
+<h3 class="text-lg font-bold text-white leading-tight" id="drawerTitle">Módulo 1: Fundamentos Técnicos, Taller y Seguridad</h3>
+<p class="text-xs text-slate-400 mt-1 font-mono" id="drawerCode">Código: 0001 • LNG OLIVIERI</p>
+</div>
+<!-- Drawer Detailed Content (Dinámicamente inyectado) -->
+<div class="p-6 space-y-5" id="drawerBodyContainer">
+<!-- Inject here -->
+</div>
+</div>
+<!-- Drawer Footer Actions -->
+<div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+<span class="text-xs text-slate-500 font-medium" id="drawerActionHint">Programa Oficial de Certificación</span>
+<button class="px-5 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition" onclick="closeDrawer()">Cerrar</button>
+</div>
+</aside>
+<!-- Notification Dropdown -->
+<div class="fixed top-16 right-6 w-80 bg-white rounded-2xl shadow-2xl border border-slate-200 p-4 z-40 hidden text-xs" id="notifPanel">
+<div class="flex items-center justify-between pb-2 border-b border-slate-100 font-bold text-slate-900">
+<span class="">Notificaciones</span>
+<button class="text-blue-600 text-[11px]" onclick="toggleNotifPanel()">Marcar leídas</button>
+</div>
+<div class="mt-2 space-y-2">
+<div class="p-2 bg-blue-50 rounded-xl cursor-pointer hover:bg-blue-100/70" onclick="switchTab('novedades'); toggleNotifPanel();">
+<p class="font-bold text-slate-800">Nueva Masterclass habilitada</p>
+<p class="text-slate-600 text-[11px]">Baterías de alto voltaje VW. 8 cupos libres.</p>
+</div>
+<div class="p-2 bg-slate-50 rounded-xl">
+<p class="font-bold text-slate-800">Práctica presencial programada</p>
+<p class="text-slate-600 text-[11px]">Jueves 08:30 hs en Taller Ramos Mejía.</p>
+</div>
+</div>
+</div>
+<!-- Floating Toast -->
+<div class="fixed bottom-6 right-6 bg-slate-900 text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-2xl flex items-center space-x-2 transition-all duration-300 z-50 opacity-0 translate-y-10 pointer-events-none" id="toast">
+<span class="text-emerald-400">●</span>
+<span class="" id="toastMsg">Acción completada</span>
+</div>
+<!-- SCRIPT LOGIC -->
+<script>
+    // Official syllabus data
+    const modulesData = {
+      1: {
+        num: 1,
+        month: 'Mes 1',
+        title: 'Módulo 1: Fundamentos Técnicos, Taller y Seguridad',
+        pureTitle: 'Fundamentos Técnicos, Taller y Seguridad',
+        code: '0001',
+        status: 'Finalizada 100%',
+        statusType: 'finalized',
+        badgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+        topics: [
+          {
+            title: 'Seguridad e Higiene en el Taller',
+            desc: 'Normas de seguridad biológica y física. Uso correcto de Equipos de Protección Individual (EPI). Manejo de residuos peligrosos (aceites, baterías, refrigerantes). Prevención y extinción de incendios.'
+          },
+          {
+            title: 'Herramientas y Equipamiento',
+            desc: 'Identificación y uso técnico de herramientas de mano (llaves fijas, de vaso, dinamométricas). Manejo de equipos pesados (elevadores hidráulicos, prensas, gatos). Instrumentos de metrología (calibre pie de rey, micrómetro, comparador de carátula).'
+          },
+          {
+            title: 'Fundamentos del Motor Térmico',
+            desc: 'Principios de la termodinámica. Componentes fijos y móviles del motor (bloque, culata, pistones, cigüeñal). Ciclos de funcionamiento de 4 tiempos (Otto y Diésel).'
+          }
+        ]
+      },
+      2: {
+        num: 2,
+        month: 'Mes 2',
+        title: 'Módulo 2: Sistemas del Vehículo y Servicio al Cliente',
+        pureTitle: 'Sistemas del Vehículo y Servicio al Cliente',
+        code: '0002',
+        status: 'Finalizada 100%',
+        statusType: 'finalized',
+        badgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+        topics: [
+          {
+            title: 'Sistemas de Suspensión y Dirección',
+            desc: 'Componentes de la suspensión (amortiguadores, muelles, barras estabilizadoras). Tipos de dirección (mecánica, asistida hidráulica y eléctricamente). Geometría y alineación de ruedas.'
+          },
+          {
+            title: 'Sistema de Frenos',
+            desc: 'Principios de hidráulica aplicados al frenado. Frenos de disco y de tambor. Componentes (bomba, pinzas, pastillas, servofreno). Introducción básica a sistemas antibloqueo (ABS).'
+          },
+          {
+            title: 'Servicio y Atención al Cliente',
+            desc: 'Recepción del vehículo y confección de la orden de trabajo. Habilidades de comunicación y detección de las necesidades del cliente. Explicación técnica de presupuestos y transparencia en el servicio.'
+          }
+        ]
+      },
+      3: {
+        num: 3,
+        month: 'Mes 3',
+        title: 'Módulo 3: Mantenimiento y Electricidad Automotriz',
+        pureTitle: 'Mantenimiento y Electricidad Automotriz',
+        code: '0012',
+        status: 'En Curso (40%)',
+        statusType: 'in-progress',
+        badgeClass: 'bg-blue-100 text-blue-800 border-blue-300',
+        topics: [
+          {
+            title: 'Mantenimiento Programado y Preventivo',
+            desc: 'Rutinas de inspección por kilometraje. Cambio de fluidos (aceite de motor, transmisión, líquido de frenos) y sustitución de filtros (aire, aceite, combustible, habitáculo). Inspección visual de desgastes y fugas.'
+          },
+          {
+            title: 'Electricidad Básica del Automóvil',
+            desc: 'Magnitudes eléctricas (voltaje, corriente, resistencia). Uso del multímetro digital y lámpara de prueba. Interpretación de diagramas y esquemas eléctricos automotrices.'
+          },
+          {
+            title: 'Circuitos de Carga y Arranque',
+            desc: 'Diagnóstico y mantenimiento de la batería. Funcionamiento y comprobación del alternador y el motor de arranque. Fusibles, relés y sistemas de iluminación.'
+          }
+        ]
+      },
+      4: {
+        num: 4,
+        month: 'Mes 4',
+        title: 'Módulo 4: Diagnóstico y Proceso Post-Venta',
+        pureTitle: 'Diagnóstico y Proceso Post-Venta',
+        code: '0013',
+        status: 'Bloqueada - Mes 4',
+        statusType: 'locked',
+        badgeClass: 'bg-amber-100 text-amber-800 border-amber-300',
+        topics: [
+          {
+            title: 'Sistemas de Inyección y Gestión Electrónica',
+            desc: 'Introducción a las unidades de control electrónico (ECU). Sensores (MAF, CKP, Lambda) y actuadores (inyectores, bobinas). Sistemas de alimentación de combustible y control de emisiones.'
+          },
+          {
+            title: 'Diagnóstico con Escáner (OBD-II)',
+            desc: 'Conexión y lectura de códigos de falla (DTC). Interpretación de flujo de datos en tiempo real. Uso de osciloscopio automotriz para análisis de señales analógicas y digitales.'
+          },
+          {
+            title: 'Proceso y Control de Calidad Post-Venta',
+            desc: 'Prueba de ruta del vehículo post-reparación. Verificación del cumplimiento de la orden de trabajo. Entrega técnica del automóvil y seguimiento de la satisfacción del cliente.'
+          }
+        ]
+      },
+      5: {
+        num: 5,
+        month: 'Mes 5',
+        title: 'Módulo 5: Prácticas Integradoras y Resolución de Casos Reales',
+        pureTitle: 'Prácticas Integradoras y Resolución de Casos Reales',
+        code: '0021',
+        status: 'Bloqueada - Mes 5',
+        statusType: 'locked',
+        badgeClass: 'bg-amber-100 text-amber-800 border-amber-300',
+        topics: [
+          {
+            title: 'Simulación de Averías Complejas',
+            desc: 'Diagnóstico a ciegas de fallas intermitentes (eléctricas y mecánicas). Aplicación del método lógico de descarte de fallas.'
+          },
+          {
+            title: 'Talleres de Reparación Real',
+            desc: 'Prácticas guiadas de desmontaje, reparación y montaje de componentes de motor, frenos y suspensión. Trabajo en equipo bajo presión de tiempo simulando un taller real.'
+          },
+          {
+            title: 'Optimización de Tiempos de Trabajo',
+            desc: 'Uso de manuales técnicos de taller y softwares de reparación (Data Autodata, Mitchell, etc.). Gestión eficiente del puesto de trabajo.'
+          }
+        ]
+      },
+      6: {
+        num: 6,
+        month: 'Mes 6',
+        title: 'Módulo 6: Inserción Laboral, Evaluación Final y Certificación',
+        pureTitle: 'Inserción Laboral, Evaluación Final y Certificación',
+        code: '0030',
+        status: 'Bloqueada - Mes 6',
+        statusType: 'locked',
+        badgeClass: 'bg-amber-100 text-amber-800 border-amber-300',
+        topics: [
+          {
+            title: 'Proyecto “Jóvenes Talentos Oliveri”',
+            desc: 'Desarrollo de una propuesta de mejora técnica o de servicio aplicable a un taller. Presentación de un caso de estudio resuelto.'
+          },
+          {
+            title: 'Orientación e Inserción Laboral',
+            desc: 'Armado de currículum vitae técnico. Preparación para entrevistas de trabajo en concesionarios y talleres multimarca. Introducción al autoempleo y emprendimiento.'
+          },
+          {
+            title: 'Evaluación Final y Certificación',
+            desc: 'Examen teórico integral de conocimientos y prueba práctica de diagnóstico y reparación frente a evaluadores.'
+          }
+        ]
+      }
+    };
+
+    // Open detailed module in Drawer
+    function openModuleDetail(modNum) {
+      const data = modulesData[modNum];
+      if (!data) return;
+
+      document.getElementById('drawerBadgeMonth').innerText = `MÓDULO ${data.num} • ${data.month.toUpperCase()}`;
+      document.getElementById('drawerTitle').innerText = data.title;
+      document.getElementById('drawerCode').innerText = `Código Oficial: ${data.code} • Programa LNG OLIVIERI`;
+
+      const statusEl = document.getElementById('drawerStatusText');
+      statusEl.innerText = data.status;
+      if (data.statusType === 'finalized') {
+        statusEl.className = 'text-[11px] font-bold text-emerald-400 bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-700';
+      } else if (data.statusType === 'in-progress') {
+        statusEl.className = 'text-[11px] font-bold text-sky-400 bg-sky-950/80 px-2.5 py-0.5 rounded-full border border-sky-700 animate-pulse';
+      } else {
+        statusEl.className = 'text-[11px] font-bold text-amber-400 bg-amber-950/80 px-2.5 py-0.5 rounded-full border border-amber-700';
+      }
+
+      let html = `
+        <div class="bg-blue-50/60 p-4 rounded-2xl border border-blue-200">
+          <p class="text-xs font-bold text-blue-900 uppercase tracking-wide">Estructura Curricular Obligatoria</p>
+          <p class="text-xs text-slate-600 mt-1">Este módulo comprende 3 ejes pedagógicos con evaluación teórico-práctica en los talleres oficiales.</p>
+        </div>
+        <div class="space-y-4">
+      `;
+
+      data.topics.forEach((t, index) => {
+        html += `
+          <div class="p-4 bg-white rounded-2xl border border-slate-200 shadow-xs hover:border-blue-300 transition">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-6 h-6 rounded-lg bg-[#09152b] text-white text-xs font-bold flex items-center justify-center shrink-0">
+                ${index + 1}
+              </span>
+              <h4 class="text-sm font-bold text-slate-900">${t.title}</h4>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed pl-8">
+              ${t.desc}
+            </p>
+          </div>
+        `;
+      });
+
+      html += `</div>`;
+
+      if (data.statusType === 'in-progress') {
+        html += `
+          <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-xs text-amber-800 space-y-2">
+            <p class="font-bold">⚡ Módulo actualmente en cursada activa:</p>
+            <p>Se encuentra en desarrollo el eje de <em>Electricidad Básica y Circuitos de Carga</em>. Turnos prácticos asignados en el taller central.</p>
+          </div>
+        `;
+      } else if (data.statusType === 'locked') {
+        html += `
+          <div class="p-4 bg-slate-100 rounded-2xl border border-slate-200 text-xs text-slate-600 space-y-1">
+            <p class="font-bold text-slate-800">🔒 Acceso a clases y evaluaciones:</p>
+            <p>El material práctico y los exámenes se habilitarán automáticamente al cumplimentar la correlatividad del mes anterior.</p>
+          </div>
+        `;
+      }
+
+      document.getElementById('drawerBodyContainer').innerHTML = html;
+      document.getElementById('drawerOverlay').classList.remove('hidden');
+      document.getElementById('drawerContents').classList.remove('translate-x-full');
+    }
+
+    // Modal Portafolio de Evidencias (DATA:IMAGE:IMAGE_1)
+    function openPortfolioModal(moduleName, defaultFile, grade) {
+      document.getElementById('portfolioModuleSubtitle').innerText = moduleName || 'Fundamentos Técnicos, Taller y Seguridad';
+      if (defaultFile) {
+        document.getElementById('portfolioFileName').innerText = defaultFile;
+      }
+      if (grade) {
+        document.getElementById('portfolioFileGrade').innerText = 'Calificación: ' + grade;
+      }
+      document.getElementById('portfolioModal').classList.remove('hidden');
+    }
+
+    function closePortfolioModal() {
+      document.getElementById('portfolioModal').classList.add('hidden');
+    }
+
+    function simulateUpload() {
+      document.getElementById('portfolioFileInput').click();
+    }
+
+    function handleFileSelected(event) {
+      const file = event.target.files[0];
+      if (file) {
+        document.getElementById('portfolioFileName').innerText = file.name;
+        document.getElementById('portfolioFileGrade').innerText = 'Calificación: Pendiente de Revisión por el Mentor';
+        notify('Archivo subido con éxito: ' + file.name);
+      }
+    }
+
+    // Modal Consulta con Tutor (DATA:IMAGE:IMAGE_2)
+    function openChatTutor(moduleName) {
+      const title = moduleName ? `Consulta: ${moduleName}` : 'Consulta: Fundamentos Técnicos, Taller y Seguridad';
+      document.getElementById('chatHeaderTitle').innerText = title;
+      document.getElementById('chatModal').classList.remove('hidden');
+      const box = document.getElementById('chatBox');
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function closeChatTutor() {
+      document.getElementById('chatModal').classList.add('hidden');
+    }
+
+    function handleSendChat(e) {
+      e.preventDefault();
+      const input = document.getElementById('chatInput');
+      const val = input.value.trim();
+      if (!val) return;
+      const box = document.getElementById('chatBox');
+
+      const now = new Date();
+      const timeStr = `Hoy ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')} hs`;
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'flex flex-col items-end ml-auto max-w-[85%]';
+      wrapper.innerHTML = `
+        <div class="bg-[#0066cc] text-white p-3.5 rounded-2xl shadow-xs leading-relaxed">
+          ${val}
+        </div>
+        <span class="text-[10px] text-slate-400 mt-1 mr-1 font-medium">${timeStr}</span>
+      `;
+      box.appendChild(wrapper);
+      input.value = '';
+      box.scrollTop = box.scrollHeight;
+
+      setTimeout(() => {
+        const respWrapper = document.createElement('div');
+        respWrapper.className = 'flex flex-col items-start max-w-[85%]';
+        respWrapper.innerHTML = `
+          <div class="bg-white text-slate-800 p-3.5 rounded-2xl border border-slate-200 shadow-xs leading-relaxed">
+            ¡Excelente Facundo! Lo revisamos en detalle juntos durante la práctica de taller.
+          </div>
+          <span class="text-[10px] text-slate-400 mt-1 ml-1 font-medium">${timeStr}</span>
+        `;
+        box.appendChild(respWrapper);
+        box.scrollTop = box.scrollHeight;
+      }, 1000);
+    }
+
+    // Keyboard support: Escape closes any active modal
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closePortfolioModal();
+        closeChatTutor();
+        closeModal();
+        closeDrawer();
+      }
+    });
+
+    // Tab switching between Plan, Novedades, and Calendario
+    function switchTab(tabId) {
+      const secPlan = document.getElementById('sectionPlan');
+      const secNov = document.getElementById('sectionNovedades');
+      const secCal = document.getElementById('sectionCalendario');
+      const title = document.getElementById('headerSectionTitle');
+
+      secPlan.classList.add('hidden');
+      secNov.classList.add('hidden');
+      secCal.classList.add('hidden');
+
+      // Reset sidebar nav active states
+      document.querySelectorAll('#sidebarMenu .nav-btn').forEach(btn => btn.classList.remove('active'));
+
+      // Header button states
+      const hPlan = document.getElementById('headerBtnPlan');
+      const hNov = document.getElementById('headerBtnNovedades');
+      if (hPlan && hNov) {
+        hPlan.className = 'px-3 py-1.5 rounded-lg hover:text-slate-900 transition';
+        hNov.className = 'px-3 py-1.5 rounded-lg hover:text-slate-900 transition flex items-center gap-1.5';
+      }
+
+      if (tabId === 'novedades') {
+        secNov.classList.remove('hidden');
+        document.getElementById('navNovedades').classList.add('active');
+        if (hNov) hNov.className = 'px-3 py-1.5 rounded-lg bg-white text-blue-700 shadow-xs transition flex items-center gap-1.5';
+        title.innerText = 'Novedades, Talleres y Eventos';
+      } else if (tabId === 'calendario') {
+        secCal.classList.remove('hidden');
+        document.getElementById('navCalendario').classList.add('active');
+        title.innerText = 'Calendario Académico';
+      } else {
+        secPlan.classList.remove('hidden');
+        document.getElementById('navPlan').classList.add('active');
+        if (hPlan) hPlan.className = 'px-3 py-1.5 rounded-lg bg-white text-blue-700 shadow-xs transition';
+        title.innerText = 'Plan de Estudios 2024';
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Filter Subjects in Plan
+    function filterMats(status, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.className = 'filter-btn px-3 py-1.5 rounded-lg hover:text-slate-900';
+      });
+      btn.className = 'filter-btn px-3 py-1.5 rounded-lg bg-white text-blue-700 shadow-xs';
+
+      const cards = document.querySelectorAll('.mat-card');
+      let visible = 0;
+      cards.forEach(card => {
+        if (status === 'all' || card.dataset.status === status) {
+          card.classList.remove('hidden');
+          visible++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      document.getElementById('matsBadge').innerText = visible + ' materias';
+    }
+
+    // Filter Novedades
+    function filterNews(cat, btn) {
+      document.querySelectorAll('.novedad-tab').forEach(b => {
+        b.className = 'novedad-tab px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:text-blue-700 border border-slate-200';
+      });
+      btn.className = 'novedad-tab px-4 py-2 rounded-xl text-xs font-bold bg-[#0066cc] text-white shadow-xs';
+
+      const blocks = document.querySelectorAll('.news-block');
+      blocks.forEach(block => {
+        if (cat === 'all' || block.dataset.category === cat) {
+          block.classList.remove('hidden');
+        } else {
+          block.classList.add('hidden');
+        }
+      });
+    }
+
+    // Enrollment toggle
+    function toggleEnroll(btn, title) {
+      if (btn.innerText.includes('Inscripto')) {
+        btn.innerText = 'Inscribirme';
+        btn.className = 'px-4 py-2 bg-[#0066cc] hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-xs transition';
+        notify('Inscripción cancelada para: ' + title);
+      } else {
+        btn.innerText = '✓ Inscripto';
+        btn.className = 'px-4 py-2 bg-emerald-600 text-white font-bold text-xs rounded-xl shadow-xs transition';
+        notify('¡Inscripción confirmada! Te esperamos en ' + title);
+      }
+    }
+
+    // Generic Modal
+    function openModal(title, body) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalBody').innerHTML = body;
+      document.getElementById('generalModal').classList.remove('hidden');
+    }
+    function closeModal() {
+      document.getElementById('generalModal').classList.add('hidden');
+    }
+
+    // Drawer Controls
+    function closeDrawer() {
+      document.getElementById('drawerOverlay').classList.add('hidden');
+      document.getElementById('drawerContents').classList.add('translate-x-full');
+    }
+
+    // Notification Panel
+    function toggleNotifPanel() {
+      const p = document.getElementById('notifPanel');
+      p.classList.toggle('hidden');
+    }
+
+    // Toast
+    function notify(text) {
+      const t = document.getElementById('toast');
+      document.getElementById('toastMsg').innerText = text;
+      t.classList.remove('opacity-0', 'translate-y-10');
+      setTimeout(() => {
+        t.classList.add('opacity-0', 'translate-y-10');
+      }, 3000);
+    }
+  </script>
+</body></html>

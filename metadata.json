@@ -1,0 +1,6 @@
+{
+  "name": "LNG OLIVIERI - Campus Virtual",
+  "description": "Campus Virtual Jóvenes Talentos LNG OLIVIERI - Dashboard operativo, plan de estudios teórico y calendario de talleres.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
