@@ -88,8 +88,31 @@ export const ModuleDrawer: React.FC<ModuleDrawerProps> = ({
 
               {/* Drawer Content */}
               <div className="p-6 space-y-5">
-                <div className="bg-blue-50/70 p-4 rounded-2xl border border-blue-200">
-                  <p className="text-xs font-bold text-blue-900 uppercase tracking-wide">
+                {/* Sistema de Aprobación */}
+                <div className={`p-4 rounded-2xl border text-xs space-y-2 ${
+                  module.approvalScheme.isLastModule
+                    ? 'bg-amber-50/70 border-amber-300 text-amber-900'
+                    : 'bg-blue-50/70 border-blue-200 text-blue-900'
+                }`}>
+                  <p className="font-extrabold uppercase tracking-wide flex items-center gap-1.5">
+                    <span>{module.approvalScheme.isLastModule ? '🏆' : '📋'}</span>
+                    <span>Sistema de Aprobación del Módulo:</span>
+                  </p>
+                  {module.approvalScheme.isLastModule ? (
+                    <div className="space-y-1 text-slate-700">
+                      <p>• <strong>Proyecto Integrador Final:</strong> Propuesta técnica aplicada con defensa oral ante jurado directivo (Obligatorio).</p>
+                      <p>• <strong>Examen Final de Certificación VW:</strong> Evaluación integral de conocimientos y prueba práctica frente a evaluadores oficiales (Obligatorio).</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-1 text-slate-700">
+                      <p>• <strong>Examen Parcial:</strong> Evaluación obligatoria de conocimientos teórico-prácticos del módulo.</p>
+                      <p>• <strong>Trabajo Práctico (TP) Opcional:</strong> Entrega optativa de informe o planilla técnica (suma hasta +1.00 punto al promedio del legajo).</p>
+                    </div>
+                  )}
+                </div>
+
+                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                  <p className="text-xs font-bold text-slate-900 uppercase tracking-wide">
                     Estructura Curricular Obligatoria
                   </p>
                   <p className="text-xs text-slate-600 mt-1 leading-relaxed">

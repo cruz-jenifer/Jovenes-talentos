@@ -78,6 +78,12 @@ export const PortfolioModal: React.FC<PortfolioModalProps> = ({
           {/* Header */}
           <div className="flex items-start justify-between">
             <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-[10px] font-extrabold uppercase bg-blue-100 text-blue-800 px-2 py-0.5 rounded">
+                  TP Opcional de Cátedra
+                </span>
+                <span className="text-xs text-slate-400 font-medium">+1.00 Pts Extra al Legajo</span>
+              </div>
               <h3 className="text-xl font-extrabold text-slate-900">Portafolio de Evidencias</h3>
               <p className="text-xs text-slate-500 font-medium mt-0.5">
                 {moduleTitle}

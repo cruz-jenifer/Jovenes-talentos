@@ -254,6 +254,86 @@ export const PlanView: React.FC<PlanViewProps> = ({
                   </div>
                 </div>
               )}
+
+              {/* Requisitos de Aprobación Específicos del Módulo */}
+              <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-xs">
+                <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block">
+                  {mod.approvalScheme.isLastModule ? 'Requisitos de Aprobación Culminante:' : 'Requisitos de Aprobación de Cátedra:'}
+                </span>
+
+                {mod.approvalScheme.isLastModule ? (
+                  // MÓDULO 6: PROYECTO INTEGRADOR FINAL + EXAMEN FINAL
+                  <div className="space-y-1 bg-amber-50/60 p-2.5 rounded-xl border border-amber-200">
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-slate-800 flex items-center gap-1 truncate">
+                        <span>🏆</span>
+                        <span className="truncate">Proyecto Integrador Final</span>
+                      </span>
+                      <span className="text-[10px] font-extrabold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded shrink-0">
+                        Obligatorio
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-slate-800 flex items-center gap-1 truncate">
+                        <span>🎓</span>
+                        <span className="truncate">Examen Final de Certificación VW</span>
+                      </span>
+                      <span className="text-[10px] font-extrabold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded shrink-0">
+                        Obligatorio
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  // MÓDULOS 1 AL 5: TP OPCIONAL + EXAMEN PARCIAL
+                  <div className="space-y-1 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                    {/* TP Opcional */}
+                    <div className="flex items-center justify-between">
+                      <span className="text-slate-700 flex items-center gap-1 truncate">
+                        <span>📄</span>
+                        <span className="font-medium truncate">{mod.approvalScheme.tp?.name || 'TP Opcional'}</span>
+                      </span>
+                      <span
+                        className={`text-[10px] font-bold px-1.5 py-0.5 rounded shrink-0 ${
+                          mod.approvalScheme.tp?.status === 'aprobado'
+                            ? 'text-emerald-700 bg-emerald-100'
+                            : mod.approvalScheme.tp?.status === 'pendiente'
+                            ? 'text-blue-700 bg-blue-100'
+                            : 'text-slate-500 bg-slate-200'
+                        }`}
+                      >
+                        {mod.approvalScheme.tp?.status === 'aprobado'
+                          ? '✓ Entregado (Opcional)'
+                          : mod.approvalScheme.tp?.status === 'pendiente'
+                          ? 'En Revisión (Opcional)'
+                          : 'TP Opcional'}
+                      </span>
+                    </div>
+
+                    {/* Examen Parcial */}
+                    <div className="flex items-center justify-between">
+                      <span className="text-slate-800 font-bold flex items-center gap-1 truncate">
+                        <span>📝</span>
+                        <span className="truncate">{mod.approvalScheme.exam?.name || 'Examen Parcial'}</span>
+                      </span>
+                      <span
+                        className={`text-[10px] font-bold px-1.5 py-0.5 rounded shrink-0 ${
+                          mod.approvalScheme.exam?.status === 'aprobado'
+                            ? 'text-emerald-800 bg-emerald-100'
+                            : mod.approvalScheme.exam?.status === 'pendiente'
+                            ? 'text-red-700 bg-red-100 font-extrabold'
+                            : 'text-slate-500 bg-slate-200'
+                        }`}
+                      >
+                        {mod.approvalScheme.exam?.status === 'aprobado'
+                          ? '✓ Parcial Aprobado'
+                          : mod.approvalScheme.exam?.status === 'pendiente'
+                          ? 'Parcial Vie 15 Nov'
+                          : 'Parcial Obligatorio'}
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* 4 Action Buttons Row */}

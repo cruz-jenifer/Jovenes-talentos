@@ -5,6 +5,30 @@ export interface ModuleTopic {
   desc: string;
 }
 
+export interface ModuleApprovalScheme {
+  isLastModule?: boolean;
+  tp?: {
+    name: string;
+    isOptional: boolean;
+    status: 'aprobado' | 'pendiente' | 'bloqueado';
+    grade?: string;
+    file?: string;
+  };
+  exam: {
+    name: string;
+    isMandatory: boolean;
+    status: 'aprobado' | 'pendiente' | 'bloqueado';
+    grade?: string;
+    date?: string;
+  };
+  finalProject?: {
+    name: string;
+    isMandatory: boolean;
+    status: 'bloqueado' | 'pendiente' | 'aprobado';
+    grade?: string;
+  };
+}
+
 export interface ModuleItem {
   id: number;
   code: string;
@@ -16,6 +40,7 @@ export interface ModuleItem {
   progress: number;
   grade?: string;
   portfolioFile?: string;
+  approvalScheme: ModuleApprovalScheme;
   topics: ModuleTopic[];
   description: string;
 }
@@ -139,6 +164,7 @@ export interface AssessmentItem {
   moduleCode: string;
   moduleTitle: string;
   type: 'teorico-online' | 'practico-taller' | 'simulacion';
+  categoryKind: 'tp-opcional' | 'examen-parcial' | 'proyecto-final' | 'examen-certificacion' | 'simulador';
   status: 'aprobado' | 'pendiente' | 'bloqueado';
   grade?: string;
   minScore: string;

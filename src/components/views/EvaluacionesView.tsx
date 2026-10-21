@@ -14,7 +14,7 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
   onOpenModal,
   onNotify
 }) => {
-  const [filterType, setFilterType] = useState<'all' | 'practico-taller' | 'teorico-online' | 'simulacion'>('all');
+  const [filterType, setFilterType] = useState<'all' | 'examen-parcial' | 'tp-opcional' | 'instancia-final' | 'simulador'>('all');
   const [activeSimulation, setActiveSimulation] = useState<AssessmentItem | null>(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
@@ -23,7 +23,10 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
 
   const filteredAssessments = assessments.filter(a => {
     if (filterType === 'all') return true;
-    return a.type === filterType;
+    if (filterType === 'instancia-final') {
+      return a.categoryKind === 'proyecto-final' || a.categoryKind === 'examen-certificacion';
+    }
+    return a.categoryKind === filterType;
   });
 
   const handleStartSimulation = (assessment: AssessmentItem) => {
@@ -48,7 +51,6 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
     if (currentQuestionIndex < activeSimulation.questions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
     } else {
-      // Calculate score
       let correct = 0;
       activeSimulation.questions.forEach((q, idx) => {
         if (selectedAnswers[idx] === q.correctIndex) {
@@ -81,7 +83,7 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
             Centro de Evaluaciones Teórico-Prácticas
           </h1>
           <p className="text-sm sm:text-base text-slate-300">
-            Exámenes de fosa y elevador con evaluador oficial, autoevaluaciones digitales y rúbricas de calibración para la certificación final.
+            Régimen de evaluación: Examen Parcial y TP Opcional para Módulos 1 a 5; Proyecto Integrador Final y Examen de Certificación para el Módulo 6.
           </p>
         </div>
 
@@ -89,8 +91,8 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
           onClick={() =>
             onOpenModal(
               'Régimen Académico y Calificaciones LNG Olivieri',
-              `<b>• Criterio de Aprobación:</b> Cada módulo requiere un mínimo de 7.00/10 puntos tanto en examen teórico como en prueba de taller.<br/><br/>
-               <b>• Correlatividades:</b> Para rendir el Módulo 4 (Diagnóstico Post-Venta) es requisito haber aprobado el Módulo 3.<br/><br/>
+              `<b>• Módulos 1 al 5:</b> Se aprueban con un <b>Examen Parcial obligatorio</b> (mínimo 7.00/10) y un <b>Trabajo Práctico (TP) Opcional</b> que suma hasta +1.00 punto al promedio del legajo.<br/><br/>
+               <b>• Módulo 6 (Último Módulo):</b> Se aprueba exclusivamente mediante la presentación del <b>Proyecto Integrador Final</b> y la aprobación del <b>Examen Final de Certificación Oficial Volkswagen</b>.<br/><br/>
                <b>• Certificación Oficial Volkswagen:</b> Al finalizar el 6to mes se emite el Diploma Oficial homologado por la Red de Concesionarios VW.`
             )
           }
@@ -98,6 +100,21 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
         >
           Reglamento Académico ↗
         </button>
+      </div>
+
+      {/* Regla Académica Destacada */}
+      <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-amber-900 shadow-2xs">
+        <div className="flex items-center gap-2.5">
+          <span className="text-xl">📋</span>
+          <div>
+            <p className="font-extrabold text-amber-950">
+              Esquema de Aprobación del Programa:
+            </p>
+            <p className="text-amber-800 mt-0.5">
+              <strong>Módulos 1 al 5:</strong> Examen Parcial obligatorio + TP Opcional. | <strong>Módulo 6:</strong> Proyecto Integrador Final + Examen de Certificación Oficial.
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* KPI Performance Strip */}
@@ -255,39 +272,49 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
             Todas ({assessments.length})
           </button>
           <button
-            onClick={() => setFilterType('practico-taller')}
+            onClick={() => setFilterType('examen-parcial')}
             className={`px-3.5 py-2 rounded-xl transition ${
-              filterType === 'practico-taller'
+              filterType === 'examen-parcial'
                 ? 'bg-[#0066cc] text-white font-bold shadow-xs'
                 : 'bg-white text-slate-600 hover:text-blue-700 border border-slate-200 font-medium'
             }`}
           >
-            🛠️ Prácticas en Taller / Fosa
+            📝 Exámenes Parciales (M1-M5)
           </button>
           <button
-            onClick={() => setFilterType('teorico-online')}
+            onClick={() => setFilterType('tp-opcional')}
             className={`px-3.5 py-2 rounded-xl transition ${
-              filterType === 'teorico-online'
+              filterType === 'tp-opcional'
                 ? 'bg-[#0066cc] text-white font-bold shadow-xs'
                 : 'bg-white text-slate-600 hover:text-blue-700 border border-slate-200 font-medium'
             }`}
           >
-            💻 Teóricas Online
+            📄 TPs Opcionales (M1-M5)
           </button>
           <button
-            onClick={() => setFilterType('simulacion')}
+            onClick={() => setFilterType('instancia-final')}
             className={`px-3.5 py-2 rounded-xl transition ${
-              filterType === 'simulacion'
+              filterType === 'instancia-final'
                 ? 'bg-[#0066cc] text-white font-bold shadow-xs'
                 : 'bg-white text-slate-600 hover:text-blue-700 border border-slate-200 font-medium'
             }`}
           >
-            ⚡ Simulador Interactivo
+            🏆 Instancia Final (Módulo 6)
+          </button>
+          <button
+            onClick={() => setFilterType('simulador')}
+            className={`px-3.5 py-2 rounded-xl transition ${
+              filterType === 'simulador'
+                ? 'bg-[#0066cc] text-white font-bold shadow-xs'
+                : 'bg-white text-slate-600 hover:text-blue-700 border border-slate-200 font-medium'
+            }`}
+          >
+            ⚡ Simulador
           </button>
         </div>
 
         <span className="text-xs text-slate-500 font-medium">
-          {filteredAssessments.length} evaluaciones listadas
+          {filteredAssessments.length} instancias listadas
         </span>
       </div>
 
@@ -299,6 +326,8 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
             className={`bg-white rounded-3xl p-6 border shadow-xs hover:shadow-md transition flex flex-col justify-between ${
               item.status === 'aprobado'
                 ? 'border-emerald-200'
+                : item.categoryKind === 'proyecto-final' || item.categoryKind === 'examen-certificacion'
+                ? 'border-amber-300 bg-amber-50/10'
                 : item.status === 'pendiente'
                 ? 'border-blue-300 ring-1 ring-blue-100'
                 : 'border-slate-200 opacity-80'
@@ -308,13 +337,37 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <div className="flex items-center gap-2 flex-wrap mb-1">
-                    <span className="text-[10px] font-mono font-bold text-slate-500 uppercase bg-slate-100 px-2 py-0.5 rounded">
-                      Cód: {item.moduleCode}
-                    </span>
-                    <span className="text-xs text-slate-500 font-semibold truncate max-w-[200px]">
+                    {item.categoryKind === 'tp-opcional' && (
+                      <span className="text-[10px] font-bold uppercase bg-blue-100 text-blue-800 px-2 py-0.5 rounded">
+                        📄 TP Opcional
+                      </span>
+                    )}
+                    {item.categoryKind === 'examen-parcial' && (
+                      <span className="text-[10px] font-bold uppercase bg-slate-900 text-white px-2 py-0.5 rounded">
+                        📝 Parcial Obligatorio
+                      </span>
+                    )}
+                    {item.categoryKind === 'proyecto-final' && (
+                      <span className="text-[10px] font-extrabold uppercase bg-amber-100 text-amber-900 border border-amber-300 px-2 py-0.5 rounded">
+                        🏆 Proyecto Integrador Final
+                      </span>
+                    )}
+                    {item.categoryKind === 'examen-certificacion' && (
+                      <span className="text-[10px] font-extrabold uppercase bg-purple-100 text-purple-900 border border-purple-300 px-2 py-0.5 rounded">
+                        🎓 Certificación Oficial VW
+                      </span>
+                    )}
+                    {item.categoryKind === 'simulador' && (
+                      <span className="text-[10px] font-bold uppercase bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">
+                        ⚡ Simulador de Práctica
+                      </span>
+                    )}
+
+                    <span className="text-xs text-slate-500 font-semibold truncate max-w-[160px]">
                       {item.moduleTitle}
                     </span>
                   </div>
+
                   <h3 className="text-base font-bold text-slate-900 leading-snug">
                     {item.title}
                   </h3>
@@ -332,7 +385,7 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
                 {item.status === 'pendiente' && (
                   <span className="text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-xl border border-blue-200 shrink-0 flex items-center gap-1">
                     <Clock className="w-3.5 h-3.5" />
-                    <span>En Curso</span>
+                    <span>{item.categoryKind === 'tp-opcional' ? 'En Corrección' : 'En Curso'}</span>
                   </span>
                 )}
 

@@ -13,6 +13,21 @@ export const INITIAL_MODULES: ModuleItem[] = [
     grade: '9.50 / 10 - Aprobado',
     portfolioFile: 'Informe_Metrologia_Taller_Gomez.pdf',
     description: 'Normas de bioseguridad, metrología de precisión y termodinámica del motor de combustión interna.',
+    approvalScheme: {
+      tp: {
+        name: 'TP Opcional: Informe Técnico de Metrología en Taller',
+        isOptional: true,
+        status: 'aprobado',
+        grade: '9.50 / 10',
+        file: 'Informe_Metrologia_Taller_Gomez.pdf'
+      },
+      exam: {
+        name: 'Examen Parcial: Seguridad y Banco de Despiece',
+        isMandatory: true,
+        status: 'aprobado',
+        grade: '9.50 / 10'
+      }
+    },
     topics: [
       {
         title: 'Seguridad e Higiene en el Taller',
@@ -40,6 +55,21 @@ export const INITIAL_MODULES: ModuleItem[] = [
     grade: '9.50 / 10 - Aprobado',
     portfolioFile: 'Informe_Revision_Frenos_Gomez.pdf',
     description: 'Sistemas dinámicos de suspensión, frenos hidráulicos/ABS y protocolos oficiales de atención al cliente VW.',
+    approvalScheme: {
+      tp: {
+        name: 'TP Opcional: Revisión de Frenos y Circuito Hidráulico',
+        isOptional: true,
+        status: 'aprobado',
+        grade: '9.50 / 10',
+        file: 'Informe_Revision_Frenos_Gomez.pdf'
+      },
+      exam: {
+        name: 'Examen Parcial: Suspensión, Dirección y Frenos ABS',
+        isMandatory: true,
+        status: 'aprobado',
+        grade: '9.50 / 10'
+      }
+    },
     topics: [
       {
         title: 'Sistemas de Suspensión y Dirección',
@@ -67,6 +97,21 @@ export const INITIAL_MODULES: ModuleItem[] = [
     grade: 'Pendiente de Calificación',
     portfolioFile: 'Diagnostico_Alternador_Bateria_Gomez.pdf',
     description: 'Mantenimiento programado por kilometraje, magnitudes eléctricas, análisis de circuitos de carga y arranque.',
+    approvalScheme: {
+      tp: {
+        name: 'TP Opcional: Diagnóstico de Alternador y Batería',
+        isOptional: true,
+        status: 'pendiente',
+        grade: 'Pendiente de Revisión',
+        file: 'Diagnostico_Alternador_Bateria_Gomez.pdf'
+      },
+      exam: {
+        name: 'Examen Parcial: Circuitos de Carga y Alternador (Práctico)',
+        isMandatory: true,
+        status: 'pendiente',
+        date: 'Viernes 15 de Noviembre • 08:30 hs'
+      }
+    },
     topics: [
       {
         title: 'Mantenimiento Programado y Preventivo',
@@ -92,6 +137,18 @@ export const INITIAL_MODULES: ModuleItem[] = [
     statusType: 'locked',
     progress: 0,
     description: 'Gestión electrónica del motor, diagnóstico OBD-II con escáner ODIS oficial y prueba dinámica de ruta.',
+    approvalScheme: {
+      tp: {
+        name: 'TP Opcional: Protocolo de Diagnóstico ODIS y Sensores',
+        isOptional: true,
+        status: 'bloqueado'
+      },
+      exam: {
+        name: 'Examen Parcial: Diagnóstico Guiado con Escáner ODIS (Práctico)',
+        isMandatory: true,
+        status: 'bloqueado'
+      }
+    },
     topics: [
       {
         title: 'Sistemas de Inyección y Gestión Electrónica',
@@ -117,6 +174,18 @@ export const INITIAL_MODULES: ModuleItem[] = [
     statusType: 'locked',
     progress: 0,
     description: 'Diagnóstico de averías complejas e intermitentes, despiece guiado en taller real y optimización de tiempos.',
+    approvalScheme: {
+      tp: {
+        name: 'TP Opcional: Caso de Estudio de Fallas Intermitentes',
+        isOptional: true,
+        status: 'bloqueado'
+      },
+      exam: {
+        name: 'Examen Parcial: Resolución de Avería en Taller Real (Práctico)',
+        isMandatory: true,
+        status: 'bloqueado'
+      }
+    },
     topics: [
       {
         title: 'Simulación de Averías Complejas',
@@ -142,6 +211,19 @@ export const INITIAL_MODULES: ModuleItem[] = [
     statusType: 'locked',
     progress: 0,
     description: 'Proyecto integrador final, preparación para entrevistas técnicas en la red oficial y examen de certificación.',
+    approvalScheme: {
+      isLastModule: true,
+      finalProject: {
+        name: 'Proyecto Integrador Final: Jóvenes Talentos LNG Olivieri',
+        isMandatory: true,
+        status: 'bloqueado'
+      },
+      exam: {
+        name: 'Examen Final de Certificación Oficial Volkswagen',
+        isMandatory: true,
+        status: 'bloqueado'
+      }
+    },
     topics: [
       {
         title: 'Proyecto “Jóvenes Talentos LNG Olivieri”',
@@ -769,12 +851,32 @@ export const FORUM_THREADS: ForumThread[] = [
 ];
 
 export const ASSESSMENTS_DATA: AssessmentItem[] = [
+  // MÓDULO 1
   {
-    id: 'ass-1',
-    title: 'Examen Práctico Módulo 1: Metrología y Seguridad en Taller',
+    id: 'tp-1',
+    title: 'TP Opcional: Informe Técnico de Metrología en Taller',
+    moduleCode: '0001',
+    moduleTitle: 'Módulo 1: Fundamentos Técnicos, Taller y Seguridad',
+    type: 'teorico-online',
+    categoryKind: 'tp-opcional',
+    status: 'aprobado',
+    grade: '9.50 / 10',
+    minScore: '7.00 / 10',
+    durationMinutes: 45,
+    evaluator: 'Ing. Carlos Pérez',
+    description: 'Trabajo práctico opcional: Mediciones de precisión con calibre pie de rey Mitutoyo y micrómetro de exteriores sobre piezas de motor didáctico.',
+    rubric: [
+      { criteria: 'Registro de mediciones y tolerancias en mm', weight: '50%', scoreObtained: '10/10' },
+      { criteria: 'Claridad en croquis y tablas de datos', weight: '50%', scoreObtained: '9/10' }
+    ]
+  },
+  {
+    id: 'exam-1',
+    title: 'Examen Parcial: Seguridad, Pañol y Banco de Despiece',
     moduleCode: '0001',
     moduleTitle: 'Módulo 1: Fundamentos Técnicos, Taller y Seguridad',
     type: 'practico-taller',
+    categoryKind: 'examen-parcial',
     status: 'aprobado',
     grade: '9.50 / 10',
     minScore: '7.00 / 10',
@@ -782,20 +884,41 @@ export const ASSESSMENTS_DATA: AssessmentItem[] = [
     dateScheduled: '04 de Octubre 2024',
     evaluator: 'Ing. Carlos Pérez',
     location: 'Taller 1 Bancos Ramos Mejía',
-    description: 'Evaluación práctica individual sobre uso de calibre Mitutoyo, micrómetro de exteriores, torquímetro y normas de seguridad en fosa.',
+    description: 'Examen parcial obligatorio individual de despiece de motor didáctico, aplicación de torques y protocolos de bioseguridad en taller.',
     rubric: [
-      { criteria: 'Medición de espesor y alabeo con calibre y comparador', weight: '30%', scoreObtained: '10/10' },
-      { criteria: 'Cumplimiento estricto de EPP y delimitación peatonal', weight: '20%', scoreObtained: '10/10' },
-      { criteria: 'Despiece ordenado y torqueo de conjunto motor didáctico', weight: '30%', scoreObtained: '9/10' },
+      { criteria: 'Medición de espesor y alabeo con comparador', weight: '30%', scoreObtained: '10/10' },
+      { criteria: 'Uso obligatorio y estricto de EPP en banco', weight: '20%', scoreObtained: '10/10' },
+      { criteria: 'Despiece ordenado y torqueo de conjunto EA211', weight: '30%', scoreObtained: '9/10' },
       { criteria: 'Limpieza de puesto y almacenamiento en pañol', weight: '20%', scoreObtained: '9/10' }
     ]
   },
+
+  // MÓDULO 2
   {
-    id: 'ass-2',
-    title: 'Examen Teórico Módulo 2: Suspensión, Dirección y Frenos ABS',
+    id: 'tp-2',
+    title: 'TP Opcional: Revisión de Frenos y Circuito Hidráulico',
     moduleCode: '0002',
     moduleTitle: 'Módulo 2: Sistemas del Vehículo y Servicio al Cliente',
     type: 'teorico-online',
+    categoryKind: 'tp-opcional',
+    status: 'aprobado',
+    grade: '9.50 / 10',
+    minScore: '7.00 / 10',
+    durationMinutes: 45,
+    evaluator: 'Lic. Valeria Benítez',
+    description: 'Trabajo práctico opcional: Confección de Orden de Reparación (OR), checklist digital y presupuesto técnico de reemplazo de pastillas y discos.',
+    rubric: [
+      { criteria: 'Exactitud en cálculo de desgaste de pastillas y discos', weight: '50%', scoreObtained: '10/10' },
+      { criteria: 'Redacción clara para cliente en Orden de Reparación', weight: '50%', scoreObtained: '9/10' }
+    ]
+  },
+  {
+    id: 'exam-2',
+    title: 'Examen Parcial: Suspensión, Dirección y Frenos ABS',
+    moduleCode: '0002',
+    moduleTitle: 'Módulo 2: Sistemas del Vehículo y Servicio al Cliente',
+    type: 'teorico-online',
+    categoryKind: 'examen-parcial',
     status: 'aprobado',
     grade: '9.50 / 10',
     minScore: '7.50 / 10',
@@ -803,26 +926,47 @@ export const ASSESSMENTS_DATA: AssessmentItem[] = [
     dateScheduled: '01 de Noviembre 2024',
     evaluator: 'Lic. Valeria Benítez',
     location: 'Campus Virtual LNG Olivieri',
-    description: 'Examen teórico online de 25 preguntas sobre hidráulica de frenos, geometría de dirección y recepción en taller oficial.',
+    description: 'Examen parcial obligatorio de 25 preguntas sobre hidráulica de frenos, modulación de válvulas ABS y geometría de tren delantero.',
     rubric: [
       { criteria: 'Hidráulica de frenos y modulación ABS', weight: '40%', scoreObtained: '10/10' },
       { criteria: 'Ángulos de alineación (Camber, Caster, Toe)', weight: '35%', scoreObtained: '9/10' },
       { criteria: 'Confección de Orden de Reparación (OR)', weight: '25%', scoreObtained: '10/10' }
     ]
   },
+
+  // MÓDULO 3
   {
-    id: 'ass-3',
-    title: 'Examen Práctico Módulo 3: Circuitos de Carga y Alternador Inteligente',
+    id: 'tp-3',
+    title: 'TP Opcional: Diagnóstico de Alternador y Batería de 12V',
+    moduleCode: '0012',
+    moduleTitle: 'Módulo 3: Mantenimiento y Electricidad Automotriz',
+    type: 'teorico-online',
+    categoryKind: 'tp-opcional',
+    status: 'pendiente',
+    grade: 'En Revisión por Mentor',
+    minScore: '7.00 / 10',
+    durationMinutes: 60,
+    evaluator: 'Ing. Carlos Pérez',
+    description: 'Trabajo práctico opcional: Captura de oscilogramas de alternador, planilla de caída de tensión en masa y reporte de conductancia de batería.',
+    rubric: [
+      { criteria: 'Análisis de rizado de onda en osciloscopio', weight: '50%' },
+      { criteria: 'Conclusiones y estado de salud (SOH) de la batería', weight: '50%' }
+    ]
+  },
+  {
+    id: 'exam-3',
+    title: 'Examen Parcial: Circuitos de Carga y Alternador (Práctico)',
     moduleCode: '0012',
     moduleTitle: 'Módulo 3: Mantenimiento y Electricidad Automotriz',
     type: 'practico-taller',
+    categoryKind: 'examen-parcial',
     status: 'pendiente',
     minScore: '7.00 / 10',
     durationMinutes: 90,
     dateScheduled: 'Viernes 15 de Noviembre • 08:30 hs',
     evaluator: 'Comité Evaluador LNG Olivieri / VW',
     location: 'Laboratorio de Electricidad Ramos Mejía (Fosa 2)',
-    description: 'Evaluación presencial de diagnóstico guiado de alternador con osciloscopio de 4 canales, caída de tensión y estado de salud de batería de 12V.',
+    description: 'Examen parcial obligatorio en fosa: diagnóstico guiado de alternador con osciloscopio, medición de caída de tensión con consumo y prueba de batería.',
     rubric: [
       { criteria: 'Diagnóstico de caída de masa y positivo de alternador', weight: '30%' },
       { criteria: 'Configuración y captura de rizado de diodos con osciloscopio', weight: '35%' },
@@ -830,16 +974,19 @@ export const ASSESSMENTS_DATA: AssessmentItem[] = [
       { criteria: 'Uso de calzado dieléctrico y aislamiento de herramientas', weight: '15%' }
     ]
   },
+
+  // SIMULADOR DE PRÁCTICA (MÓDULO 3)
   {
-    id: 'ass-4',
-    title: 'Simulador Interactivo: Diagnóstico Eléctrico y Baterías',
+    id: 'sim-3',
+    title: 'Simulador Interactivo: Práctica Previa al Parcial de Electricidad',
     moduleCode: '0012',
     moduleTitle: 'Módulo 3: Mantenimiento y Electricidad Automotriz',
     type: 'simulacion',
+    categoryKind: 'simulador',
     status: 'pendiente',
     minScore: '8.00 / 10',
     durationMinutes: 20,
-    description: 'Test interactivo con casos reales de taller, oscilogramas y códigos de avería para practicar antes del examen presencial del viernes.',
+    description: 'Simulador interactivo con casos reales de taller, formas de onda y códigos DTC para afianzar conceptos antes del examen parcial del viernes.',
     questions: [
       {
         id: 1,
@@ -894,39 +1041,83 @@ export const ASSESSMENTS_DATA: AssessmentItem[] = [
       { criteria: 'Respuestas correctas en primera tentativa', weight: '100%' }
     ]
   },
+
+  // MÓDULO 4
   {
-    id: 'ass-5',
-    title: 'Examen Módulo 4: Diagnóstico Guiado con Escáner ODIS y Buses CAN',
+    id: 'exam-4',
+    title: 'Examen Parcial: Diagnóstico Guiado con Escáner ODIS (Práctico)',
     moduleCode: '0013',
     moduleTitle: 'Módulo 4: Diagnóstico y Proceso Post-Venta',
     type: 'practico-taller',
+    categoryKind: 'examen-parcial',
     status: 'bloqueado',
     minScore: '7.50 / 10',
     durationMinutes: 90,
     evaluator: 'Lic. Martín Rossi',
-    description: 'Diagnóstico en tiempo real de fallas simuladas en red multiplexada CAN-Bus y lectura de parámetros DTC con software ODIS oficial.',
+    description: 'Examen parcial obligatorio: Lectura de códigos DTC, navegación en diagnóstico guiado ODIS y verificación de buses de datos CAN.',
     rubric: [
       { criteria: 'Conexión y navegación en diagnóstico guiado ODIS', weight: '35%' },
       { criteria: 'Identificación de códigos DTC y borrado de averías', weight: '35%' },
       { criteria: 'Prueba de actuadores y adaptación de mariposa motorizada', weight: '30%' }
     ]
   },
+
+  // MÓDULO 5
   {
-    id: 'ass-6',
-    title: 'Examen Integral Final y Certificación Oficial Volkswagen',
+    id: 'exam-5',
+    title: 'Examen Parcial: Resolución de Avería en Taller Real (Práctico)',
+    moduleCode: '0021',
+    moduleTitle: 'Módulo 5: Prácticas Integradoras y Resolución de Casos Reales',
+    type: 'practico-taller',
+    categoryKind: 'examen-parcial',
+    status: 'bloqueado',
+    minScore: '7.50 / 10',
+    durationMinutes: 120,
+    evaluator: 'Ing. Carlos Pérez',
+    description: 'Examen parcial obligatorio: Diagnóstico a ciegas de falla intermitente en fosa técnica bajo tiempo estandarizado (UT).',
+    rubric: [
+      { criteria: 'Método lógico de descarte de fallas', weight: '50%' },
+      { criteria: 'Eficiencia y optimización de tiempos UT', weight: '50%' }
+    ]
+  },
+
+  // MÓDULO 6 (ÚLTIMO MÓDULO: PROYECTO INTEGRADOR FINAL + EXAMEN DE CERTIFICACIÓN)
+  {
+    id: 'proj-final',
+    title: 'Proyecto Integrador Final: Jóvenes Talentos LNG Olivieri',
     moduleCode: '0030',
     moduleTitle: 'Módulo 6: Inserción Laboral, Evaluación Final y Certificación',
     type: 'practico-taller',
+    categoryKind: 'proyecto-final',
+    status: 'bloqueado',
+    minScore: '8.00 / 10',
+    durationMinutes: 60,
+    evaluator: 'Tribunal Directivo LNG Olivieri & Academia VW',
+    description: 'Obligatorio para aprobar el Módulo 6: Propuesta técnica de optimización de procesos de taller, sustentabilidad o atención post-venta con defensa oral.',
+    rubric: [
+      { criteria: 'Defensa oral y fundamentación técnica de la propuesta', weight: '40%' },
+      { criteria: 'Viabilidad de aplicación práctica en taller del concesionario', weight: '40%' },
+      { criteria: 'Calidad de documentación y legajo técnico presentado', weight: '20%' }
+    ]
+  },
+  {
+    id: 'exam-cert',
+    title: 'Examen Final de Certificación Oficial Volkswagen',
+    moduleCode: '0030',
+    moduleTitle: 'Módulo 6: Inserción Laboral, Evaluación Final y Certificación',
+    type: 'practico-taller',
+    categoryKind: 'examen-certificacion',
     status: 'bloqueado',
     minScore: '8.00 / 10',
     durationMinutes: 180,
     evaluator: 'Tribunal Académico Volkswagen Argentina & LNG Olivieri',
-    description: 'Examen culminante del programa de 6 meses frente al comité directivo: resolución integral de fallas en vehículo en fosa y defensa de proyecto técnico.',
+    description: 'Obligatorio para aprobar el Módulo 6: Evaluación teórico-práctica integral frente a evaluadores de fábrica para la obtención del Certificado Oficial VW.',
     rubric: [
-      { criteria: 'Resolución de falla compleja en tiempo asignado', weight: '40%' },
-      { criteria: 'Presentación de proyecto de optimización para taller', weight: '30%' },
-      { criteria: 'Habilidades de atención técnica y confección de OR', weight: '30%' }
+      { criteria: 'Resolución de avería compleja en vehículo en fosa', weight: '50%' },
+      { criteria: 'Examen teórico integral de conocimientos automotrices', weight: '30%' },
+      { criteria: 'Habilidades profesionales y protocolo de servicio', weight: '20%' }
     ]
   }
 ];
+
 
