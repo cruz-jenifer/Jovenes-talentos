@@ -440,6 +440,7 @@ export default function App() {
               assessments={assessments}
               onOpenModal={handleOpenModal}
               onNotify={notify}
+              onOpenPortfolio={handleOpenPortfolio}
             />
           )}
 

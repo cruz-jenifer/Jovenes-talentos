@@ -1044,6 +1044,23 @@ export const ASSESSMENTS_DATA: AssessmentItem[] = [
 
   // MÓDULO 4
   {
+    id: 'tp-4',
+    title: 'TP Opcional: Protocolo de Diagnóstico ODIS y Sensores',
+    moduleCode: '0013',
+    moduleTitle: 'Módulo 4: Diagnóstico y Proceso Post-Venta',
+    type: 'teorico-online',
+    categoryKind: 'tp-opcional',
+    status: 'bloqueado',
+    minScore: '7.00 / 10',
+    durationMinutes: 60,
+    evaluator: 'Lic. Martín Rossi',
+    description: 'Trabajo práctico opcional: Confección de protocolo de escaneo con ODIS, análisis de bloques de valores de medición (Live Data) e interpretación de oscilogramas de sensores Hall y bus CAN.',
+    rubric: [
+      { criteria: 'Lectura e interpretación de códigos de avería DTC y condiciones Freeze Frame', weight: '50%' },
+      { criteria: 'Análisis de curvas de osciloscopio en sensores CKP/CMP y par trenzado CAN-Bus', weight: '50%' }
+    ]
+  },
+  {
     id: 'exam-4',
     title: 'Examen Parcial: Diagnóstico Guiado con Escáner ODIS (Práctico)',
     moduleCode: '0013',
@@ -1063,6 +1080,23 @@ export const ASSESSMENTS_DATA: AssessmentItem[] = [
   },
 
   // MÓDULO 5
+  {
+    id: 'tp-5',
+    title: 'TP Opcional: Caso de Estudio de Fallas Intermitentes',
+    moduleCode: '0021',
+    moduleTitle: 'Módulo 5: Prácticas Integradoras y Resolución de Casos Reales',
+    type: 'teorico-online',
+    categoryKind: 'tp-opcional',
+    status: 'bloqueado',
+    minScore: '7.00 / 10',
+    durationMinutes: 60,
+    evaluator: 'Ing. Carlos Pérez',
+    description: 'Trabajo práctico opcional: Informe técnico sobre resolución de avería intermitente de encendido en motor EA211 1.4 TSI, diagrama de árbol de decisiones y cálculo de unidades de tiempo (UT).',
+    rubric: [
+      { criteria: 'Metodología sistemática de diagnóstico y árbol lógico de descarte', weight: '50%' },
+      { criteria: 'Cálculo de tiempos UT de baremo oficial y reporte de control de calidad final', weight: '50%' }
+    ]
+  },
   {
     id: 'exam-5',
     title: 'Examen Parcial: Resolución de Avería en Taller Real (Práctico)',

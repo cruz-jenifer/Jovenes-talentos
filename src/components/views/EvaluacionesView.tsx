@@ -7,12 +7,14 @@ interface EvaluacionesViewProps {
   assessments: AssessmentItem[];
   onOpenModal: (title: string, body: string) => void;
   onNotify: (msg: string) => void;
+  onOpenPortfolio?: (moduleTitle: string, currentFile?: string, grade?: string) => void;
 }
 
 export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
   assessments,
   onOpenModal,
-  onNotify
+  onNotify,
+  onOpenPortfolio
 }) => {
   const [filterType, setFilterType] = useState<'all' | 'examen-parcial' | 'tp-opcional' | 'instancia-final' | 'simulador'>('all');
   const [activeSimulation, setActiveSimulation] = useState<AssessmentItem | null>(null);
@@ -283,7 +285,7 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
           <button
             onClick={() => setFilterType('all')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer ${
               filterType === 'all'
                 ? 'bg-slate-900 text-white'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200/80'
@@ -293,43 +295,43 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
           </button>
           <button
             onClick={() => setFilterType('examen-parcial')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer ${
               filterType === 'examen-parcial'
                 ? 'bg-blue-600 text-white'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200/80'
             }`}
           >
-            Parciales Obligatorios (M1-M5)
+            Parciales Obligatorios ({assessments.filter(a => a.categoryKind === 'examen-parcial').length})
           </button>
           <button
             onClick={() => setFilterType('tp-opcional')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer ${
               filterType === 'tp-opcional'
                 ? 'bg-blue-600 text-white'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200/80'
             }`}
           >
-            TPs Opcionales (M1-M5)
+            TPs Opcionales ({assessments.filter(a => a.categoryKind === 'tp-opcional').length})
           </button>
           <button
             onClick={() => setFilterType('instancia-final')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer ${
               filterType === 'instancia-final'
                 ? 'bg-purple-600 text-white'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200/80'
             }`}
           >
-            Módulo 6: Proyecto Final
+            Módulo 6: Final ({assessments.filter(a => a.categoryKind === 'proyecto-final' || a.categoryKind === 'examen-certificacion').length})
           </button>
           <button
             onClick={() => setFilterType('simulador')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer ${
               filterType === 'simulador'
                 ? 'bg-emerald-600 text-white'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200/80'
             }`}
           >
-            Simulador
+            Simulador ({assessments.filter(a => a.categoryKind === 'simulador').length})
           </button>
         </div>
 
@@ -422,25 +424,39 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
               {item.questions && item.questions.length > 0 && (
                 <button
                   onClick={() => handleStartSimulation(item)}
-                  className="flex-1 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-semibold transition flex items-center justify-center gap-1.5 shadow-2xs"
+                  className="flex-1 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-semibold transition flex items-center justify-center gap-1.5 shadow-2xs cursor-pointer"
                 >
                   <Play className="w-3.5 h-3.5" />
                   <span>Simular Evaluación</span>
                 </button>
               )}
 
+              {item.categoryKind === 'tp-opcional' && onOpenPortfolio && item.status !== 'bloqueado' && (
+                <button
+                  onClick={() => onOpenPortfolio(item.moduleTitle)}
+                  className="flex-1 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-semibold transition flex items-center justify-center gap-1.5 shadow-2xs cursor-pointer"
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>Portafolio / TP</span>
+                </button>
+              )}
+
               <button
-                onClick={() =>
+                onClick={() => {
+                  const rubricText = item.rubric && item.rubric.length > 0
+                    ? `<br/><br/><b>Rúbrica de Criterios:</b><br/>` + item.rubric.map(r => `• ${r.criteria} (${r.weight})${r.scoreObtained ? ` - <b>Puntaje: ${r.scoreObtained}</b>` : ''}`).join('<br/>')
+                    : '';
                   onOpenModal(
                     item.title,
                     `<b>Módulo:</b> ${item.moduleTitle}<br/>
-                     <b>Modalidad:</b> ${item.categoryKind !== 'tp-opcional' ? 'Obligatoria' : 'Opcional'}<br/>
-                     <b>Criterio de Evaluación:</b> ${item.description}<br/>
-                     <b>Fecha Límite / Examen:</b> ${item.dateScheduled || 'A coordinar con tutor'}<br/>
-                     <b>Calificación Actual:</b> ${item.grade || 'Pendiente de rendir'}`
-                  )
-                }
-                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition"
+                     <b>Modalidad:</b> ${item.categoryKind !== 'tp-opcional' ? 'Obligatoria' : 'Opcional (+1.00 pt extra al promedio)'}<br/>
+                     <b>Evaluador:</b> ${item.evaluator || 'Equipo Docente VW'}<br/>
+                     <b>Criterio / Descripción:</b> ${item.description}<br/>
+                     <b>Instancia / Fecha:</b> ${item.dateScheduled || (item.categoryKind === 'tp-opcional' ? 'Entrega digital por Portafolio' : 'A coordinar con tutor')}<br/>
+                     <b>Calificación Actual:</b> ${item.grade || (item.status === 'bloqueado' ? 'Bloqueado (requiere aprobar módulo anterior)' : 'Pendiente de rendir')}${rubricText}`
+                  );
+                }}
+                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition cursor-pointer"
               >
                 Ver Ficha
               </button>
