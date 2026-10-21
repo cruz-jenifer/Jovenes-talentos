@@ -64,7 +64,7 @@ export const CalendarioView: React.FC<CalendarioViewProps> = ({
       transition={{ duration: 0.25 }}
       className="space-y-6"
     >
-      <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-xs space-y-6">
+      <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm space-y-6">
         {/* Top Title Banner */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 pb-6 border-b border-slate-100">
           <div>
@@ -239,13 +239,13 @@ export const CalendarioView: React.FC<CalendarioViewProps> = ({
                         onNotify(`Sin eventos registrados para el ${cell.day} de ${monthNames[cell.monthIndex]}`);
                       }
                     }}
-                    className={`min-h-[90px] p-2 rounded-xl transition border cursor-pointer flex flex-col justify-between ${
+                    className={`min-h-[90px] p-2 rounded-xl transition-all duration-150 border cursor-pointer flex flex-col justify-between ${
                       !cell.isCurrentMonth
-                        ? 'bg-slate-50/50 border-slate-100 text-slate-400'
+                        ? 'bg-slate-50/60 border-slate-200/60 text-slate-400'
                         : isToday
-                        ? 'bg-blue-50/70 border-2 border-blue-600 shadow-xs'
+                        ? 'bg-blue-50/80 border-2 border-blue-600 shadow-xs'
                         : hasEvent
-                        ? 'bg-white border-slate-200 hover:border-blue-400 shadow-2xs'
+                        ? 'bg-white border-slate-200 hover:border-blue-400 shadow-2xs hover:shadow-xs'
                         : 'bg-white border-slate-200/80 hover:bg-slate-50'
                     }`}
                   >
@@ -358,12 +358,12 @@ export const CalendarioView: React.FC<CalendarioViewProps> = ({
             </div>
 
             {/* Próximas Obligaciones Card */}
-            <div className="bg-slate-50 rounded-2xl border border-slate-200 p-5 space-y-3">
+            <div className="bg-slate-100/90 rounded-2xl border border-slate-200 p-5 space-y-3 shadow-2xs">
               <div className="flex items-center justify-between">
-                <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-500">
+                <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-600">
                   Próximas Obligaciones
                 </h4>
-                <span className="text-xs font-bold text-blue-600">Noviembre / Diciembre</span>
+                <span className="text-xs font-bold text-blue-700">Noviembre / Diciembre</span>
               </div>
 
               {/* Obligacion 1 */}
@@ -382,7 +382,7 @@ export const CalendarioView: React.FC<CalendarioViewProps> = ({
                     type: 'evaluacion'
                   })
                 }
-                className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs space-y-1.5 cursor-pointer hover:border-blue-400 transition"
+                className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs space-y-1.5 cursor-pointer hover:border-blue-400 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-bold uppercase text-red-600 bg-red-50 border border-red-100 px-2 py-0.5 rounded">
@@ -412,7 +412,7 @@ export const CalendarioView: React.FC<CalendarioViewProps> = ({
                     type: 'masterclass'
                   })
                 }
-                className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs space-y-1.5 cursor-pointer hover:border-purple-400 transition"
+                className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs space-y-1.5 cursor-pointer hover:border-purple-400 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-bold uppercase text-purple-700 bg-purple-50 border border-purple-200 px-2 py-0.5 rounded">
@@ -442,7 +442,7 @@ export const CalendarioView: React.FC<CalendarioViewProps> = ({
                     type: 'visita'
                   })
                 }
-                className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs space-y-1.5 cursor-pointer hover:border-emerald-400 transition"
+                className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs space-y-1.5 cursor-pointer hover:border-emerald-400 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-bold uppercase text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">

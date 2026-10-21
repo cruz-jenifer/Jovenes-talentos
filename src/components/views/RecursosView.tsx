@@ -76,7 +76,7 @@ export const RecursosView: React.FC<RecursosViewProps> = ({ onNotify, onOpenModa
       {/* 4 Pillars Summary Grid (Direct from PDF) */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {/* Card 1: Espacios Físicos */}
-        <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-2">
+        <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 space-y-2">
           <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
             <Layers className="w-5 h-5 text-blue-600" />
           </div>
@@ -90,7 +90,7 @@ export const RecursosView: React.FC<RecursosViewProps> = ({ onNotify, onOpenModa
         </div>
 
         {/* Card 2: Almacén de Herramientas */}
-        <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-2">
+        <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 space-y-2">
           <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold">
             <Wrench className="w-5 h-5 text-indigo-600" />
           </div>
@@ -104,7 +104,7 @@ export const RecursosView: React.FC<RecursosViewProps> = ({ onNotify, onOpenModa
         </div>
 
         {/* Card 3: EPP & Bioseguridad */}
-        <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-2">
+        <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 space-y-2">
           <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
             <Shield className="w-5 h-5 text-emerald-600" />
           </div>
@@ -118,7 +118,7 @@ export const RecursosView: React.FC<RecursosViewProps> = ({ onNotify, onOpenModa
         </div>
 
         {/* Card 4: Viáticos y Refrigerios */}
-        <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-2">
+        <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 space-y-2">
           <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center font-bold">
             <Coffee className="w-5 h-5 text-amber-700" />
           </div>
@@ -136,7 +136,7 @@ export const RecursosView: React.FC<RecursosViewProps> = ({ onNotify, onOpenModa
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-7">
         {/* Left Column: Tool Inventory (8 cols) */}
         <div className="lg:col-span-8 space-y-5">
-          <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-xs space-y-4">
+          <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
               <div>
                 <h3 className="text-lg font-bold text-slate-900">
@@ -189,7 +189,7 @@ export const RecursosView: React.FC<RecursosViewProps> = ({ onNotify, onOpenModa
               {filteredTools.map((tool) => (
                 <div
                   key={tool.id}
-                  className="p-4 rounded-2xl border border-slate-200 hover:border-blue-300 transition flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white"
+                  className="p-4 rounded-2xl border border-slate-200 hover:border-blue-400 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white shadow-2xs"
                 >
                   <div className="space-y-1">
                     <div className="flex items-center gap-2 flex-wrap">
@@ -231,7 +231,7 @@ export const RecursosView: React.FC<RecursosViewProps> = ({ onNotify, onOpenModa
         {/* Right Column: Request & Logistics Management (4 cols) */}
         <div className="lg:col-span-4 space-y-6">
           {/* Form: Solicitud de Material */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-xs space-y-4">
+          <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
             <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
               <Plus className="w-4 h-4 text-blue-600" />
               <span>Solicitud de Pañol / Recambio</span>
@@ -251,7 +251,7 @@ export const RecursosView: React.FC<RecursosViewProps> = ({ onNotify, onOpenModa
                   placeholder="Ej: Calibre de cuadrante o torquímetro 40-200Nm"
                   value={requestItem}
                   onChange={(e) => setRequestItem(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl focus:ring-1 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 bg-slate-100/90 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 focus:bg-white focus:outline-none transition"
                   required
                 />
               </div>
@@ -265,13 +265,13 @@ export const RecursosView: React.FC<RecursosViewProps> = ({ onNotify, onOpenModa
                   placeholder="Ej: Medición de alabeo en disco de Taos - Box 4"
                   value={requestReason}
                   onChange={(e) => setRequestReason(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl focus:ring-1 focus:ring-blue-600 focus:outline-none"
+                  className="w-full px-3 py-2 bg-slate-100/90 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 focus:bg-white focus:outline-none transition"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-2.5 bg-[#0066cc] hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-xs transition"
+                className="w-full py-2.5 bg-[#0066cc] hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-xs hover:shadow-md transition"
               >
                 Enviar Solicitud a Pañol Central
               </button>
@@ -279,7 +279,7 @@ export const RecursosView: React.FC<RecursosViewProps> = ({ onNotify, onOpenModa
           </div>
 
           {/* Viáticos & Transporte */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-xs space-y-3">
+          <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
             <div className="flex items-center justify-between">
               <h4 className="text-sm font-bold text-slate-900 flex items-center gap-2">
                 <Bus className="w-4 h-4 text-emerald-600" />
@@ -294,7 +294,7 @@ export const RecursosView: React.FC<RecursosViewProps> = ({ onNotify, onOpenModa
               Acreditación automática mensual de boletos de transporte público para asistencia al Taller Ramos Mejía y San Justo.
             </p>
 
-            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-1">
+            <div className="p-3.5 bg-slate-100/90 rounded-xl border border-slate-200 text-xs space-y-1.5 shadow-2xs">
               <p><strong>Tarjeta Registrada:</strong> •••• 9812 (SUBE Facundo Gómez)</p>
               <p><strong>Recarga Mes 3:</strong> $34.500 ARS acreditados</p>
               <p className="text-[11px] text-slate-500">Próxima renovación: 01 de Diciembre</p>
@@ -302,7 +302,7 @@ export const RecursosView: React.FC<RecursosViewProps> = ({ onNotify, onOpenModa
 
             <button
               onClick={() => onNotify('Comprobante de viático descargado en formato PDF.')}
-              className="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition"
+              className="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200/80 text-xs font-bold rounded-xl transition shadow-2xs hover:shadow-xs"
             >
               Descargar Constancia de Viático
             </button>

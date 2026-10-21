@@ -82,20 +82,20 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
       className="space-y-6 max-w-7xl mx-auto"
     >
       {/* Header Bar - Clean & Non-Saturated */}
-      <section className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/80 shadow-xs space-y-4">
+      <section className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm space-y-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">
+              <span className="text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200">
                 Academia Técnica Oficial VW
               </span>
               <span className="text-slate-300">•</span>
-              <span className="text-xs text-slate-500 font-medium">Rúbricas Homologadas</span>
+              <span className="text-xs text-slate-600 font-semibold">Rúbricas Homologadas</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
               Centro de Evaluaciones & Certificación
             </h1>
-            <p className="text-sm text-slate-500 mt-0.5">
+            <p className="text-sm text-slate-600 mt-0.5">
               Calificaciones oficiales, exámenes parciales, trabajos prácticos y proyecto integrador final.
             </p>
           </div>
@@ -109,56 +109,56 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
                  <b>• Certificación Oficial Volkswagen:</b> Al finalizar el 6to mes se emite el Diploma Oficial con matrícula homologada por la Red de Concesionarios VW.`
               )
             }
-            className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs rounded-xl shadow-2xs transition shrink-0 self-start md:self-center"
+            className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs rounded-xl shadow-xs transition shrink-0 self-start md:self-center cursor-pointer"
           >
             Ver Reglamento Académico
           </button>
         </div>
 
-        {/* Academic Rule Reminder Banner - Soft & Clear */}
-        <div className="bg-blue-50/60 border border-blue-100 rounded-xl p-3.5 flex items-start sm:items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center shrink-0 text-sm font-bold">
+        {/* Academic Rule Reminder Banner - Defined Contrast & Clear Hierarchy */}
+        <div className="bg-blue-50/90 border border-blue-200 rounded-xl p-4 shadow-2xs flex items-start sm:items-center gap-3">
+          <div className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0 text-sm font-bold shadow-2xs">
             ℹ️
           </div>
-          <div className="text-xs text-slate-700 leading-relaxed">
-            <span className="font-bold text-blue-900">Criterio de Aprobación Oficial: </span>
+          <div className="text-xs text-slate-800 leading-relaxed">
+            <span className="font-extrabold text-blue-900">Criterio de Aprobación Oficial: </span>
             <b>Módulos 1 al 5:</b> Examen Parcial obligatorio + TP Opcional para sumar promedio. •{' '}
             <b>Módulo 6:</b> Proyecto Integrador Final + Examen de Certificación VW.
           </div>
         </div>
 
-        {/* 3 Metric Cards */}
+        {/* 3 Metric Cards with distinct container background */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2">
-          <div className="p-3.5 rounded-xl bg-slate-50/70 border border-slate-100 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+          <div className="p-3.5 rounded-xl bg-slate-100/90 border border-slate-200 shadow-2xs flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-200">
               <Award className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-[11px] font-semibold text-slate-400 uppercase">Promedio General</p>
-              <p className="text-base font-bold text-slate-900">9.50 / 10</p>
-              <p className="text-[11px] text-emerald-600 font-semibold">Sobresaliente</p>
+              <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">Promedio General</p>
+              <p className="text-base font-extrabold text-slate-900">9.50 / 10</p>
+              <p className="text-[11px] text-emerald-700 font-bold">Sobresaliente</p>
             </div>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-slate-50/70 border border-slate-100 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
+          <div className="p-3.5 rounded-xl bg-slate-100/90 border border-slate-200 shadow-2xs flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center shrink-0 border border-blue-200">
               <CheckCircle2 className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-[11px] font-semibold text-slate-400 uppercase">Instancias Aprobadas</p>
-              <p className="text-base font-bold text-slate-900">4 de 4 Presentadas</p>
-              <p className="text-[11px] text-slate-500">Módulos 1 y 2 al día</p>
+              <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">Instancias Aprobadas</p>
+              <p className="text-base font-extrabold text-slate-900">4 de 4 Presentadas</p>
+              <p className="text-[11px] text-slate-600 font-medium">Módulos 1 y 2 al día</p>
             </div>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-slate-50/70 border border-slate-100 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+          <div className="p-3.5 rounded-xl bg-slate-100/90 border border-slate-200 shadow-2xs flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200">
               <Clock className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-[11px] font-semibold text-slate-400 uppercase">Próximo Parcial</p>
-              <p className="text-base font-bold text-slate-900">Viernes 15 Nov</p>
-              <p className="text-[11px] text-slate-500">Módulo 3 • 08:30 hs</p>
+              <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">Próximo Parcial</p>
+              <p className="text-base font-extrabold text-slate-900">Viernes 15 Nov</p>
+              <p className="text-[11px] text-slate-600 font-medium">Módulo 3 • 08:30 hs</p>
             </div>
           </div>
         </div>
@@ -342,7 +342,7 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
             placeholder="Buscar evaluación..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-8 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-xl text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="w-full pl-8 pr-3 py-1.5 text-xs bg-white border border-slate-300 rounded-xl text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 shadow-2xs"
           />
         </div>
       </div>
@@ -352,21 +352,21 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
         {filteredAssessments.map((item) => (
           <div
             key={item.id}
-            className={`bg-white rounded-2xl p-5 border transition flex flex-col justify-between ${
+            className={`bg-white rounded-2xl p-5 border transition-all duration-200 flex flex-col justify-between shadow-sm hover:shadow-md hover:-translate-y-0.5 ${
               item.status === 'aprobado'
-                ? 'border-slate-200/80 hover:border-slate-300 shadow-xs'
+                ? 'border-slate-200 hover:border-slate-300'
                 : item.categoryKind === 'proyecto-final' || item.categoryKind === 'examen-certificacion'
-                ? 'border-purple-200 hover:border-purple-300 shadow-xs ring-1 ring-purple-50'
+                ? 'border-purple-300 ring-1 ring-purple-100 shadow-purple-50'
                 : item.status === 'pendiente'
-                ? 'border-blue-200 hover:border-blue-300 shadow-xs ring-1 ring-blue-50'
-                : 'border-slate-200 opacity-75'
+                ? 'border-blue-400 ring-1 ring-blue-100 shadow-blue-50'
+                : 'border-slate-200 opacity-80'
             }`}
           >
             <div className="space-y-3">
               <div className="flex items-start justify-between gap-3">
                 <div className="space-y-1">
                   <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-700">
+                    <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded border border-slate-200 bg-slate-100/90 text-slate-700">
                       {item.categoryKind === 'tp-opcional'
                         ? 'TP Opcional (+1 pt)'
                         : item.categoryKind === 'examen-parcial'
@@ -377,7 +377,7 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
                         ? 'Certificación Oficial VW'
                         : 'Simulador'}
                     </span>
-                    <span className="text-xs text-slate-500 font-medium">
+                    <span className="text-xs text-slate-600 font-semibold">
                       {item.moduleTitle}
                     </span>
                   </div>
@@ -389,38 +389,48 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
 
                 {item.status === 'aprobado' && (
                   <div className="text-right shrink-0">
-                    <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
+                    <span className="text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-300 shadow-2xs">
                       {item.grade}
                     </span>
-                    <p className="text-[10px] text-emerald-600 font-semibold mt-0.5">Aprobado</p>
+                    <p className="text-[10px] text-emerald-700 font-bold mt-0.5">Aprobado</p>
                   </div>
                 )}
 
                 {item.status === 'pendiente' && (
-                  <span className="text-xs font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-lg border border-blue-100 shrink-0">
+                  <span className="text-xs font-bold text-blue-800 bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-300 shrink-0 shadow-2xs">
                     En Curso
                   </span>
                 )}
 
                 {item.status === 'bloqueado' && (
-                  <span className="text-xs text-slate-400 bg-slate-100 px-2 py-0.5 rounded-lg shrink-0">
+                  <span className="text-xs font-semibold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-300 shrink-0">
                     Bloqueado
                   </span>
                 )}
               </div>
 
-              <p className="text-xs text-slate-500 leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 {item.description}
               </p>
 
-              <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-600 flex items-center justify-between">
-                <span>Régimen: <b>{item.categoryKind !== 'tp-opcional' ? 'Obligatorio' : 'Opcional (Suma al promedio)'}</b></span>
-                {item.dateScheduled && <span className="text-slate-400 font-medium">Fecha: {item.dateScheduled}</span>}
+              {/* Régimen container with enhanced contrast */}
+              <div className="p-3 rounded-xl bg-slate-100/90 border border-slate-200 text-xs text-slate-700 flex items-center justify-between">
+                <span>
+                  Régimen:{' '}
+                  <b className={item.categoryKind === 'tp-opcional' ? 'text-blue-700 font-bold' : 'text-slate-900 font-bold'}>
+                    {item.categoryKind !== 'tp-opcional' ? 'Obligatorio' : 'Opcional (Suma +1 pt)'}
+                  </b>
+                </span>
+                {item.dateScheduled && (
+                  <span className="text-slate-700 font-semibold bg-white px-2 py-0.5 rounded border border-slate-300 shadow-2xs">
+                    {item.dateScheduled}
+                  </span>
+                )}
               </div>
             </div>
 
             {/* Actions */}
-            <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-2">
+            <div className="mt-4 pt-3 border-t border-slate-200 flex items-center gap-2">
               {item.questions && item.questions.length > 0 && (
                 <button
                   onClick={() => handleStartSimulation(item)}
@@ -456,7 +466,7 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
                      <b>Calificación Actual:</b> ${item.grade || (item.status === 'bloqueado' ? 'Bloqueado (requiere aprobar módulo anterior)' : 'Pendiente de rendir')}${rubricText}`
                   );
                 }}
-                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition cursor-pointer"
+                className="px-3.5 py-2 bg-white hover:bg-slate-100 border border-slate-300 text-slate-700 rounded-xl text-xs font-semibold transition cursor-pointer shadow-2xs"
               >
                 Ver Ficha
               </button>

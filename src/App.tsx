@@ -303,7 +303,7 @@ export default function App() {
   };
 
   return (
-    <div className="h-full min-h-screen text-slate-800 antialiased flex flex-col md:flex-row bg-[#f8fafc] overflow-x-hidden">
+    <div className="h-full min-h-screen text-slate-800 antialiased flex flex-col md:flex-row bg-[#f1f5f9] overflow-x-hidden">
       {/* SIDEBAR */}
       <Sidebar
         currentView={currentView}
