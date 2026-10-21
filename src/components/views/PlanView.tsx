@@ -27,7 +27,13 @@ export const PlanView: React.FC<PlanViewProps> = ({
   const [filter, setFilter] = useState<'all' | 'in-progress' | 'finalized' | 'locked'>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [expandedModuleId, setExpandedModuleId] = useState<number | null>(3); // Default to current module 3
+  const [expandedModuleIds, setExpandedModuleIds] = useState<number[]>([]); // Minimized by default
+
+  const toggleModule = (id: number) => {
+    setExpandedModuleIds((prev) =>
+      prev.includes(id) ? prev.filter((mId) => mId !== id) : [...prev, id]
+    );
+  };
 
   const filteredModules = modules.filter((m) => {
     if (filter !== 'all' && m.statusType !== filter) return false;
@@ -140,6 +146,22 @@ export const PlanView: React.FC<PlanViewProps> = ({
                 className="w-full pl-8 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
             </div>
+
+            {viewMode === 'grid' && (
+              <button
+                onClick={() => {
+                  if (expandedModuleIds.length > 0) {
+                    setExpandedModuleIds([]);
+                  } else {
+                    setExpandedModuleIds(filteredModules.map((m) => m.id));
+                  }
+                }}
+                className="px-2.5 py-1.5 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition whitespace-nowrap cursor-pointer"
+                title={expandedModuleIds.length > 0 ? 'Minimizar todas las cajas' : 'Expandir todas las cajas'}
+              >
+                {expandedModuleIds.length > 0 ? 'Minimizar todos' : 'Expandir todos'}
+              </button>
+            )}
 
             <div className="flex items-center bg-slate-100 p-0.5 rounded-xl border border-slate-200">
               <button
@@ -268,7 +290,7 @@ export const PlanView: React.FC<PlanViewProps> = ({
         /* VIEW MODE: CLEAN GRID CARDS */
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filteredModules.map((module) => {
-            const isExpanded = expandedModuleId === module.id;
+            const isExpanded = expandedModuleIds.includes(module.id);
             return (
               <div
                 key={module.id}
@@ -343,8 +365,9 @@ export const PlanView: React.FC<PlanViewProps> = ({
                   {module.topics && module.topics.length > 0 && (
                     <div className="pt-1">
                       <button
-                        onClick={() => setExpandedModuleId(isExpanded ? null : module.id)}
-                        className="w-full flex items-center justify-between text-xs text-slate-500 hover:text-slate-800 font-medium py-1"
+                        onClick={() => toggleModule(module.id)}
+                        className="w-full flex items-center justify-between text-xs text-slate-500 hover:text-slate-800 font-medium py-1 px-1.5 rounded-lg hover:bg-slate-50 transition cursor-pointer"
+                        title={isExpanded ? 'Minimizar ejes temáticos' : 'Expandir ejes temáticos'}
                       >
                         <span>{module.topics.length} Ejes Temáticos</span>
                         {isExpanded ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
