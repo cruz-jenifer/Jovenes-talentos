@@ -27,6 +27,7 @@ import {
 
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
+import { MobileNav } from './components/MobileNav';
 import { Toast } from './components/ui/Toast';
 
 import { DashboardView } from './components/views/DashboardView';
@@ -288,8 +289,21 @@ export default function App() {
     });
   };
 
+  const handleToggleTaskComplete = (taskId: string) => {
+    setTasks(prev =>
+      prev.map(t => {
+        if (t.id === taskId) {
+          const next = !t.completed;
+          notify(next ? `Tarea completada: ${t.title}` : `Tarea reactivada: ${t.title}`);
+          return { ...t, completed: next };
+        }
+        return t;
+      })
+    );
+  };
+
   return (
-    <div className="h-full min-h-screen text-slate-800 antialiased flex flex-col md:flex-row bg-[#f4f7fb] overflow-x-hidden">
+    <div className="h-full min-h-screen text-slate-800 antialiased flex flex-col md:flex-row bg-[#f8fafc] overflow-x-hidden">
       {/* SIDEBAR */}
       <Sidebar
         currentView={currentView}
@@ -326,6 +340,16 @@ export default function App() {
           onOpenMobileMenu={() => setMobileMenuOpen(true)}
           onToggleNotifs={() => setNotifPanelOpen(prev => !prev)}
           unreadCount={2}
+          onSearchSelect={(type, id) => {
+            if (type === 'module') {
+              setCurrentView('plan');
+            } else if (type === 'task') {
+              setCurrentView('dashboard');
+              handleOpenTaskAction('upload-pdi');
+            } else if (type === 'forum') {
+              setCurrentView('foro');
+            }
+          }}
         />
 
         {/* Notifications Dropdown Panel */}
@@ -370,7 +394,7 @@ export default function App() {
         )}
 
         {/* Content Body Container */}
-        <main className="flex-1 px-4 sm:px-8 lg:px-10 py-7 max-w-7xl w-full mx-auto">
+        <main className="flex-1 px-4 sm:px-6 lg:px-8 py-6 max-w-7xl w-full mx-auto pb-28 md:pb-10">
           {currentView === 'dashboard' && (
             <DashboardView
               tasks={tasks}
@@ -380,6 +404,7 @@ export default function App() {
               onSelectView={setCurrentView}
               onShowNoticeModal={handleOpenModal}
               onNotify={notify}
+              onToggleTaskComplete={handleToggleTaskComplete}
             />
           )}
 
@@ -529,6 +554,13 @@ export default function App() {
 
       {/* Floating Toast */}
       <Toast message={toast.message} type={toast.type} />
+
+      {/* Modern Mobile Bottom Navigation */}
+      <MobileNav
+        currentView={currentView}
+        onSelectView={setCurrentView}
+        unreadNotifsCount={2}
+      />
     </div>
   );
 }

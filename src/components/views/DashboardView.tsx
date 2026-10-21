@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { UrgentTask, WeekScheduleItem, ViewType } from '../../types';
-import { CheckCircle2, Clock, MapPin, Upload, FileCheck, PenTool, MessageSquare, ArrowRight, BookOpen, Wrench, ShieldAlert } from 'lucide-react';
-import { motion } from 'motion/react';
+import { CheckCircle2, Clock, MapPin, Upload, FileCheck, PenTool, MessageSquare, ArrowRight, BookOpen, Wrench, ChevronRight, ChevronDown, Check, Search, Calendar, User, ShieldCheck } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface DashboardViewProps {
   tasks: UrgentTask[];
@@ -11,6 +11,7 @@ interface DashboardViewProps {
   onSelectView: (view: ViewType) => void;
   onShowNoticeModal: (title: string, body: string) => void;
   onNotify: (msg: string) => void;
+  onToggleTaskComplete?: (taskId: string) => void;
 }
 
 export const DashboardView: React.FC<DashboardViewProps> = ({
@@ -20,458 +21,537 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   onOpenChat,
   onSelectView,
   onShowNoticeModal,
-  onNotify
+  onNotify,
+  onToggleTaskComplete,
 }) => {
+  const [taskFilter, setTaskFilter] = useState<'all' | 'pending' | 'completed'>('all');
+  const [taskSearch, setTaskSearch] = useState('');
+  const [expandedTaskId, setExpandedTaskId] = useState<string | null>(null);
+
+  // Schedule selected day filter (defaults to Tuesday which is today)
+  const [selectedScheduleDay, setSelectedScheduleDay] = useState<string>('martes');
+
+  // Compact vs Detailed view toggle
+  const [isCompactMode, setIsCompactMode] = useState(false);
+
   const pendingCount = tasks.filter(t => !t.completed).length;
+  const completedCount = tasks.filter(t => t.completed).length;
+  const progressPercent = Math.round((completedCount / (tasks.length || 1)) * 100);
+
+  const filteredTasks = tasks.filter(task => {
+    if (taskFilter === 'pending' && task.completed) return false;
+    if (taskFilter === 'completed' && !task.completed) return false;
+    if (taskSearch.trim()) {
+      const q = taskSearch.toLowerCase();
+      return task.title.toLowerCase().includes(q) || task.subtitle.toLowerCase().includes(q) || task.code.toLowerCase().includes(q);
+    }
+    return true;
+  });
+
+  const days = [
+    { id: 'lunes', label: 'Lun 18', fullDay: 'Lunes' },
+    { id: 'martes', label: 'Mar 19', fullDay: 'Martes (Hoy)', isToday: true },
+    { id: 'miercoles', label: 'Mié 20', fullDay: 'Miércoles' },
+    { id: 'jueves', label: 'Jue 21', fullDay: 'Jueves' },
+    { id: 'viernes', label: 'Vie 22', fullDay: 'Viernes' },
+    { id: 'sabado', label: 'Sáb 23', fullDay: 'Sábado' },
+  ];
+
+  const currentDaySchedule = schedule.filter(item => {
+    const itemDay = item.dayLabel.toLowerCase();
+    if (selectedScheduleDay === 'lunes') return itemDay.includes('lunes');
+    if (selectedScheduleDay === 'martes') return itemDay.includes('martes');
+    if (selectedScheduleDay === 'miercoles') return itemDay.includes('miércoles') || itemDay.includes('miercoles');
+    if (selectedScheduleDay === 'jueves') return itemDay.includes('jueves');
+    if (selectedScheduleDay === 'viernes') return itemDay.includes('viernes');
+    if (selectedScheduleDay === 'sabado') return itemDay.includes('sábado') || itemDay.includes('sabado');
+    return false;
+  });
+
+  const getTaskIcon = (action: string) => {
+    switch (action) {
+      case 'upload-pdi':
+        return <Upload className="w-4 h-4 text-blue-600" />;
+      case 'safety-quiz':
+        return <FileCheck className="w-4 h-4 text-emerald-600" />;
+      case 'sign-epi':
+        return <PenTool className="w-4 h-4 text-amber-600" />;
+      default:
+        return <FileCheck className="w-4 h-4 text-slate-600" />;
+    }
+  };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.25 }}
-      className="space-y-7"
+      transition={{ duration: 0.2 }}
+      className="space-y-6 max-w-7xl mx-auto"
     >
-      {/* 1. Header Welcome & Current Operational Status */}
-      <section className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-xs flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-        <div className="space-y-2">
-          <div className="flex flex-wrap items-center gap-2.5">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-              🟢 Presente en Taller • Box 4 Asignado
-            </span>
-            <span className="px-3 py-1 rounded-full bg-blue-50 text-[#0066cc] border border-blue-100 text-xs font-bold">
-              Programa Jóvenes Talentos • Mes 3 (Mantenimiento y Electricidad)
-            </span>
+      {/* 1. Header & Live Status Strip - Clean & Breathable */}
+      <section className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/80 shadow-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-100">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-xs font-semibold text-emerald-700">Presente en Planta</span>
+              <span className="text-slate-300">•</span>
+              <span className="text-xs text-slate-500">Módulo 3: Mantenimiento y Electricidad</span>
+            </div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+              ¡Buen día, Facundo!
+            </h1>
+            <p className="text-sm text-slate-500 mt-0.5">
+              Taller Sucursal Ramos Mejía • Jornada de Turno Mañana (08:00 - 14:00)
+            </p>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-black text-[#0c1a30] tracking-tight flex items-center gap-2">
-            ¡Buen día, Facundo! <span className="text-3xl">🔧</span>
-          </h1>
-
-          <p className="text-sm sm:text-base font-semibold text-slate-600">
-            Tu resumen operativo de hoy en Taller Sucursal Ramos Mejía. Respondemos directamente:{' '}
-            <span className="text-blue-700 font-bold underline decoration-blue-300">
-              ¿Qué tenés que hacer hoy y a dónde vas?
-            </span>
-          </p>
+          {/* Quick controls */}
+          <div className="flex items-center gap-2 self-start sm:self-center">
+            <button
+              onClick={() => setIsCompactMode(prev => !prev)}
+              className="px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-600 hover:bg-slate-50 transition"
+            >
+              {isCompactMode ? 'Vista Normal' : 'Vista Compacta'}
+            </button>
+            <button
+              onClick={() =>
+                onShowNoticeModal(
+                  'Registro Biométrico de Fichaje - Facundo Gómez',
+                  `<b>Fecha:</b> Martes 19 de Noviembre 2024<br/>
+                   <b>Hora de ingreso:</b> 08:04:12 hs (Torniquete Pañol Ramos Mejía)<br/>
+                   <b>Estado de presentismo:</b> Presente Normal (Sin demoras)<br/>
+                   <b>Tutor responsable en planta:</b> Ing. Carlos Pérez<br/>
+                   <b>Asignación:</b> Fosa 2 / Elevador 2 (Box 4)`
+                )
+              }
+              className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-semibold shadow-2xs transition flex items-center gap-1.5"
+            >
+              <span>Fichada: 08:04 hs</span>
+            </button>
+          </div>
         </div>
 
-        {/* Fichaje Box */}
-        <div className="bg-[#09152b] text-white rounded-2xl p-4 sm:p-5 flex items-center justify-between gap-5 shrink-0 shadow-md lg:w-80 border border-slate-800">
-          <div className="space-y-1">
-            <p className="text-[11px] uppercase tracking-wider font-extrabold text-blue-300">
-              Fichaje Diario
-            </p>
-            <p className="text-xl font-black tracking-tight text-white flex items-center gap-1.5">
-              08:04{' '}
-              <span className="text-xs font-semibold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded-md border border-emerald-800">
-                ✓ EN HORARIO
-              </span>
-            </p>
-            <p className="text-xs text-slate-300">Egreso estimado: 14:00 hs</p>
+        {/* 3 Metric Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-4">
+          <div className="p-3.5 rounded-xl bg-slate-50/70 border border-slate-100 flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-blue-100/70 text-blue-700 flex items-center justify-center shrink-0">
+              <Clock className="w-5 h-5" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wide">Fichaje</p>
+              <p className="text-sm font-bold text-slate-900 truncate">08:04 hs • En horario</p>
+              <p className="text-xs text-slate-500">Egreso: 14:00 hs</p>
+            </div>
           </div>
-          <button
-            onClick={() =>
-              onShowNoticeModal(
-                'Registro Biométrico de Fichaje - Facundo Gómez',
-                `<b>Fecha:</b> Martes 19 de Noviembre 2024<br/>
-                 <b>Hora de ingreso:</b> 08:04:12 hs (Torniquete Pañol Ramos Mejía)<br/>
-                 <b>Estado de presentismo:</b> Presente Normal (Sin demoras)<br/>
-                 <b>Tutor responsable en planta:</b> Ing. Carlos Pérez<br/>
-                 <b>Asignación:</b> Fosa 2 / Elevador 2 (Box 4)`
-              )
-            }
-            className="px-3.5 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold shadow-xs transition"
-          >
-            Ver Fichada
-          </button>
+
+          <div className="p-3.5 rounded-xl bg-slate-50/70 border border-slate-100 flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-emerald-100/70 text-emerald-700 flex items-center justify-center shrink-0">
+              <MapPin className="w-5 h-5" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wide">Puesto de Taller</p>
+              <p className="text-sm font-bold text-slate-900 truncate">Box 4 • Fosa 2</p>
+              <p className="text-xs text-slate-500">Elevador Hidráulico #2</p>
+            </div>
+          </div>
+
+          <div className="p-3.5 rounded-xl bg-slate-50/70 border border-slate-100 flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-amber-100/70 text-amber-700 flex items-center justify-center shrink-0">
+              <CheckCircle2 className="w-5 h-5" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center justify-between">
+                <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wide">Tareas de Hoy</p>
+                <span className="text-xs font-bold text-slate-700">{progressPercent}%</span>
+              </div>
+              <p className="text-sm font-bold text-slate-900">
+                {pendingCount === 0 ? 'Todas completadas' : `${pendingCount} requeridas`}
+              </p>
+              <div className="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden mt-1">
+                <div
+                  className="bg-emerald-500 h-full rounded-full transition-all duration-500"
+                  style={{ width: `${progressPercent}%` }}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 2. Main Layout (2-Column Grid: Left 65%, Right 35%) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
-        {/* LEFT COLUMN (Col span 8) */}
-        <div className="lg:col-span-8 space-y-7">
-          {/* A) Tus 3 Pendientes Urgentes */}
-          <section className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-xs space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+      {/* 2. Main Content Grid (8 Cols Left, 4 Cols Right) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        {/* LEFT COLUMN: Tareas Pendientes & Cronograma */}
+        <div className="lg:col-span-8 space-y-6">
+          {/* TAREAS DEL DÍA */}
+          <section className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
               <div>
-                <h2 className="text-xl font-black text-slate-900 tracking-tight flex items-center gap-2">
-                  <span>🎯</span> Tus 3 Pendientes Urgentes
+                <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                  <span>🎯</span> Tareas Obligatorias del Día
                 </h2>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  Completá estas acciones obligatorias antes de finalizar tu jornada de hoy.
+                <p className="text-xs text-slate-500">
+                  Completá estas acciones operativas antes del cierre de turno.
                 </p>
               </div>
-              <span
-                className={`px-2.5 py-1 text-xs font-extrabold rounded-full border ${
-                  pendingCount === 0
-                    ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                    : 'bg-amber-50 text-amber-700 border-amber-200'
-                }`}
-              >
-                {pendingCount === 0 ? '¡Al día! 0 Pendientes' : `${pendingCount} Acciones Requeridas`}
-              </span>
-            </div>
 
-            <div className="space-y-3.5">
-              {tasks.map((task) => (
-                <div
-                  key={task.id}
-                  className={`p-4 sm:p-5 rounded-2xl border transition flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
-                    task.completed
-                      ? 'bg-slate-50 border-slate-200 opacity-90'
-                      : task.badgeType === 'urgent'
-                      ? 'border-2 border-blue-200 bg-blue-50/30 hover:border-blue-300'
-                      : 'border-slate-200 bg-white hover:border-slate-300'
+              {/* Filters */}
+              <div className="flex items-center gap-1.5 self-start sm:self-center">
+                <button
+                  onClick={() => setTaskFilter('all')}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-medium transition ${
+                    taskFilter === 'all'
+                      ? 'bg-slate-900 text-white font-semibold'
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200/70'
                   }`}
                 >
-                  <div className="space-y-1.5 flex-1">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span
-                        className={`text-[11px] font-extrabold uppercase px-2.5 py-0.5 rounded-full border ${
-                          task.completed
-                            ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                            : task.badgeType === 'urgent'
-                            ? 'bg-amber-50 text-amber-700 border-amber-200'
-                            : task.badgeType === 'warning'
-                            ? 'bg-red-50 text-red-700 border-red-200'
-                            : 'bg-slate-100 text-slate-700 border-slate-200'
-                        }`}
-                      >
-                        {task.completed ? '✓ Completado y Homologado' : task.badge}
-                      </span>
-                      <span className="text-xs font-semibold text-slate-500 font-mono">
-                        {task.code}
-                      </span>
-                    </div>
+                  Todas ({tasks.length})
+                </button>
+                <button
+                  onClick={() => setTaskFilter('pending')}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-medium transition ${
+                    taskFilter === 'pending'
+                      ? 'bg-blue-600 text-white font-semibold'
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200/70'
+                  }`}
+                >
+                  Pendientes ({pendingCount})
+                </button>
+                <button
+                  onClick={() => setTaskFilter('completed')}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-medium transition ${
+                    taskFilter === 'completed'
+                      ? 'bg-emerald-600 text-white font-semibold'
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200/70'
+                  }`}
+                >
+                  Listas ({completedCount})
+                </button>
+              </div>
+            </div>
 
-                    <h3 className={`text-base font-bold leading-snug ${task.completed ? 'text-slate-600 line-through' : 'text-slate-900'}`}>
-                      {task.title}
-                    </h3>
-                    <p className="text-xs text-slate-600">
-                      {task.subtitle}
-                    </p>
-                  </div>
+            {/* Task Search Bar */}
+            <div className="relative">
+              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                placeholder="Filtrar tareas por nombre o código..."
+                value={taskSearch}
+                onChange={(e) => setTaskSearch(e.target.value)}
+                className="w-full pl-8 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200/70 rounded-xl text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
 
-                  {task.completed ? (
-                    <div className="flex items-center gap-2 text-emerald-700 font-bold text-xs bg-emerald-50 px-3.5 py-2 rounded-xl border border-emerald-200 shrink-0">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                      <span>Listo</span>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() => onOpenTaskAction(task.buttonAction)}
-                      className={`px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-xs flex items-center justify-center gap-2 shrink-0 ${
-                        task.buttonAction === 'upload-pdi'
-                          ? 'bg-[#0066cc] hover:bg-blue-700 text-white'
-                          : task.buttonAction === 'safety-quiz'
-                          ? 'bg-white hover:bg-blue-50 text-[#0066cc] border border-blue-200'
-                          : 'bg-slate-900 hover:bg-slate-800 text-white'
+            {/* Tasks List */}
+            <div className="space-y-2.5">
+              {filteredTasks.length > 0 ? (
+                filteredTasks.map((task) => {
+                  const isExpanded = expandedTaskId === task.id;
+                  return (
+                    <div
+                      key={task.id}
+                      className={`rounded-xl border transition ${
+                        task.completed
+                          ? 'bg-slate-50/60 border-slate-200/70'
+                          : 'bg-white border-slate-200 hover:border-slate-300 shadow-2xs'
                       }`}
                     >
-                      {task.buttonAction === 'upload-pdi' && <Upload className="w-4 h-4" />}
-                      {task.buttonAction === 'safety-quiz' && <FileCheck className="w-4 h-4" />}
-                      {task.buttonAction === 'sign-epi' && <PenTool className="w-4 h-4 text-emerald-400" />}
-                      <span>{task.buttonLabel}</span>
-                    </button>
-                  )}
+                      <div className="p-3.5 flex items-start gap-3">
+                        {/* Checkbox button */}
+                        <button
+                          onClick={() => {
+                            if (onToggleTaskComplete) {
+                              onToggleTaskComplete(task.id);
+                            }
+                          }}
+                          className={`mt-0.5 w-5 h-5 rounded-lg border flex items-center justify-center shrink-0 transition ${
+                            task.completed
+                              ? 'bg-emerald-500 border-emerald-500 text-white'
+                              : 'border-slate-300 hover:border-blue-500 bg-white'
+                          }`}
+                          title={task.completed ? 'Marcar como pendiente' : 'Marcar como completada'}
+                        >
+                          {task.completed && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+                        </button>
+
+                        {/* Title and subtitle */}
+                        <div
+                          className="flex-1 min-w-0 cursor-pointer"
+                          onClick={() => setExpandedTaskId(isExpanded ? null : task.id)}
+                        >
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-[10px] font-mono font-bold text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded">
+                              {task.code}
+                            </span>
+                            <h3
+                              className={`text-sm font-semibold truncate ${
+                                task.completed ? 'line-through text-slate-400' : 'text-slate-800'
+                              }`}
+                            >
+                              {task.title}
+                            </h3>
+                            {!task.completed && (
+                              <span
+                                className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                                  task.badgeType === 'urgent'
+                                    ? 'bg-amber-100/70 text-amber-800'
+                                    : task.badgeType === 'warning'
+                                    ? 'bg-red-100/70 text-red-800'
+                                    : 'bg-blue-100/70 text-blue-800'
+                                }`}
+                              >
+                                {task.badge}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-xs text-slate-500 mt-0.5 line-clamp-1">{task.subtitle}</p>
+                        </div>
+
+                        {/* Action CTA */}
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          <button
+                            onClick={() => onOpenTaskAction(task.buttonAction)}
+                            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 ${
+                              task.completed
+                                ? 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                                : 'bg-blue-600 hover:bg-blue-700 text-white shadow-2xs'
+                            }`}
+                          >
+                            {getTaskIcon(task.buttonAction)}
+                            <span className="hidden sm:inline">
+                              {task.completed ? 'Revisar' : task.buttonLabel}
+                            </span>
+                          </button>
+
+                          <button
+                            onClick={() => setExpandedTaskId(isExpanded ? null : task.id)}
+                            className="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-100 transition"
+                            aria-label="Ver detalles"
+                          >
+                            {isExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Expandable details */}
+                      <AnimatePresence>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="px-4 pb-3.5 pt-1 text-xs text-slate-600 border-t border-slate-100 bg-slate-50/50 rounded-b-xl"
+                          >
+                            <p className="font-medium text-slate-700">Procedimiento requerido:</p>
+                            <p className="mt-1 text-slate-500">{task.subtitle}</p>
+                            <div className="mt-2.5 flex items-center gap-3">
+                              <span className="text-[11px] text-slate-400">
+                                Responsable: <b className="text-slate-600">Facundo Gómez</b>
+                              </span>
+                              <span className="text-slate-300">•</span>
+                              <span className="text-[11px] text-slate-400">
+                                Validador: <b className="text-slate-600">Ing. Carlos Pérez</b>
+                              </span>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="text-center py-8 text-xs text-slate-400 bg-slate-50 rounded-xl">
+                  No hay tareas para este filtro.
                 </div>
-              ))}
+              )}
             </div>
           </section>
 
-          {/* B) Tu Cronograma de la Semana */}
-          <section className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-xs space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+          {/* CRONOGRAMA DE LA SEMANA (Interactivo con Selector de Días) */}
+          <section className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
               <div>
-                <h2 className="text-xl font-black text-slate-900 tracking-tight flex items-center gap-2">
-                  <span>📅</span> Tu Cronograma de la Semana
+                <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-blue-600" /> Cronograma de la Semana
                 </h2>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  ¿Dónde tenés que estar y en qué horarios específicos?
+                <p className="text-xs text-slate-500">
+                  Seleccioná un día para ver turnos, boxes asignados y materias.
                 </p>
               </div>
+
               <button
-                onClick={() =>
-                  onShowNoticeModal(
-                    'Sedes y Puntos de Encuentro LNG Olivieri',
-                    `<b>• Sede Ramos Mejía (Taller Central):</b> Av. de Mayo 560, Ramos Mejía. Boxes 1 al 8 y Fosas Técnicas de Mecánica.<br/><br/>
-                     <b>• Sede San Justo:</b> Av. Juan Manuel de Rosas 3400. Taller de Chapa, Pintura, Bancada 3D y Laboratorio de Alineación.<br/><br/>
-                     <b>• Laboratorio de Capacitación Oficial ODIS:</b> Edificio Central, 2do Piso, Aula Técnica 3.`
-                  )
-                }
-                className="text-xs font-bold text-[#0066cc] hover:underline flex items-center gap-1"
+                onClick={() => onSelectView('calendario')}
+                className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1 self-start sm:self-center"
               >
-                Ver Mapa de Sedes ↗
+                <span>Ver Mes Completo</span>
+                <ChevronRight className="w-3.5 h-3.5" />
               </button>
             </div>
 
-            <div className="relative pl-6 space-y-6 before:content-[''] before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-slate-200">
-              {schedule.map((item) => (
-                <div key={item.id} className="relative">
-                  {/* Bullet */}
-                  <div
-                    className={`absolute -left-6 top-1.5 w-5 h-5 rounded-full border-4 ${
-                      item.isToday
-                        ? 'bg-blue-600 border-blue-100 ring-2 ring-blue-400'
-                        : 'bg-white border-slate-300'
-                    }`}
-                  />
-
-                  <div
-                    className={`p-4 rounded-2xl border transition flex flex-col md:flex-row md:items-center justify-between gap-3 ${
-                      item.isToday
-                        ? 'bg-blue-50/70 border-blue-200 shadow-xs'
-                        : 'bg-white border-slate-200 hover:border-slate-300'
+            {/* Day selector pills */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
+              {days.map((day) => {
+                const isSelected = selectedScheduleDay === day.id;
+                return (
+                  <button
+                    key={day.id}
+                    onClick={() => setSelectedScheduleDay(day.id)}
+                    className={`px-3 py-2 rounded-xl text-xs font-semibold shrink-0 transition flex flex-col items-center gap-0.5 min-w-[70px] ${
+                      isSelected
+                        ? 'bg-blue-600 text-white shadow-2xs'
+                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200/70'
                     }`}
                   >
+                    <span>{day.label}</span>
+                    {day.isToday && (
+                      <span className={`text-[9px] px-1.5 py-0.2 rounded-full font-bold ${isSelected ? 'bg-white/20 text-white' : 'bg-blue-100 text-blue-700'}`}>
+                        Hoy
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Day Schedule Cards */}
+            <div className="space-y-2.5">
+              {currentDaySchedule.length > 0 ? (
+                currentDaySchedule.map((item) => (
+                  <div
+                    key={item.id}
+                    className="p-3.5 rounded-xl border border-slate-200/80 bg-slate-50/50 hover:bg-white hover:border-slate-300 transition flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                  >
                     <div className="space-y-1">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span
-                          className={`px-2 py-0.5 rounded font-extrabold text-[10px] uppercase tracking-wider ${
-                            item.isToday
-                              ? 'bg-blue-600 text-white'
-                              : 'bg-slate-100 text-slate-700'
-                          }`}
-                        >
-                          {item.dayLabel}
-                        </span>
-                        <span className="text-xs font-bold text-slate-800 flex items-center gap-1">
-                          <Clock className="w-3.5 h-3.5 text-slate-500" />
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
                           {item.time}
                         </span>
+                        <span className="text-[11px] text-slate-500 font-medium">{item.tag}</span>
                       </div>
-
-                      <h4 className="text-sm font-bold text-slate-900">
-                        {item.title}
-                      </h4>
-
-                      <p className="text-xs text-slate-600 flex items-center gap-1.5 flex-wrap">
-                        <span className="flex items-center gap-1 font-medium">
-                          <MapPin className="w-3.5 h-3.5 text-blue-600" />
+                      <h4 className="text-sm font-semibold text-slate-800">{item.title}</h4>
+                      <div className="flex items-center gap-3 text-xs text-slate-500">
+                        <span className="flex items-center gap-1">
+                          <MapPin className="w-3.5 h-3.5 text-slate-400" />
                           {item.location}
                         </span>
-                        <span className="text-slate-300">•</span>
-                        <span>{item.instructor}</span>
-                      </p>
-
-                      {item.notes && (
-                        <p className="text-[11px] text-slate-500 pt-0.5">
-                          {item.notes}
-                        </p>
-                      )}
+                        <span>•</span>
+                        <span className="flex items-center gap-1">
+                          <User className="w-3.5 h-3.5 text-slate-400" />
+                          {item.instructor}
+                        </span>
+                      </div>
                     </div>
 
-                    {item.isToday ? (
-                      <button
-                        onClick={() => onNotify('Asistencia confirmada en Box 4 Ramos Mejía.')}
-                        className="px-3.5 py-1.5 bg-white border border-blue-200 text-[#0066cc] text-xs font-bold rounded-xl hover:bg-blue-50 shrink-0 self-start md:self-center shadow-2xs transition"
-                      >
-                        Estoy en el Box
-                      </button>
-                    ) : item.location.includes('San Justo') ? (
-                      <button
-                        onClick={() =>
-                          onShowNoticeModal(
-                            'Indicaciones de Traslado a San Justo',
-                            `Presentarse 08:45 hs en Av. Juan Manuel de Rosas 3400 con credencial física y calzado con puntera de acero.<br/><br/>
-                             Consultar por el <b>Lic. Martín Rossi</b> o el <b>Téc. Fernando Ruiz</b> en el puesto de control de recepción de vehículos.`
-                          )
-                        }
-                        className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl shrink-0 self-start md:self-center transition"
-                      >
-                        Cómo llegar
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => onNotify('Reunión agendada en tu calendario.')}
-                        className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl shrink-0 self-start md:self-center transition"
-                      >
-                        Ver Enlace
-                      </button>
-                    )}
+                    <button
+                      onClick={() =>
+                        onShowNoticeModal(
+                          item.title,
+                          `<b>Horario:</b> ${item.time}<br/>
+                           <b>Lugar:</b> ${item.location}<br/>
+                           <b>Instructor:</b> ${item.instructor}<br/>
+                           <b>Temario:</b> ${item.notes || 'Práctica intensiva en vehículos didácticos VW.'}`
+                        )
+                      }
+                      className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-white hover:border-slate-300 transition shrink-0 self-start sm:self-center"
+                    >
+                      Ver Detalle
+                    </button>
                   </div>
+                ))
+              ) : (
+                <div className="text-center py-6 text-xs text-slate-400 bg-slate-50 rounded-xl">
+                  Sin actividades programadas para este día.
                 </div>
-              ))}
+              )}
             </div>
           </section>
         </div>
 
-        {/* RIGHT COLUMN (Col span 4) */}
-        <div className="lg:col-span-4 space-y-7">
-          {/* C) Tu Buddy / Tutor Asignado */}
-          <section className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-xs space-y-5">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <h2 className="text-base font-black text-slate-900 tracking-tight flex items-center gap-2">
-                <span>🤝</span> Tutor Asignado
-              </h2>
-              <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                En Taller Hoy
+        {/* RIGHT COLUMN: Quick Widgets (Mentor, Evaluaciones, Pañol) */}
+        <div className="lg:col-span-4 space-y-6">
+          {/* MENTOR WIDGET */}
+          <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs space-y-3.5">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                Mentor de Turno
+              </span>
+              <span className="flex items-center gap-1.5 text-xs text-emerald-600 font-semibold">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                En Taller
               </span>
             </div>
 
-            <div className="flex items-start space-x-3.5">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0b1d3a] to-[#0066cc] text-white flex items-center justify-center font-extrabold text-lg shadow-sm ring-2 ring-blue-200 shrink-0">
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 rounded-full bg-slate-900 text-white font-bold flex items-center justify-center shrink-0 shadow-inner text-sm">
                 CP
               </div>
-              <div>
-                <h3 className="text-base font-bold text-slate-900 leading-snug">
-                  Ing. Carlos Pérez
-                </h3>
-                <p className="text-xs font-semibold text-slate-600">
-                  Jefe de Taller Central & Tutor Oficial LNG Olivieri
-                </p>
-                <div className="mt-1.5 flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-[11px] font-bold text-emerald-700">
-                    🟢 En taller (Box Central Ramos Mejía)
-                  </span>
-                </div>
+              <div className="min-w-0">
+                <h4 className="text-sm font-bold text-slate-900 truncate">Ing. Carlos Pérez</h4>
+                <p className="text-xs text-slate-500">Jefe de Taller & Tutor Principal</p>
               </div>
             </div>
 
-            <p className="text-xs text-slate-600 bg-slate-50 p-3 rounded-2xl border border-slate-200 leading-relaxed">
-              ¿Tenés una duda con una herramienta, torque de ajuste o procedimiento técnico? Consultale directo:
+            <p className="text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              &ldquo;Recordá subir el checklist de la Taos antes de las 13:00 para la entrega al cliente.&rdquo;
             </p>
 
-            <div className="space-y-2">
-              <button
-                onClick={() => onOpenChat('Operaciones en Box 4')}
-                className="w-full py-2.5 px-4 bg-[#0066cc] hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 shadow-xs"
-              >
-                <MessageSquare className="w-4 h-4" />
-                <span>💬 Mandar Mensaje Interno</span>
-              </button>
+            <button
+              onClick={() => onOpenChat('Consulta de Taller Diario')}
+              className="w-full py-2 bg-blue-50 hover:bg-blue-600 text-blue-700 hover:text-white rounded-xl text-xs font-semibold transition border border-blue-200 flex items-center justify-center gap-2"
+            >
+              <MessageSquare className="w-4 h-4" />
+              <span>Enviar Consulta 1 a 1</span>
+            </button>
+          </div>
 
-              <button
-                onClick={() =>
-                  onNotify('Abriendo canal directo de WhatsApp técnico (+54 9 11 5821-4400)...')
-                }
-                className="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 shadow-xs"
-              >
-                <span>📱 WhatsApp Directo de Taller</span>
-              </button>
-            </div>
-          </section>
-
-          {/* D) Avisos Rápidos de RRHH y Taller */}
-          <section className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-xs space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <h2 className="text-base font-black text-slate-900 tracking-tight flex items-center gap-2">
-                <span>📢</span> Avisos Rápidos de RRHH y Taller
-              </h2>
-              <span className="text-[11px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
-                Importante
+          {/* EVALUACIONES QUICK CARD */}
+          <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs space-y-3">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                <FileCheck className="w-4 h-4 text-blue-600" /> Evaluaciones
+              </h3>
+              <span className="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">
+                Módulos 1 al 6
               </span>
             </div>
+            <p className="text-xs text-slate-500 leading-relaxed">
+              Recordá: Cada módulo se aprueba con un <b>Examen Parcial</b> y un <b>TP Opcional</b>. El Módulo 6 finaliza con el <b>Proyecto Integrador</b>.
+            </p>
+            <button
+              onClick={() => onSelectView('evaluaciones')}
+              className="w-full py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-semibold transition flex items-center justify-center gap-1.5"
+            >
+              <span>Ver Centro de Evaluaciones</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
 
-            <div className="space-y-3">
-              <div
-                onClick={() =>
-                  onShowNoticeModal(
-                    'Uso Obligatorio de Calzado de Seguridad',
-                    'A todo el personal y alumnos del programa: queda terminantemente prohibido el paso a la línea de elevadores sin calzado con puntera normalizado IRAM. Quien no lo posea debe solicitarlo en pañol inmediatamente.'
-                  )
-                }
-                className="p-3.5 bg-amber-50/70 hover:bg-amber-100/60 transition cursor-pointer rounded-2xl border border-amber-200 space-y-1"
-              >
-                <div className="flex items-center gap-1.5 text-xs font-bold text-amber-900">
-                  <span>⚠️</span>
-                  <span>Recordar asistir con calzado de seguridad a pañol</span>
-                </div>
-                <p className="text-xs text-amber-800 leading-snug">
-                  Obligatorio para el ingreso estricto a la zona de elevadores y fosa técnica sin excepción.
-                </p>
-              </div>
-
-              <div
-                onClick={() =>
-                  onShowNoticeModal(
-                    'Mantenimiento Programado en Boxes',
-                    'Este viernes a partir de las 13:00 hs se realizará la calibración semestral de los elevadores electromecánicos y bancos de geometría Hunter. Las prácticas de taller culminan a las 12:30 hs.'
-                  )
-                }
-                className="p-3.5 bg-red-50/70 hover:bg-red-100/60 transition cursor-pointer rounded-2xl border border-red-200 space-y-1"
-              >
-                <div className="flex items-center gap-1.5 text-xs font-bold text-red-900">
-                  <span>🛑</span>
-                  <span>El viernes no hay actividad en boxes después de las 13 hs</span>
-                </div>
-                <p className="text-xs text-red-800 leading-snug">
-                  Jornada de calibración de bancos de prueba y mantenimiento preventivo oficial.
-                </p>
-              </div>
-
-              <div
-                onClick={() =>
-                  onShowNoticeModal(
-                    'Entrega de Uniformes de Verano',
-                    'Los kits de chombas técnicas respirables con monograma LNG Olivieri están disponibles para su retiro en la oficina 2 de Recursos Humanos (1er piso) de 14:00 a 16:30 hs.'
-                  )
-                }
-                className="p-3.5 bg-blue-50/70 hover:bg-blue-100/60 transition cursor-pointer rounded-2xl border border-blue-200 space-y-1"
-              >
-                <div className="flex items-center gap-1.5 text-xs font-bold text-blue-900">
-                  <span>👕</span>
-                  <span>Entrega de uniformes de verano</span>
-                </div>
-                <p className="text-xs text-blue-800 leading-snug">
-                  Retirar por RRHH oficina 2 (piso 1) con firma de remito de 14:00 a 16:30 hs.
-                </p>
-              </div>
+          {/* PAÑOL Y LOGÍSTICA QUICK ACCESS */}
+          <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs space-y-3">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                <Wrench className="w-4 h-4 text-slate-700" /> Pañol & Herramientas
+              </h3>
+              <span className="text-[11px] text-slate-400">Ramos Mejía</span>
             </div>
-          </section>
-
-          {/* E) Guía Rápida de la Plataforma */}
-          <section className="bg-gradient-to-br from-[#09152b] to-[#0c1b38] rounded-3xl p-6 text-white shadow-md space-y-4 border border-slate-800">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-300 flex items-center justify-center font-bold text-sm border border-blue-400/30">
-                🗺️
-              </div>
-              <div>
-                <h3 className="text-sm font-bold text-white">Guía Rápida de la Plataforma</h3>
-                <p className="text-[11px] text-slate-400">Cómo navegar tu formación técnica</p>
-              </div>
-            </div>
-
-            <div className="space-y-2.5 text-xs">
-              <div className="p-2.5 rounded-xl bg-white/10 border border-white/15">
-                <p className="font-bold text-white flex items-center gap-1.5">
-                  <span className="text-emerald-400">●</span> 🏠 Inicio (Estás aquí):
-                </p>
-                <p className="text-slate-300 text-[11px] mt-0.5">
-                  Tu resumen del día a día (pendientes, horarios y avisos urgentes).
-                </p>
-              </div>
-
-              <div
-                onClick={() => onSelectView('plan')}
-                className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition cursor-pointer"
-              >
-                <p className="font-bold text-slate-200 flex items-center justify-between">
-                  <span>📚 Plan de Estudios:</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
-                </p>
-                <p className="text-slate-400 text-[11px] mt-0.5">
-                  La biblioteca con los 6 módulos homologados para leer teoría, manuales y ver videos.
-                </p>
-              </div>
-
-              <div
+            <p className="text-xs text-slate-500">
+              Solicitud de torquímetros, escáner ODIS, EPP dieléctrico y calibres Mitutoyo para tu box.
+            </p>
+            <div className="flex gap-2">
+              <button
                 onClick={() => onSelectView('recursos')}
-                className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition cursor-pointer"
+                className="flex-1 py-2 bg-slate-100 hover:bg-slate-200/80 text-slate-700 rounded-xl text-xs font-semibold transition text-center"
               >
-                <p className="font-bold text-slate-200 flex items-center justify-between">
-                  <span>🧰 Recursos y Logística:</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
-                </p>
-                <p className="text-slate-400 text-[11px] mt-0.5">
-                  Pedí herramientas especiales al pañol, tramitá viáticos o solicitá reposición de EPP.
-                </p>
-              </div>
+                Ver Inventario
+              </button>
+              <button
+                onClick={() => onSelectView('foro')}
+                className="flex-1 py-2 bg-slate-100 hover:bg-slate-200/80 text-slate-700 rounded-xl text-xs font-semibold transition text-center"
+              >
+                Foro Técnico
+              </button>
             </div>
-          </section>
+          </div>
         </div>
       </div>
     </motion.div>
