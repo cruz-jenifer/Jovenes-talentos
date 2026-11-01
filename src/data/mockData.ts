@@ -5,14 +5,14 @@ export const INITIAL_MODULES: ModuleItem[] = [
     id: 1,
     code: '0001',
     month: 'Mes 1',
-    title: 'Módulo 1: Fundamentos Técnicos, Taller y Seguridad',
-    shortTitle: 'Fundamentos Técnicos, Taller y Seguridad',
+    title: 'Módulo 1: Introducción (Principios Técnicos), Seguridad y Herramientas',
+    shortTitle: 'Introducción, Seguridad y Herramientas',
     status: 'Finalizada 100%',
     statusType: 'finalized',
     progress: 100,
     grade: '9.50 / 10 - Aprobado',
     portfolioFile: 'Informe_Metrologia_Taller_Gomez.pdf',
-    description: 'Normas de bioseguridad, metrología de precisión y termodinámica del motor de combustión interna.',
+    description: 'Seguridad e higiene en el taller (EPI), manejo de herramientas y equipo pesado, fundamentos del motor térmico y anatomía general del vehículo.',
     approvalScheme: {
       tp: {
         name: 'TP Opcional: Informe Técnico de Metrología en Taller',
@@ -30,16 +30,20 @@ export const INITIAL_MODULES: ModuleItem[] = [
     },
     topics: [
       {
-        title: 'Seguridad e Higiene en el Taller',
-        desc: 'Normas de seguridad biológica y física. Uso correcto de Equipos de Protección Individual (EPI). Manejo de residuos peligrosos (aceites, baterías, refrigerantes). Prevención y extinción de incendios en fosa y elevadores.'
+        title: 'Seguridad e higiene en el taller',
+        desc: 'Uso correcto de Equipo de Protección Individual (EPI). Lubricantes, baterías, refrigerantes y normas de seguridad biológica y física.'
       },
       {
-        title: 'Herramientas y Equipamiento',
-        desc: 'Identificación y uso técnico de herramientas de mano (llaves fijas, de vaso, dinamométricas). Manejo de equipos pesados (elevadores hidráulicos, prensas, gatos). Instrumentos de metrología (calibre pie de rey, micrómetro, comparador de carátula).'
+        title: 'Herramientas y equipamiento',
+        desc: 'Identificar el uso técnico de cada herramienta de mano (llaves fijas, de vaso, dinamométricas). Manejo de equipo pesado (elevadores hidráulicos, prensas y gatos). Instrumentos de metrología donde se mide en las reparaciones y fabricaciones del vehículo (pistones, cigüeñales, válvulas, frenos).'
       },
       {
-        title: 'Fundamentos del Motor Térmico',
-        desc: 'Principios de la termodinámica. Componentes fijos y móviles del motor (bloque, culata, pistones, cigüeñal). Ciclos de funcionamiento de 4 tiempos (Otto y Diésel) y cálculo de relación de compresión.'
+        title: 'Fundamentos del motor térmico',
+        desc: 'Principios de la termodinámica, componentes físicos y móviles del motor (4 tiempos: Admisión, Compresión, Combustión/Expansión [tiempo útil], Escape), sus conceptos, su rendimiento y sus ciclos.'
+      },
+      {
+        title: 'Anatomía y arquitectura del auto',
+        desc: 'Cómo está compuesto el auto, cómo están montados el motor, el embrague y la caja de cambios, la transmisión, dirección, suspensión delantera, suspensión posterior con sus respectivos puentes, el escape y los frenos, y los accesorios.'
       }
     ]
   },
@@ -47,14 +51,14 @@ export const INITIAL_MODULES: ModuleItem[] = [
     id: 2,
     code: '0002',
     month: 'Mes 2',
-    title: 'Módulo 2: Sistemas del Vehículo y Servicio al Cliente',
-    shortTitle: 'Sistemas del Vehículo y Servicio al Cliente',
+    title: 'Módulo 2: Motor y Sistemas Auxiliares',
+    shortTitle: 'Motor y Sistemas Auxiliares',
     status: 'Finalizada 100%',
     statusType: 'finalized',
     progress: 100,
     grade: '9.50 / 10 - Aprobado',
     portfolioFile: 'Informe_Revision_Frenos_Gomez.pdf',
-    description: 'Sistemas dinámicos de suspensión, frenos hidráulicos/ABS y protocolos oficiales de atención al cliente VW.',
+    description: 'Componentes de suspensión y dirección, sistema de frenos hidráulicos y ABS, alimentación y escape, distribución, refrigeración y lubricación.',
     approvalScheme: {
       tp: {
         name: 'TP Opcional: Revisión de Frenos y Circuito Hidráulico',
@@ -72,16 +76,28 @@ export const INITIAL_MODULES: ModuleItem[] = [
     },
     topics: [
       {
-        title: 'Sistemas de Suspensión y Dirección',
-        desc: 'Componentes de la suspensión (amortiguadores, muelles helicoidales, barras estabilizadoras). Tipos de dirección (mecánica, asistida hidráulica y electromecánica Servotronic). Geometría y alineación 3D de ruedas.'
+        title: 'Sistema de suspensión y dirección',
+        desc: 'Son componentes de la suspensión (amortiguadores, muelles, barras estabilizadoras - absorbe las irregularidades del suelo), los tipos de suspensiones comunes (rígida e independiente). Tipos de dirección (mecánica, asistida hidráulica y eléctricamente). Geometría y alineación de las ruedas.'
       },
       {
-        title: 'Sistema de Frenos Hidráulicos y Asistidos',
-        desc: 'Principios de hidráulica aplicados al frenado. Frenos de disco ventilados y de tambor. Componentes (bomba tándem, pinzas, pastillas, servofreno de vacío). Introducción básica a sistemas antibloqueo (ABS) y control de estabilidad (ESP).'
+        title: 'Sistema de frenos',
+        desc: 'Principios de hidráulica aplicados al frenado. Frenos de disco y tambor y sus componentes (bombas, pinzas, pastillas, servofreno). Introducción básica antibloqueo (ABS).'
       },
       {
-        title: 'Servicio y Atención al Cliente Oficial',
-        desc: 'Recepción del vehículo y confección de la orden de trabajo (OR). Habilidades de comunicación y detección de las necesidades del cliente. Explicación técnica de presupuestos y transparencia en el servicio post-venta.'
+        title: 'Sistema de alimentación y escape',
+        desc: 'Transporta el combustible del tanque a los cilindros. Componentes de alimentación (tanque de combustible, bombas [mecánica y eléctrica], filtros, rampas de inyección e inyectores).'
+      },
+      {
+        title: 'Sistema de distribución',
+        desc: 'Sincronizar la apertura y cierre de las válvulas y movimientos de los pistones (reloj del motor). Componentes: árboles de levas, válvulas (admisión y escape), resortes y elementos de mando (correa de mando [goma] cambios por kilometraje, cadena de distribución [metálica] ruidosa pero más duradera). Las fallas comunes.'
+      },
+      {
+        title: 'Sistema de refrigeración y lubricación',
+        desc: 'Mantenimiento de la temperatura del motor. Sus componentes: radiador, bomba de agua, termostato (la válvula que abre o cierra el paso según su temperatura), el electroventilador, depósito de expansión y líquido refrigerante.'
+      },
+      {
+        title: 'La lubricación',
+        desc: 'Distribuye el aceite a presión por todas las piezas móviles del motor (reducir la fricción y el desgaste). Sus componentes: cárter, depósito de aceite, bomba de aceite, filtro, regulador de presión y conductos internos del block (parte de afuera del motor, fundición donde están las piezas).'
       }
     ]
   },
@@ -89,14 +105,14 @@ export const INITIAL_MODULES: ModuleItem[] = [
     id: 3,
     code: '0012',
     month: 'Mes 3',
-    title: 'Módulo 3: Mantenimiento y Electricidad Automotriz',
-    shortTitle: 'Mantenimiento y Electricidad Automotriz',
+    title: 'Módulo 3: Electricidad Automotriz Básica',
+    shortTitle: 'Electricidad Automotriz Básica',
     status: 'En Curso • 40%',
     statusType: 'in-progress',
     progress: 40,
     grade: 'Pendiente de Calificación',
     portfolioFile: 'Diagnostico_Alternador_Bateria_Gomez.pdf',
-    description: 'Mantenimiento programado por kilometraje, magnitudes eléctricas, análisis de circuitos de carga y arranque.',
+    description: 'Circuito de masa y polaridades, almacenamiento en batería, alternador, mantenimiento preventivo y circuito de carga y arranque.',
     approvalScheme: {
       tp: {
         name: 'TP Opcional: Diagnóstico de Alternador y Batería',
@@ -109,21 +125,33 @@ export const INITIAL_MODULES: ModuleItem[] = [
         name: 'Examen Parcial: Circuitos de Carga y Alternador (Práctico)',
         isMandatory: true,
         status: 'pendiente',
-        date: 'Viernes 15 de Noviembre • 08:30 hs'
+        date: 'Viernes 15 de Noviembre • 08:00 hs'
       }
     },
     topics: [
       {
-        title: 'Mantenimiento Programado y Preventivo',
-        desc: 'Rutinas de inspección por kilometraje (15.000 / 30.000 km). Cambio de fluidos (aceite sintético 508.00/509.00, transmisión DSG, líquido de frenos DOT 4) y sustitución de filtros (aire, aceite, combustible, habitáculo carbón activado). Inspección visual de desgastes y fugas.'
+        title: 'Circuito de masa',
+        desc: '(El auto utiliza un truco para ahorrar kilómetros de cable: la carrocería y el chasis de metal funcionan como el cable negativo). Polo positivo (sale de la batería a través de los cables de colores hacia los fusibles) y negativo (está conectado al borne negativo de la batería). Las fallas más frecuentes.'
       },
       {
-        title: 'Electricidad Básica del Automóvil',
-        desc: 'Magnitudes eléctricas (tensión, intensidad, resistencia, ley de Ohm). Uso profesional del multímetro digital y punta lógica automotriz. Interpretación de diagramas y esquemas eléctricos oficiales de la plataforma MQB.'
+        title: 'Sistema de almacenamiento y generación',
+        desc: '(La fuente) Provee la energía necesaria y alimentar el mantenimiento de forma constante. Lo que es la batería (acumulador, cómo está compuesta [placas de plomo y ácido sulfúrico], su almacenamiento químico [entrega 12,6 voltios en reposo] y los golpes de corriente al motor de arranque).'
       },
       {
-        title: 'Circuitos de Carga y Arranque',
-        desc: 'Diagnóstico y mantenimiento de la batería de 12V (prueba de conductancia y reserva de capacidad). Funcionamiento y comprobación de alternador con regulador inteligente y motor de arranque. Fusibleras, relés y sistemas de iluminación LED.'
+        title: 'Alternador',
+        desc: 'El generador del auto.'
+      },
+      {
+        title: 'Mantenimiento programado preventivo',
+        desc: 'Rutina de inspección por kilometraje, cambios de fluidos (aceite de motor, transmisión, líquido de frenos) y sustitución de filtros (aire, aceite, combustible, habitáculo). Inspección de desgaste y fugas.'
+      },
+      {
+        title: 'Electricidad básica del automóvil',
+        desc: 'Magnitudes eléctricas (voltaje, corriente y resistencia). Uso de multímetros digital y lámpara de prueba. Interpretación de diagramas y esquemas eléctricos automotrices.'
+      },
+      {
+        title: 'Circuito de carga y arranque',
+        desc: 'Diagnóstico y mantenimiento de la batería, funcionamiento y comprobación del alternador y el motor de arranque (burro de arranque), fusibles, relés y el sistema de iluminación.'
       }
     ]
   },
@@ -131,12 +159,12 @@ export const INITIAL_MODULES: ModuleItem[] = [
     id: 4,
     code: '0013',
     month: 'Mes 4',
-    title: 'Módulo 4: Diagnóstico y Proceso Post-Venta',
-    shortTitle: 'Diagnóstico y Proceso Post-Venta',
+    title: 'Módulo 4: Inyección Electrónica y Diagnóstico',
+    shortTitle: 'Inyección Electrónica y Diagnóstico',
     status: 'Bloqueada - Mes 4',
     statusType: 'locked',
     progress: 0,
-    description: 'Gestión electrónica del motor, diagnóstico OBD-II con escáner ODIS oficial y prueba dinámica de ruta.',
+    description: 'Arquitectura y clasificación de la inyección electrónica (ECU), sensores clave, actuadores y diagnóstico electrónico con escáner.',
     approvalScheme: {
       tp: {
         name: 'TP Opcional: Protocolo de Diagnóstico ODIS y Sensores',
@@ -151,16 +179,20 @@ export const INITIAL_MODULES: ModuleItem[] = [
     },
     topics: [
       {
-        title: 'Sistemas de Inyección y Gestión Electrónica',
-        desc: 'Introducción a las unidades de control electrónico (ECU). Sensores (MAF, MAP, CKP, CMP, Sonda Lambda de banda ancha) y actuadores (inyectores de inyección directa TSI, bobinas individuales). Sistemas de alimentación de combustible y recirculación de gases (EGR / canister).'
+        title: 'Inyección electrónica',
+        desc: 'Es el sistema integrado que automatiza el combustible en el motor (ultra precisión). Arquitectura y clasificación del sistema como la ECU (Unidad de Control Electrónica) (procesa información y la toma de decisiones), tipos de inyección (directa e indirecta), clasificación por número de inyectores (mono punto y multipunto).'
       },
       {
-        title: 'Diagnóstico con Escáner Oficial (ODIS / OBD-II)',
-        desc: 'Conexión y lectura de códigos de falla (DTC). Interpretación de bloques de valores de medición en tiempo real. Uso de osciloscopio automotriz de 4 canales para análisis de señales analógicas y buses de datos CAN-Bus.'
+        title: 'Los sensores',
+        desc: 'Miden lo que pasa en el motor y envían señales a los otros sensores como MAP/MAF (la cantidad y presión del aire), CKP (que mide la velocidad del motor), ECT (temperatura del motor, regula el cebador eléctrico), sonda lambda (el oxígeno, miden los gases del escape si está bien la mezcla rica [mucha] o pobre [poca nafta]).'
       },
       {
-        title: 'Proceso y Control de Calidad Post-Venta',
-        desc: 'Prueba de ruta del vehículo post-reparación en circuito homologado. Verificación del cumplimiento estricto de la orden de reparación. Entrega técnica del automóvil al cliente y encuestas de satisfacción CSI.'
+        title: 'Actuadores',
+        desc: 'El que ejecuta las órdenes. Inyectores, las bombas de combustible (eléctricas), cuerpo de mariposa motorizado, bobinas de encendido.'
+      },
+      {
+        title: 'El diagnóstico electrónico (Práctica de taller)',
+        desc: 'Uso de escáner automotriz, interpretación de código DTC (ej: P0300 falla de encendido), diagnóstico con instrumental.'
       }
     ]
   },
@@ -173,7 +205,7 @@ export const INITIAL_MODULES: ModuleItem[] = [
     status: 'Bloqueada - Mes 5',
     statusType: 'locked',
     progress: 0,
-    description: 'Diagnóstico de averías complejas e intermitentes, despiece guiado en taller real y optimización de tiempos.',
+    description: 'Simulación de averías complejas, talleres de reparación real, optimización de tiempos de trabajo e instancia práctica de evaluación.',
     approvalScheme: {
       tp: {
         name: 'TP Opcional: Caso de Estudio de Fallas Intermitentes',
@@ -189,15 +221,19 @@ export const INITIAL_MODULES: ModuleItem[] = [
     topics: [
       {
         title: 'Simulación de Averías Complejas',
-        desc: 'Diagnóstico a ciegas de fallas intermitentes eléctricas y mecánicas generadas en vehículos de prueba. Aplicación del método sistemático de descarte lógico de fallas guiado por árbol de decisión técnico.'
+        desc: 'Diagnóstico a ciegas de fallas intermitentes (eléctricas y mecánicas). Aplicación del método lógico de descarte de fallas.'
       },
       {
         title: 'Talleres de Reparación Real',
-        desc: 'Prácticas guiadas de desmontaje, reparación y montaje de conjuntos mecánicos de motor 1.4 TSI, frenos y tren delantero. Trabajo en equipo bajo presión de tiempo simulando la dinámica operativa del taller del concesionario.'
+        desc: 'Prácticas guiadas de desmontaje, reparación y montaje de componentes de motor, frenos y suspensión sobre vehículos reales. Trabajo en equipo bajo presión de tiempo simulando un taller real.'
       },
       {
-        title: 'Optimización de Tiempos de Trabajo (UT)',
-        desc: 'Manejo de manuales técnicos de taller y software de reparación oficial (ELSAPro, Data Autodata). Gestión eficiente del puesto de trabajo, pañol y herramientas especiales.'
+        title: 'Optimización de Tiempos de Trabajo',
+        desc: 'Uso de manuales técnicos de taller y softwares de reparación especializados (Autodata, Mitchell, etc.). Gestión eficiente del puesto de trabajo.'
+      },
+      {
+        title: 'Instancia práctica',
+        desc: 'Trabajo práctico y evaluación del Módulo 5.'
       }
     ]
   },
@@ -210,7 +246,7 @@ export const INITIAL_MODULES: ModuleItem[] = [
     status: 'Bloqueada - Mes 6',
     statusType: 'locked',
     progress: 0,
-    description: 'Proyecto integrador final, preparación para entrevistas técnicas en la red oficial y examen de certificación.',
+    description: 'Propuesta de mejora técnica o de servicio, orientación e inserción laboral, y evaluación final teórica-práctica para la certificación oficial.',
     approvalScheme: {
       isLastModule: true,
       finalProject: {
@@ -226,16 +262,16 @@ export const INITIAL_MODULES: ModuleItem[] = [
     },
     topics: [
       {
-        title: 'Proyecto “Jóvenes Talentos LNG Olivieri”',
-        desc: 'Desarrollo de una propuesta de optimización técnica o de flujo de servicio aplicable al taller de Ramos Mejía o San Justo. Presentación y defensa oral del caso de estudio resuelto ante el jurado directivo.'
+        title: 'Desarrollo de una propuesta de mejora técnica o de servicio',
+        desc: 'Desarrollo de una propuesta de mejora técnica o de servicio aplicable a un taller. Presentación de un caso de estudio resuelto.'
       },
       {
         title: 'Orientación e Inserción Laboral',
-        desc: 'Armado de currículum vitae técnico normalizado. Simulación de entrevistas de trabajo en concesionarios oficiales Volkswagen y talleres de la red. Pasantías remuneradas de 20 hs semanales.'
+        desc: 'Armado de currículum vitae técnico. Preparación para entrevistas de trabajo en concesionarios y talleres multimarca. Introducción al autoempleo y emprendimiento.'
       },
       {
-        title: 'Evaluación Final y Certificación Oficial VW',
-        desc: 'Examen teórico integral de conocimientos y prueba práctica de diagnóstico y resolución de averías en banco y fosa ante el tribunal evaluador de la Academia Volkswagen Argentina.'
+        title: 'Evaluación Final y Certificación',
+        desc: 'Examen teórico integral de conocimientos y prueba práctica de diagnóstico y reparación frente a evaluadores.'
       }
     ]
   }
@@ -281,9 +317,9 @@ export const WEEK_SCHEDULE: WeekScheduleItem[] = [
   {
     id: 'sch-1',
     dayLabel: 'HOY • MARTES 19',
-    time: '08:30 - 13:00 hs',
+    time: '08:00 - 12:00 hs',
     title: 'Práctica en Boxes: Diagnóstico de Circuito de Carga',
-    location: 'Sede Ramos Mejía - Box 4 (Fosa 2)',
+    location: 'Av. Rivadavia 12980, Ciudadela (casa central) - Box 4 (Fosa 2)',
     instructor: 'Ing. Carlos Pérez',
     tag: 'Práctica en Boxes',
     isToday: true,
@@ -292,20 +328,20 @@ export const WEEK_SCHEDULE: WeekScheduleItem[] = [
   {
     id: 'sch-2',
     dayLabel: 'MAÑANA • MIÉRCOLES 20',
-    time: '09:00 - 12:30 hs',
-    title: 'Práctica en Taller San Justo: Alineación y Geometría 3D',
-    location: 'Sede Central San Justo - Taller Principal',
+    time: '08:00 - 12:00 hs',
+    title: 'Práctica de Taller: Alineación y Geometría 3D',
+    location: 'Av. Rivadavia 12980, Ciudadela (casa central) - Taller Principal',
     instructor: 'Téc. Fernando Ruiz',
     tag: 'Alineación 3D',
     isToday: false,
-    notes: 'Presentarse en recepción 08:45 hs. Traer calzado con puntera de acero.'
+    notes: 'Presentarse en recepción 07:50 hs. Traer calzado con puntera de acero.'
   },
   {
     id: 'sch-3',
     dayLabel: 'JUEVES 21',
-    time: '14:00 - 15:30 hs',
+    time: '08:00 - 12:00 hs',
     title: 'Reunión de Seguimiento con Buddy / Tutor',
-    location: 'Sala Técnica / Virtual Microsoft Teams',
+    location: 'Av. Rivadavia 12980, Ciudadela (casa central) / Microsoft Teams',
     instructor: 'Ing. Carlos Pérez',
     tag: 'Tutoría 1 a 1',
     isToday: false,
@@ -314,9 +350,9 @@ export const WEEK_SCHEDULE: WeekScheduleItem[] = [
   {
     id: 'sch-4',
     dayLabel: 'VIERNES 22',
-    time: '10:00 - 12:00 hs',
+    time: '08:00 - 12:00 hs',
     title: 'Clase Técnica: Protocolos ODIS y Escaneo VW',
-    location: 'Laboratorio de Capacitación Central',
+    location: 'Laboratorio de Capacitación Central Ciudadela (Av. Rivadavia 12980)',
     instructor: 'Lic. Martín Rossi',
     tag: 'Laboratorio ODIS',
     isToday: false,
@@ -333,8 +369,8 @@ export const WORKSHOP_ACTIVITIES: WorkshopActivity[] = [
     title: 'Masterclass: Diagnóstico de Baterías de Alto Voltaje y Sistemas Híbridos VW',
     description: 'Protocolos de corte y desconexión segura en modelos ID.3 y e-Golf, uso de multímetros Cat IV 1000V y software de servicio ODIS.',
     date: 'Viernes 22 de Noviembre',
-    time: '14:30 a 18:00 hs',
-    location: 'Taller Central Ramos Mejía - Bahía Especial',
+    time: '08:00 a 12:00 hs',
+    location: 'Av. Rivadavia 12980, Ciudadela (casa central) - Bahía Especial',
     speaker: 'Ing. Carlos Pérez',
     spotsLeft: 8,
     totalSpots: 15,
@@ -350,8 +386,8 @@ export const WORKSHOP_ACTIVITIES: WorkshopActivity[] = [
     title: 'Taller Práctico: Manejo Avanzado de Sistema ODIS y Osciloscopio Digital',
     description: 'Captura de formas de onda en sensores de giro de cigüeñal (CKP) y actuadores de presión. Diagnóstico guiado con banco de pruebas.',
     date: 'Miércoles 27 de Noviembre',
-    time: '09:00 a 12:30 hs',
-    location: 'Laboratorio Sucursal Central',
+    time: '08:00 a 12:00 hs',
+    location: 'Laboratorio Casa Central Ciudadela (Av. Rivadavia 12980)',
     speaker: 'Lic. Martín Rossi',
     spotsLeft: 3,
     totalSpots: 12,
@@ -367,8 +403,8 @@ export const WORKSHOP_ACTIVITIES: WorkshopActivity[] = [
     title: 'Seminario: Seguridad y Calidad de Atención Post-Venta Oficial',
     description: 'Recepción activa con el cliente, checklist digital en tablet y protocolos de garantía del Grupo Volkswagen.',
     date: 'Martes 03 de Diciembre',
-    time: '15:00 a 17:30 hs',
-    location: 'Modalidad Híbrida (Auditorio Ramos Mejía / Teams)',
+    time: '08:00 a 12:00 hs',
+    location: 'Modalidad Híbrida (Auditorio Ciudadela - Casa Central / Teams)',
     speaker: 'Lic. Valeria Benítez',
     spotsLeft: 12,
     totalSpots: 25,
@@ -385,7 +421,7 @@ export const WORKSHOP_ACTIVITIES: WorkshopActivity[] = [
     description: 'Recorrido técnico por las líneas robotizadas de armado de Taos y Amarok, centro de estampado y pista de pruebas de homologación.',
     date: 'Jueves 05 de Diciembre',
     time: '07:30 a 16:00 hs',
-    location: 'Salida desde Sucursal Ramos Mejía en micro chárter',
+    location: 'Salida desde Casa Central Ciudadela (Av. Rivadavia 12980) en micro chárter',
     speaker: 'Coordinación LNG Olivieri & Directores de Planta VW',
     spotsLeft: 5,
     totalSpots: 20,
@@ -401,8 +437,8 @@ export const WORKSHOP_ACTIVITIES: WorkshopActivity[] = [
     title: 'Charla Técnica con Ingenieros de Planta VW Argentina',
     description: 'Conversatorio sobre la arquitectura electrónica modular MQB y la transición hacia la electromovilidad en talleres oficiales.',
     date: 'Martes 10 de Diciembre',
-    time: '17:00 a 19:00 hs',
-    location: 'Auditorio Central LNG Olivieri',
+    time: '08:00 a 12:00 hs',
+    location: 'Auditorio Central LNG Olivieri (Av. Rivadavia 12980, Ciudadela)',
     speaker: 'Ing. Rodrigo Santoro (Gerente de Ingeniería VW)',
     spotsLeft: 18,
     totalSpots: 40,
@@ -415,11 +451,11 @@ export const WORKSHOP_ACTIVITIES: WorkshopActivity[] = [
     category: 'evento',
     tag: 'Eventos Especiales',
     tagColor: 'amber',
-    title: 'Exposición de Casos Técnicos y Premiación 2024',
+    title: 'Exposición de Casos Técnicos y Premiación 2027',
     description: 'Presentación de los proyectos de resolución de fallas complejas y entrega de reconocimientos al Mérito Técnico Jóvenes Talentos.',
     date: 'Viernes 20 de Diciembre',
-    time: '18:30 hs',
-    location: 'Salón Principal LNG Olivieri',
+    time: '08:00 a 12:00 hs',
+    location: 'Salón Principal LNG Olivieri (Av. Rivadavia 12980, Ciudadela)',
     speaker: 'Directorio LNG Olivieri',
     spotsLeft: 30,
     totalSpots: 50,
@@ -433,9 +469,9 @@ export const WORKSHOP_ACTIVITIES: WorkshopActivity[] = [
     tag: 'Avisos Generales',
     tagColor: 'blue',
     title: 'Entrega de Nuevos Uniformes Técnicos y Calzado Dieléctrico',
-    description: 'Retiro por Pañol Central en Ramos Mejía de 08:00 a 16:00 hs con DNI para el turno tarde.',
+    description: 'Retiro por Pañol Central en Ciudadela (Av. Rivadavia 12980) en horario de clase (08:00 a 12:00 hs) con DNI.',
     date: 'Publicado ayer',
-    location: 'Pañol Central - Ramos Mejía',
+    location: 'Pañol Central - Ciudadela (Av. Rivadavia 12980)',
     speaker: 'Secretaría de Recursos y Taller',
     isEnrolled: false,
     badgeLabel: 'Equipamiento y EPP',
@@ -475,11 +511,11 @@ export const CALENDAR_EVENTS: CalendarEventItem[] = [
   {
     day: 1,
     monthIndex: 10,
-    year: 2024,
+    year: 2027,
     title: 'Revisión de Seguridad y EPP',
     shortBadge: '✓ EPP y Pañol',
-    time: '08:30 a 11:30 hs',
-    location: 'Taller Ramos Mejía - Box 2',
+    time: '08:00 a 12:00 hs',
+    location: 'Av. Rivadavia 12980, Ciudadela (casa central) - Box 2',
     mentor: 'Ing. Carlos Pérez',
     description: 'Revisión e inspección obligatoria de calzado de seguridad, guantes y calibración inicial de herramientas de mano.',
     type: 'taller'
@@ -487,11 +523,11 @@ export const CALENDAR_EVENTS: CalendarEventItem[] = [
   {
     day: 4,
     monthIndex: 10,
-    year: 2024,
+    year: 2027,
     title: 'Rotación Box Motores',
     shortBadge: '08:00 Práctica Box',
     time: '08:00 - 12:00 hs',
-    location: 'Sede Ramos Mejía',
+    location: 'Av. Rivadavia 12980, Ciudadela (casa central)',
     mentor: 'Tutor Técnico',
     description: 'Desarme guiado de conjunto de distribución y correas en motor 1.4 TSI sobre soporte didáctico.',
     type: 'taller'
@@ -499,7 +535,7 @@ export const CALENDAR_EVENTS: CalendarEventItem[] = [
   {
     day: 6,
     monthIndex: 10,
-    year: 2024,
+    year: 2027,
     title: 'Entrega Informe Metrología',
     shortBadge: '18:00 Informe PDI',
     time: '18:00 hs Límite',
@@ -511,11 +547,11 @@ export const CALENDAR_EVENTS: CalendarEventItem[] = [
   {
     day: 7,
     monthIndex: 10,
-    year: 2024,
+    year: 2027,
     title: 'Alineación y Geometría 3D',
-    shortBadge: '09:00 San Justo 3D',
-    time: '09:00 - 13:00 hs',
-    location: 'Taller San Justo - Fosa 4',
+    shortBadge: '08:00 Alineación 3D',
+    time: '08:00 - 12:00 hs',
+    location: 'Av. Rivadavia 12980, Ciudadela (casa central) - Fosa 4',
     mentor: 'Téc. Fernando Ruiz',
     description: 'Práctica computarizada en bancada Hunter con unidades Taos y Amarok.',
     type: 'taller'
@@ -523,11 +559,11 @@ export const CALENDAR_EVENTS: CalendarEventItem[] = [
   {
     day: 11,
     monthIndex: 10,
-    year: 2024,
+    year: 2027,
     title: 'Tutoría 1 a 1: Diagnóstico',
     shortBadge: '11:00 Buddy Tutor',
     time: '11:00 hs',
-    location: 'Box Central Ramos Mejía',
+    location: 'Box Central Ciudadela (Av. Rivadavia 12980)',
     mentor: 'Ing. Carlos Pérez',
     description: 'Revisión personalizada de fallas en bus de datos CAN y osciloscopio con el mentor.',
     type: 'visita'
@@ -535,11 +571,11 @@ export const CALENDAR_EVENTS: CalendarEventItem[] = [
   {
     day: 14,
     monthIndex: 10,
-    year: 2024,
+    year: 2027,
     title: 'Jornada Práctica de Carga y Arranque',
-    shortBadge: '⚡ 08:30 Fosa 2 Carga',
-    time: '08:30 a 13:00 hs',
-    location: 'Taller Central Ramos Mejía - Fosa 2',
+    shortBadge: '⚡ 08:00 Fosa 2 Carga',
+    time: '08:00 a 12:00 hs',
+    location: 'Av. Rivadavia 12980, Ciudadela (casa central) - Fosa 2',
     mentor: 'Ing. Carlos Pérez',
     description: 'Diagnóstico dinámico de circuito de carga y arranque en Taos con osciloscopio de 4 canales. Obligatorio calzado dieléctrico.',
     type: 'taller'
@@ -547,11 +583,11 @@ export const CALENDAR_EVENTS: CalendarEventItem[] = [
   {
     day: 15,
     monthIndex: 10,
-    year: 2024,
+    year: 2027,
     title: 'Examen Práctico Módulo 3',
-    shortBadge: '⚠️ 08:30 Examen M3',
-    time: 'Viernes 08:30 hs',
-    location: 'Laboratorio Eléctrico Ramos Mejía',
+    shortBadge: '⚠️ 08:00 Examen M3',
+    time: 'Viernes 08:00 a 12:00 hs',
+    location: 'Laboratorio Eléctrico Ciudadela (Casa Central)',
     mentor: 'Comité Evaluador VW',
     description: 'Evaluación práctica de diagnóstico de alternador, batería y caída de tensión en banco y fosa.',
     type: 'evaluacion'
@@ -559,11 +595,11 @@ export const CALENDAR_EVENTS: CalendarEventItem[] = [
   {
     day: 19,
     monthIndex: 10,
-    year: 2024,
+    year: 2027,
     title: 'Práctica en Boxes: Diagnóstico Circuito de Carga',
     shortBadge: 'HOY • Box 4',
-    time: '08:30 a 13:00 hs',
-    location: 'Taller Central Ramos Mejía - Box 4',
+    time: '08:00 a 12:00 hs',
+    location: 'Av. Rivadavia 12980, Ciudadela (casa central) - Box 4',
     mentor: 'Ing. Carlos Pérez',
     description: 'Comprobación de alternador inteligente, caída de masa y oscilograma de señal LIN en unidad Taos.',
     type: 'taller',
@@ -572,11 +608,11 @@ export const CALENDAR_EVENTS: CalendarEventItem[] = [
   {
     day: 22,
     monthIndex: 10,
-    year: 2024,
+    year: 2027,
     title: 'Masterclass: Baterías Alto Voltaje VW',
-    shortBadge: '⚡ 14:30 Masterclass',
-    time: '14:30 a 18:00 hs',
-    location: 'Taller Central Ramos Mejía',
+    shortBadge: '⚡ 08:00 Masterclass',
+    time: '08:00 a 12:00 hs',
+    location: 'Av. Rivadavia 12980, Ciudadela (casa central)',
     mentor: 'Ing. Carlos Pérez',
     description: 'Protocolos de corte seguro, banco de pruebas ID.3 y multímetros Cat IV. 8 cupos disponibles.',
     type: 'masterclass'
@@ -584,11 +620,11 @@ export const CALENDAR_EVENTS: CalendarEventItem[] = [
   {
     day: 27,
     monthIndex: 10,
-    year: 2024,
+    year: 2027,
     title: 'Taller Práctico: Manejo de ODIS',
-    shortBadge: '09:00 Taller ODIS',
-    time: '09:00 a 12:30 hs',
-    location: 'Laboratorio Sucursal Central',
+    shortBadge: '08:00 Taller ODIS',
+    time: '08:00 a 12:00 hs',
+    location: 'Laboratorio Casa Central Ciudadela (Av. Rivadavia 12980)',
     mentor: 'Lic. Martín Rossi',
     description: 'Captura de señales con osciloscopio y diagnóstico guiado con cabezal inalámbrico VAS 6154A.',
     type: 'taller'
@@ -596,11 +632,11 @@ export const CALENDAR_EVENTS: CalendarEventItem[] = [
   {
     day: 29,
     monthIndex: 10,
-    year: 2024,
+    year: 2027,
     title: 'Cierre de Planillas de Taller Mes 3',
     shortBadge: 'Cierre Legajo M3',
-    time: '17:00 hs',
-    location: 'Administración Académica',
+    time: '12:00 hs',
+    location: 'Administración Académica - Ciudadela',
     mentor: 'Secretaría de Alumnos',
     description: 'Firma de horas prácticas presenciales acumuladas en legajo del aprendiz.',
     type: 'visita'
@@ -608,11 +644,11 @@ export const CALENDAR_EVENTS: CalendarEventItem[] = [
   {
     day: 5,
     monthIndex: 11,
-    year: 2024,
+    year: 2027,
     title: 'Visita Técnica a Planta Pacheco VW',
     shortBadge: '🏛️ Pacheco VW',
     time: 'Jueves 05 Dic • 07:30 hs',
-    location: 'Salida desde Ramos Mejía',
+    location: 'Salida desde Casa Central Ciudadela (Av. Rivadavia 12980)',
     mentor: 'Coordinación LNG Olivieri',
     description: 'Líneas robotizadas de armado Taos / Amarok, centro de estampado y pista de homologación.',
     type: 'visita'
@@ -629,7 +665,7 @@ export const INITIAL_CHAT_MESSAGES: ChatMessage[] = [
   {
     id: 'msg-2',
     sender: 'user',
-    text: 'Perfecto Ingeniero, ya estoy preparando la documentación del taller de Ramos Mejía y la planilla de mediciones de caída de tensión.',
+    text: 'Perfecto Ingeniero, ya estoy preparando la documentación del taller de Ciudadela (Casa Central) y la planilla de mediciones de caída de tensión.',
     time: 'Hoy 10:22 hs'
   },
   {
@@ -702,7 +738,7 @@ export const FORUM_THREADS: ForumThread[] = [
     id: 'thread-1',
     title: 'Torque y secuencia de apriete en culata de motor 1.4 TSI EA211',
     moduleCode: '0001',
-    moduleTitle: 'Módulo 1: Fundamentos Técnicos, Taller y Seguridad',
+    moduleTitle: 'Módulo 1: Introducción (Principios Técnicos), Seguridad y Herramientas',
     author: 'Facundo Gómez',
     authorRole: 'student',
     avatarInitials: 'FG',
@@ -752,7 +788,7 @@ export const FORUM_THREADS: ForumThread[] = [
     id: 'thread-2',
     title: 'Caída de tensión anormal en borne negativo del alternador en Taos (0.45V medidos)',
     moduleCode: '0012',
-    moduleTitle: 'Módulo 3: Mantenimiento y Electricidad Automotriz',
+    moduleTitle: 'Módulo 3: Electricidad Automotriz Básica',
     author: 'Facundo Gómez',
     authorRole: 'student',
     avatarInitials: 'FG',
@@ -792,7 +828,7 @@ export const FORUM_THREADS: ForumThread[] = [
     id: 'thread-3',
     title: 'Protocolo de purga al vacío en circuito refrigerante con bomba de agua pilotada',
     moduleCode: '0002',
-    moduleTitle: 'Módulo 2: Sistemas del Vehículo y Servicio al Cliente',
+    moduleTitle: 'Módulo 2: Motor y Sistemas Auxiliares',
     author: 'Lucas Benítez',
     authorRole: 'student',
     avatarInitials: 'LB',
@@ -822,7 +858,7 @@ export const FORUM_THREADS: ForumThread[] = [
     id: 'thread-4',
     title: 'Lectura de osciloscopio en sensor CKP inductivo vs efecto Hall',
     moduleCode: '0012',
-    moduleTitle: 'Módulo 3: Mantenimiento y Electricidad Automotriz',
+    moduleTitle: 'Módulo 3: Electricidad Automotriz Básica',
     author: 'Sofía Martínez',
     authorRole: 'student',
     avatarInitials: 'SM',
@@ -856,7 +892,7 @@ export const ASSESSMENTS_DATA: AssessmentItem[] = [
     id: 'tp-1',
     title: 'TP Opcional: Informe Técnico de Metrología en Taller',
     moduleCode: '0001',
-    moduleTitle: 'Módulo 1: Fundamentos Técnicos, Taller y Seguridad',
+    moduleTitle: 'Módulo 1: Introducción (Principios Técnicos), Seguridad y Herramientas',
     type: 'teorico-online',
     categoryKind: 'tp-opcional',
     status: 'aprobado',
@@ -874,16 +910,16 @@ export const ASSESSMENTS_DATA: AssessmentItem[] = [
     id: 'exam-1',
     title: 'Examen Parcial: Seguridad, Pañol y Banco de Despiece',
     moduleCode: '0001',
-    moduleTitle: 'Módulo 1: Fundamentos Técnicos, Taller y Seguridad',
+    moduleTitle: 'Módulo 1: Introducción (Principios Técnicos), Seguridad y Herramientas',
     type: 'practico-taller',
     categoryKind: 'examen-parcial',
     status: 'aprobado',
     grade: '9.50 / 10',
     minScore: '7.00 / 10',
     durationMinutes: 60,
-    dateScheduled: '04 de Octubre 2024',
+    dateScheduled: '04 de Octubre 2027',
     evaluator: 'Ing. Carlos Pérez',
-    location: 'Taller 1 Bancos Ramos Mejía',
+    location: 'Taller 1 Bancos Ciudadela (Casa Central)',
     description: 'Examen parcial obligatorio individual de despiece de motor didáctico, aplicación de torques y protocolos de bioseguridad en taller.',
     rubric: [
       { criteria: 'Medición de espesor y alabeo con comparador', weight: '30%', scoreObtained: '10/10' },
@@ -898,7 +934,7 @@ export const ASSESSMENTS_DATA: AssessmentItem[] = [
     id: 'tp-2',
     title: 'TP Opcional: Revisión de Frenos y Circuito Hidráulico',
     moduleCode: '0002',
-    moduleTitle: 'Módulo 2: Sistemas del Vehículo y Servicio al Cliente',
+    moduleTitle: 'Módulo 2: Motor y Sistemas Auxiliares',
     type: 'teorico-online',
     categoryKind: 'tp-opcional',
     status: 'aprobado',
@@ -916,14 +952,14 @@ export const ASSESSMENTS_DATA: AssessmentItem[] = [
     id: 'exam-2',
     title: 'Examen Parcial: Suspensión, Dirección y Frenos ABS',
     moduleCode: '0002',
-    moduleTitle: 'Módulo 2: Sistemas del Vehículo y Servicio al Cliente',
+    moduleTitle: 'Módulo 2: Motor y Sistemas Auxiliares',
     type: 'teorico-online',
     categoryKind: 'examen-parcial',
     status: 'aprobado',
     grade: '9.50 / 10',
     minScore: '7.50 / 10',
     durationMinutes: 45,
-    dateScheduled: '01 de Noviembre 2024',
+    dateScheduled: '01 de Noviembre 2027',
     evaluator: 'Lic. Valeria Benítez',
     location: 'Campus Virtual LNG Olivieri',
     description: 'Examen parcial obligatorio de 25 preguntas sobre hidráulica de frenos, modulación de válvulas ABS y geometría de tren delantero.',
@@ -939,7 +975,7 @@ export const ASSESSMENTS_DATA: AssessmentItem[] = [
     id: 'tp-3',
     title: 'TP Opcional: Diagnóstico de Alternador y Batería de 12V',
     moduleCode: '0012',
-    moduleTitle: 'Módulo 3: Mantenimiento y Electricidad Automotriz',
+    moduleTitle: 'Módulo 3: Electricidad Automotriz Básica',
     type: 'teorico-online',
     categoryKind: 'tp-opcional',
     status: 'pendiente',
@@ -957,15 +993,15 @@ export const ASSESSMENTS_DATA: AssessmentItem[] = [
     id: 'exam-3',
     title: 'Examen Parcial: Circuitos de Carga y Alternador (Práctico)',
     moduleCode: '0012',
-    moduleTitle: 'Módulo 3: Mantenimiento y Electricidad Automotriz',
+    moduleTitle: 'Módulo 3: Electricidad Automotriz Básica',
     type: 'practico-taller',
     categoryKind: 'examen-parcial',
     status: 'pendiente',
     minScore: '7.00 / 10',
     durationMinutes: 90,
-    dateScheduled: 'Viernes 15 de Noviembre • 08:30 hs',
+    dateScheduled: 'Viernes 15 de Noviembre • 08:00 a 12:00 hs',
     evaluator: 'Comité Evaluador LNG Olivieri / VW',
-    location: 'Laboratorio de Electricidad Ramos Mejía (Fosa 2)',
+    location: 'Laboratorio de Electricidad Ciudadela - Casa Central (Fosa 2)',
     description: 'Examen parcial obligatorio en fosa: diagnóstico guiado de alternador con osciloscopio, medición de caída de tensión con consumo y prueba de batería.',
     rubric: [
       { criteria: 'Diagnóstico de caída de masa y positivo de alternador', weight: '30%' },
@@ -980,7 +1016,7 @@ export const ASSESSMENTS_DATA: AssessmentItem[] = [
     id: 'sim-3',
     title: 'Simulador Interactivo: Práctica Previa al Parcial de Electricidad',
     moduleCode: '0012',
-    moduleTitle: 'Módulo 3: Mantenimiento y Electricidad Automotriz',
+    moduleTitle: 'Módulo 3: Electricidad Automotriz Básica',
     type: 'simulacion',
     categoryKind: 'simulador',
     status: 'pendiente',
@@ -1047,7 +1083,7 @@ export const ASSESSMENTS_DATA: AssessmentItem[] = [
     id: 'tp-4',
     title: 'TP Opcional: Protocolo de Diagnóstico ODIS y Sensores',
     moduleCode: '0013',
-    moduleTitle: 'Módulo 4: Diagnóstico y Proceso Post-Venta',
+    moduleTitle: 'Módulo 4: Inyección Electrónica y Diagnóstico',
     type: 'teorico-online',
     categoryKind: 'tp-opcional',
     status: 'bloqueado',
@@ -1064,7 +1100,7 @@ export const ASSESSMENTS_DATA: AssessmentItem[] = [
     id: 'exam-4',
     title: 'Examen Parcial: Diagnóstico Guiado con Escáner ODIS (Práctico)',
     moduleCode: '0013',
-    moduleTitle: 'Módulo 4: Diagnóstico y Proceso Post-Venta',
+    moduleTitle: 'Módulo 4: Inyección Electrónica y Diagnóstico',
     type: 'practico-taller',
     categoryKind: 'examen-parcial',
     status: 'bloqueado',

@@ -320,8 +320,9 @@ export default function App() {
           handleOpenModal(
             'Perfil Oficial del Aprendiz: Facundo Gómez',
             `<b>DNI:</b> 44.892.104<br/>
-             <b>Programa:</b> Jóvenes Talentos LNG Olivieri (Edición 2024)<br/>
-             <b>Sede Principal:</b> Sucursal Central Ramos Mejía<br/>
+             <b>Programa:</b> Jóvenes Talentos LNG Olivieri (Edición 2027)<br/>
+             <b>Sede Principal:</b> Av. Rivadavia 12980, Ciudadela (casa central)<br/>
+             <b>Horario de clases:</b> 8 a 12 hs (Turno Mañana)<br/>
              <b>Puesto actual:</b> Box 4 (Fosa de Electricidad y Carga)<br/>
              <b>Tutor Asignado:</b> Ing. Carlos Pérez<br/>
              <b>Avance Académico:</b> 38% completado (2 materias aprobadas, 1 en curso)<br/>
@@ -387,7 +388,7 @@ export default function App() {
                 className="p-2.5 bg-slate-50 hover:bg-slate-100 transition rounded-xl cursor-pointer"
               >
                 <p className="font-bold text-slate-800">Examen Práctico Módulo 3</p>
-                <p className="text-slate-600 text-[11px] mt-0.5">Viernes 15 • 08:30 hs en Laboratorio Eléctrico.</p>
+                <p className="text-slate-600 text-[11px] mt-0.5">Viernes 15 • 08:00 hs (Clase 8 a 12 hs) en Laboratorio Eléctrico.</p>
               </div>
             </div>
           </div>

@@ -150,7 +150,7 @@ export const ModuleDrawer: React.FC<ModuleDrawerProps> = ({
                       Módulo actualmente en cursada activa:
                     </p>
                     <p className="text-slate-600">
-                      Se encuentra en desarrollo el eje de <em>Circuitos de Carga y Arranque</em>. Turnos prácticos asignados en el taller central de Ramos Mejía.
+                      Se encuentra en desarrollo el eje de <em>Circuitos de Carga y Arranque</em>. Turnos prácticos asignados en la casa central de Ciudadela (Av. Rivadavia 12980), horario de 8 a 12 hs.
                     </p>
                     <div className="pt-2 flex items-center gap-2">
                       <button

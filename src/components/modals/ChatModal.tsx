@@ -47,7 +47,7 @@ export const ChatModal: React.FC<ChatModalProps> = ({
     setTimeout(() => {
       setIsTyping(false);
       const automatedReplies = [
-        `¡Excelente Facundo! Tomo nota para la práctica de mañana en el taller central de Ramos Mejía. No olvides traer el multímetro y el calzado dieléctrico.`,
+        `¡Excelente Facundo! Tomo nota para la práctica de mañana en la casa central de Ciudadela (Av. Rivadavia 12980). No olvides traer el multímetro y el calzado dieléctrico para el turno de 8 a 12 hs.`,
         `Buen planteo Facundo. Revisá el esquema eléctrico de la página 14 del manual técnico MQB antes del inicio del turno.`,
         `Queda asentado en tu legajo técnico. Recordá que el informe debe incluir la firma del jefe de fosa antes de las 18 hs.`
       ];

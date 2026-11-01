@@ -161,7 +161,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <h4 className="text-sm font-semibold text-white truncate group-hover:text-blue-300 transition-colors">
                 Facundo Gómez
               </h4>
-              <p className="text-xs text-slate-400 truncate">Joven Talento - Ramos Mejía</p>
+              <p className="text-xs text-slate-400 truncate">Joven Talento - Ciudadela (Casa Central)</p>
             </div>
           </div>
         </div>

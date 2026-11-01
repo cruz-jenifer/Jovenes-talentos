@@ -158,7 +158,7 @@ export const EvaluacionesView: React.FC<EvaluacionesViewProps> = ({
             <div>
               <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">Próximo Parcial</p>
               <p className="text-base font-extrabold text-slate-900">Viernes 15 Nov</p>
-              <p className="text-[11px] text-slate-600 font-medium">Módulo 3 • 08:30 hs</p>
+              <p className="text-[11px] text-slate-600 font-medium">Módulo 3 • 08:00 a 12:00 hs</p>
             </div>
           </div>
         </div>

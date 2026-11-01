@@ -99,7 +99,7 @@ export const PlanView: React.FC<PlanViewProps> = ({
           <div className="space-y-1.5 flex-1 max-w-2xl">
             <div className="flex items-center gap-2">
               <span className="text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200">
-                Programa Jóvenes Talentos 2024
+                Programa Jóvenes Talentos 2027
               </span>
               <span className="text-slate-300">•</span>
               <span className="text-xs text-slate-600 font-semibold">6 Módulos Teórico-Prácticos</span>

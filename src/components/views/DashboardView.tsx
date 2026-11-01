@@ -102,7 +102,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               ¡Buen día, Facundo!
             </h1>
             <p className="text-sm text-slate-600 mt-0.5">
-              Taller Sucursal Ramos Mejía • Jornada de Turno Mañana (08:00 - 14:00)
+              Sede Central Ciudadela (Av. Rivadavia 12980) • Jornada Turno Mañana (8 a 12 hs)
             </p>
           </div>
 
@@ -118,8 +118,8 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               onClick={() =>
                 onShowNoticeModal(
                   'Registro Biométrico de Fichaje - Facundo Gómez',
-                  `<b>Fecha:</b> Martes 19 de Noviembre 2024<br/>
-                   <b>Hora de ingreso:</b> 08:04:12 hs (Torniquete Pañol Ramos Mejía)<br/>
+                  `<b>Fecha:</b> Martes 19 de Noviembre 2027<br/>
+                   <b>Hora de ingreso:</b> 08:04:12 hs (Torniquete Pañol Ciudadela - Casa Central)<br/>
                    <b>Estado de presentismo:</b> Presente Normal (Sin demoras)<br/>
                    <b>Tutor responsable en planta:</b> Ing. Carlos Pérez<br/>
                    <b>Asignación:</b> Fosa 2 / Elevador 2 (Box 4)`
@@ -492,7 +492,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             </div>
 
             <p className="text-xs text-slate-700 bg-slate-100/90 p-3 rounded-xl border border-slate-200 italic">
-              &ldquo;Recordá subir el checklist de la Taos antes de las 13:00 para la entrega al cliente.&rdquo;
+              &ldquo;Recordá subir el checklist de la Taos antes de las 12:00 para la entrega al cliente.&rdquo;
             </p>
 
             <button
@@ -532,7 +532,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               <h3 className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
                 <Wrench className="w-4 h-4 text-slate-700" /> Pañol & Herramientas
               </h3>
-              <span className="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Ramos Mejía</span>
+              <span className="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Ciudadela (Casa Central)</span>
             </div>
             <p className="text-xs text-slate-600">
               Solicitud de torquímetros, escáner ODIS, EPP dieléctrico y calibres Mitutoyo para tu box.

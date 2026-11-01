@@ -52,7 +52,7 @@ export const Header: React.FC<HeaderProps> = ({
     { type: 'view' as const, id: 'foro', label: 'Foro Técnico de Cátedra', category: 'Vistas' },
     { type: 'view' as const, id: 'calendario', label: 'Calendario de Turnos y Talleres', category: 'Vistas' },
     { type: 'view' as const, id: 'recursos', label: 'Pañol de Herramientas y EPP', category: 'Vistas' },
-    { type: 'module' as const, id: '0003', label: 'Módulo 3: Mantenimiento y Electricidad', category: 'Módulos' },
+    { type: 'module' as const, id: '0003', label: 'Módulo 3: Electricidad Automotriz Básica', category: 'Módulos' },
     { type: 'module' as const, id: '0006', label: 'Módulo 6: Proyecto Integrador Final', category: 'Módulos' },
     { type: 'task' as const, id: 'pdi-taos', label: 'Protocolo PDI Taos 0km', category: 'Tareas' },
     { type: 'task' as const, id: 'safety-quiz', label: 'Autoevaluación de Seguridad e Higiene', category: 'Tareas' },
@@ -100,7 +100,7 @@ export const Header: React.FC<HeaderProps> = ({
               <span className="text-slate-800 font-semibold">{getSectionTitle()}</span>
             </div>
             <p className="text-[11px] text-slate-400 font-medium hidden sm:block">
-              Turno Mañana • Ramos Mejía
+              Turno Mañana (8 a 12 hs) • Av. Rivadavia 12980, Ciudadela (casa central)
             </p>
           </div>
         </div>

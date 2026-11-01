@@ -40,7 +40,7 @@ export const CalendarioView: React.FC<CalendarioViewProps> = ({
     return ev.type === activeFilter;
   });
 
-  // Calendar cells for November 2024:
+  // Calendar cells for November 2027:
   // Starts on Friday Nov 1 (so Lun=28, Mar=29, Mie=30, Jue=31 of Octubre are prev month)
   // Days 1..30 of Noviembre
   // Days 1..5 of Diciembre
@@ -70,7 +70,7 @@ export const CalendarioView: React.FC<CalendarioViewProps> = ({
           <div>
             <div className="flex items-center gap-2 mb-1.5 flex-wrap">
               <span className="text-[11px] font-extrabold uppercase bg-blue-50 text-blue-700 border border-blue-200 px-2.5 py-0.5 rounded-full">
-                Programa Jóvenes Talentos 2024
+                Programa Jóvenes Talentos 2027
               </span>
               <span className="text-xs text-slate-500 font-medium flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -165,7 +165,7 @@ export const CalendarioView: React.FC<CalendarioViewProps> = ({
               <button
                 onClick={() => {
                   setCurrentMonthIndex((prev) => (prev === 10 ? 9 : 10));
-                  onNotify(`Visualizando ${currentMonthIndex === 10 ? 'Octubre 2024' : 'Noviembre 2024'}`);
+                  onNotify(`Visualizando ${currentMonthIndex === 10 ? 'Octubre 2027' : 'Noviembre 2027'}`);
                 }}
                 className="px-2.5 py-1 rounded-lg hover:bg-white text-slate-700 transition"
               >
@@ -173,13 +173,13 @@ export const CalendarioView: React.FC<CalendarioViewProps> = ({
               </button>
 
               <span className="px-3 py-1 font-bold text-slate-900 bg-white rounded-lg shadow-xs">
-                {monthName} 2024
+                {monthName} 2027
               </span>
 
               <button
                 onClick={() => {
                   setCurrentMonthIndex((prev) => (prev === 10 ? 11 : 10));
-                  onNotify(`Visualizando ${currentMonthIndex === 10 ? 'Diciembre 2024' : 'Noviembre 2024'}`);
+                  onNotify(`Visualizando ${currentMonthIndex === 10 ? 'Diciembre 2027' : 'Noviembre 2027'}`);
                 }}
                 className="px-2.5 py-1 rounded-lg hover:bg-white text-slate-700 transition"
               >
@@ -318,13 +318,13 @@ export const CalendarioView: React.FC<CalendarioViewProps> = ({
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4 text-blue-400 shrink-0" />
                   <span>
-                    <strong className="text-white">Horario:</strong> Hoy • 08:30 a 13:00 hs
+                    <strong className="text-white">Horario:</strong> Hoy • 08:00 a 12:00 hs (Clase de 8 a 12)
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-blue-400 shrink-0" />
                   <span>
-                    <strong className="text-white">Ubicación:</strong> Taller Central Ramos Mejía (Fosa 2 / Puesto 4)
+                    <strong className="text-white">Ubicación:</strong> Av. Rivadavia 12980, Ciudadela (casa central - Fosa 2 / Puesto 4)
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -372,11 +372,11 @@ export const CalendarioView: React.FC<CalendarioViewProps> = ({
                   onOpenEventModal({
                     day: 15,
                     monthIndex: 10,
-                    year: 2024,
+                    year: 2027,
                     title: 'Examen Práctico Módulo 3',
                     shortBadge: 'Examen M3',
-                    time: 'Viernes 15 • 08:30 hs',
-                    location: 'Laboratorio de Electricidad Ramos Mejía',
+                    time: 'Viernes 15 • 08:00 a 12:00 hs',
+                    location: 'Laboratorio de Electricidad Ciudadela (Casa Central)',
                     mentor: 'Ing. Carlos Pérez',
                     description: 'Examen integrador práctico con osciloscopio y diagnóstico de fallas simuladas sobre alternador y batería.',
                     type: 'evaluacion'
@@ -393,7 +393,7 @@ export const CalendarioView: React.FC<CalendarioViewProps> = ({
                 <p className="text-xs font-bold text-slate-900 leading-snug">
                   Módulo 3: Circuitos de Carga y Alternador
                 </p>
-                <p className="text-[11px] text-slate-500">Lugar: Laboratorio de Electricidad Automotriz</p>
+                <p className="text-[11px] text-slate-500">Lugar: Laboratorio de Electricidad Ciudadela (Casa Central)</p>
               </div>
 
               {/* Obligacion 2 */}
@@ -402,11 +402,11 @@ export const CalendarioView: React.FC<CalendarioViewProps> = ({
                   onOpenEventModal({
                     day: 22,
                     monthIndex: 10,
-                    year: 2024,
+                    year: 2027,
                     title: 'Masterclass: Baterías Alto Voltaje VW',
                     shortBadge: 'Masterclass',
-                    time: 'Viernes 22 • 14:30 hs',
-                    location: 'Taller Central Ramos Mejía',
+                    time: 'Viernes 22 • 08:00 a 12:00 hs',
+                    location: 'Av. Rivadavia 12980, Ciudadela (casa central)',
                     mentor: 'Ing. Carlos Pérez',
                     description: 'Capacitación oficial Volkswagen en protocolos e-Mobility y corte de alta tensión.',
                     type: 'masterclass'
@@ -432,11 +432,11 @@ export const CalendarioView: React.FC<CalendarioViewProps> = ({
                   onOpenEventModal({
                     day: 5,
                     monthIndex: 11,
-                    year: 2024,
+                    year: 2027,
                     title: 'Jornada en Planta Pacheco VW',
                     shortBadge: 'Visita Técnica',
                     time: 'Jueves 05 Dic • 07:30 hs',
-                    location: 'Planta Pacheco VW',
+                    location: 'Planta Pacheco VW (Salida desde Casa Central Ciudadela)',
                     mentor: 'Coordinación LNG Olivieri',
                     description: 'Visita guiada por líneas de montaje, centro de estampado y pista de pruebas.',
                     type: 'visita'

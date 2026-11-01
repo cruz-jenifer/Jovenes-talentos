@@ -291,7 +291,7 @@ export const RecursosView: React.FC<RecursosViewProps> = ({ onNotify, onOpenModa
             </div>
 
             <p className="text-xs text-slate-600 leading-relaxed">
-              Acreditación automática mensual de boletos de transporte público para asistencia al Taller Ramos Mejía y San Justo.
+              Acreditación automática mensual de boletos de transporte público para asistencia a la Sede Central Ciudadela (Av. Rivadavia 12980).
             </p>
 
             <div className="p-3.5 bg-slate-100/90 rounded-xl border border-slate-200 text-xs space-y-1.5 shadow-2xs">
